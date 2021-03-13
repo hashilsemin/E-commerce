@@ -1,0 +1,528 @@
+  <!-- header area start -->
+   
+
+  
+    <!-- product details wrapper start -->
+    <div class="product-details-main-wrapper pb-80 pt-35">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="pro-details-gallery-thumb mb-30">
+                                <a href="#"><img src="/product-images/{{product._id}}ad.jpg" style="width 100px; height: auto;" alt=""></a>
+                                <div class="img-view">
+                                    <a class="img-popup" href="/product-images/{{product._id}}ad.jpg"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="pro-details-gallery-thumb mb-30">
+                                <a href="#"><img src="/product-images/{{product._id}}front.jpg" style="width 100px; height: auto;" alt=""></a>
+                                <div class="img-view">
+                                    <a class="img-popup" href="/product-images/{{product._id}}front.jpg"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="pro-details-gallery-thumb mb-30">
+                                <a href="#"><img src="/product-images/{{product._id}}thumbnail.jpg" style="width 100px; height: auto;" alt=""></a>
+                                <div class="img-view">
+                                    <a class="img-popup" href="/product-images/{{product._id}}thumbnail.jpg"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="pro-details-gallery-thumb mb-30">
+                                <a href="#"><img src="/product-images/{{product._id}}side.jpg" style="width 100px; height: auto;" alt=""></a>
+                                <div class="img-view">
+                                    <a class="img-popup" href="/product-images/{{product._id}}side.jpg"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-details-inner">
+                        <div class="product-details-contentt">
+                            <div class="pro-details-name mb-10">
+                                <h3>{{product.product}}</h3>
+                            </div>
+                            <div class="pro-details-review mb-20">
+                                <ul>
+                                    <li>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                        <span><i class="fa fa-star"></i></span>
+                                    </li>
+                                    <li><a href="#">1 Reviews</a></li>
+                                </ul>
+                            </div>
+                            <div class="price-box mb-15">
+                                <span class="regular-price"><span class="special-price">{{product.price}} ₹</span></span>
+                                {{!-- <span class="old-price"><del>£60.00</del></span> --}}
+                            </div>
+                            <div class="product-detail-sort-des pb-20">
+                                <p>{{product.description}}</p>
+                            </div>
+                            <div class="pro-details-list pt-20">
+                                <ul>
+                                    <li><span>Price :</span>{{product.price}}</li>
+                                    {{!-- <li><span>Brands :</span><a href="#">Canon</a></li>
+                                    <li><span>Product Code :</span>Digital</li>
+                                    <li><span>Reward Points :</span>200</li>
+                                    <li><span>Availability :</span>In Stock</li> --}}
+                                </ul>
+                            </div>
+                            {{!-- <div class="product-availabily-option mt-15 mb-15">
+                                <h3>Available Options</h3>
+                                <div class="color-optionn">
+                                    <h4><sup>*</sup>color</h4>
+                                    <ul>
+                                        <li>
+                                            <a class="c-black" href="#" title="Black"></a>
+                                        </li>
+                                        <li>
+                                            <a class="c-blue" href="#" title="Blue"></a>
+                                        </li>
+                                        <li>
+                                            <a class="c-brown" href="#" title="Brown"></a>
+                                        </li>
+                                        <li>
+                                            <a class="c-gray" href="#" title="Gray"></a>
+                                        </li>
+                                        <li>
+                                            <a class="c-red" href="#" title="Red"></a>
+                                        </li>
+                                    </ul> 
+                                </div>
+                            </div> --}}
+                            <div class="pro-quantity-box mb-30">
+                                <div class="qty-boxx">
+                                    <label>qty :</label>
+                                    <input type="text" placeholder="0">
+                                    <button class="btn-cart lg-btn">add to cart</button>
+                                </div>
+                            </div>
+                            <div class="useful-links mb-20">
+                                <ul>
+                                    {{!-- <li>
+                                        <a href="#"><i class="fa fa-heart-o"></i>add to wish list</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-refresh"></i>compare this product</a>
+                                    </li> --}}
+                                </ul>
+                            </div>
+                            <div class="tag-line mb-20">
+                                <label>tag :</label>
+                                <a href="#">Movado</a>,
+                                <a href="#">Omega</a>
+                            </div>
+                            <div class="pro-social-sharing">
+                                <label>share :</label>
+                                <ul>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="bg-facebook" title="Facebook">
+                                            <i class="fa fa-facebook"></i>
+                                            <span>like 0</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="bg-twitter" title="Twitter">
+                                            <i class="fa fa-twitter"></i>
+                                            <span>tweet</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="bg-google" title="Google Plus">
+                                            <i class="fa fa-google-plus"></i>
+                                            <span>google +</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- product details wrapper end -->
+
+    <!-- product details reviews start -->
+    <div class="product-details-reviews pb-30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product-info mt-half">
+                        <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="nav_desctiption" data-toggle="pill" href="#tab_description" role="tab" aria-controls="tab_description" aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="nav_review" data-toggle="pill" href="#tab_review" role="tab" aria-controls="tab_review" aria-selected="false">Reviews (1)</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tab_description" role="tabpanel" aria-labelledby="nav_desctiption">
+                                <p>Studio Design' PolyFaune collection features classic products with colorful patterns, inspired by the traditional japanese origamis. To wear with a chino or jeans. The sublimation textile printing process provides an exceptional color rendering and a color, guaranteed overtime. Regular fit, round neckline, long sleeves. 100% cotton, brushed inner side for extra comfort.</p>
+                            </div>
+                            <div class="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
+                                <div class="product-review">
+                                    <div class="customer-review">
+                                        <table class="table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Sinrato Themes</strong></td>
+                                                    <td class="text-right">09/04/2019</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <p>It’s both good and bad. If Nikon had achieved a high-quality wide lens camera with a 1 inch sensor, that would have been a very competitive product. So in that sense, it’s good for us. But actually, from the perspective of driving the 1 inch sensor market, we want to stimulate this market and that means multiple manufacturers.</p>
+                                                        <div class="product-ratings">
+                                                            <ul class="ratting d-flex mt-2">
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> <!-- end of customer-review -->
+                                    <form action="#" class="review-form">
+                                        <h2>Write a review</h2>
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                <label class="col-form-label"><span class="text-danger">*</span> Your Name</label>
+                                                <input type="text" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                <label class="col-form-label"><span class="text-danger">*</span> Your Review</label>
+                                                <textarea class="form-control" required></textarea>
+                                                <div class="help-block pt-10"><span class="text-danger">Note:</span> HTML is not translated!</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                <label class="col-form-label"><span class="text-danger">*</span> Rating</label>
+                                                &nbsp;&nbsp;&nbsp; Bad&nbsp;
+                                                <input type="radio" value="1" name="rating">
+                                                &nbsp;
+                                                <input type="radio" value="2" name="rating">
+                                                &nbsp;
+                                                <input type="radio" value="3" name="rating">
+                                                &nbsp;
+                                                <input type="radio" value="4" name="rating">
+                                                &nbsp;
+                                                <input type="radio" value="5" name="rating" checked>
+                                                &nbsp;Good
+                                            </div>
+                                        </div>
+                                        <div class="buttons d-flex justify-content-end">
+                                            <button class="btn-cart rev-btn" type="submit">Continue</button>
+                                        </div>
+                                    </form> <!-- end of review-form -->
+                                </div> <!-- end of product-review -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+  
+
+   <!-- scroll to top -->
+    <div class="scroll-top not-visible">
+        <i class="fa fa-angle-up"></i>
+    </div> <!-- /End Scroll to Top -->
+
+    <!-- footer area start -->  
+    <footer>
+        <!-- news-letter area start -->
+        <div class="newsletter-group">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="newsletter-box">
+                            <div class="newsletter-inner">
+                                <div class="newsletter-title">
+                                    <h3>Sign Up For Newsletters</h3>
+                                    <p>Be the First to Know. Sign up for newsletter today</p>
+                                </div>
+                                <div class="newsletter-box">
+                                    <form id="mc-form">
+                                        <input type="email" id="mc-email" autocomplete="off" class="email-box" placeholder="enter your email">
+                                        <button class="newsletter-btn" type="submit" id="mc-submit">subscribe !</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="link-follow">
+                                <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                                <a href="https://plus.google.com/discover"><i class="fa fa-google-plus"></i></a>
+                                <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <!-- mailchimp-alerts Start -->
+                        <div class="mailchimp-alerts">
+                            <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                            <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                            <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                        </div><!-- mailchimp-alerts end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- news-letter area end -->
+        <!-- footer top area start -->
+        <div class="footer-top pt-50 pb-50">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer-single-widget">
+                            <div class="widget-title">
+                                <div class="footer-logo mb-30">
+                                    <a href="index.html">
+                                         <img src="/assets/img/logo/logo-sinrato.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <p>We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
+                                <div class="payment-method">
+                                    <h4>payment</h4>
+                                    <img src="/assets/img/payment/payment.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- single widget end -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-single-widget">
+                            <div class="widget-title">
+                                <h4>Information</h4>
+                            </div>
+                            <div class="widget-body">
+                                <div class="footer-useful-link">
+                                    <ul>
+                                        <li><a href="about.html">about us</a></li>
+                                        <li><a href="#">Delivery Information</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Site Map</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- single widget end -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer-single-widget">
+                            <div class="widget-title">
+                                <h4>contact us</h4>
+                            </div>
+                            <div class="widget-body">
+                                <div class="footer-useful-link">
+                                    <ul>
+                                        <li><span>Address:</span> 4710-4890 Breckinridge St,Fayetteville, NC 28311</li>
+                                        <li><span>email:</span> support@sinrato.com</li>
+                                        <li><span>Call us:</span> <strong>1-1001-234-5678</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- single widget end -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer-single-widget">
+                            <div class="widget-title">
+                                <h4>Our Twitter Feed</h4>
+                            </div>
+                            <div class="widget-body">
+                                <div class="twitter-article">
+                                    <div class="twitter-text">
+                                        Check out "Alice - Multipurpose Responsive #Magento #Theme" on #Envato by <a href="#">@sinratos</a> #Themeforest <a href="#">https://t.co/DNdhAwzm88</a>
+                                        <span class="tweet-time"><i class="fa fa-twitter"></i><a href="#">30 sep</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- single widget end -->
+                </div>
+            </div>
+        </div>
+        <!-- footer top area end -->
+        <!-- footer bottom area start -->
+        <div class="footer-bottom">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="footer-bottom-content">
+                            <div class="footer-copyright">
+                            <p>Copyright © 2019 <a href="#">sinratos</a>. All Right Reserved</p>
+                            </div>
+                            <div class="footer-custom-link">
+                                {{!-- <a href="#">Brands</a>
+                                <a href="#">Specials</a> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer bottom area end -->
+    </footer>
+    <!-- footer area end -->
+
+    <!-- Quick view modal start -->
+    <div class="modal fade" id="quickk_view">
+        <div class="container">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="product-large-slider mb-20">
+                                    <div class="pro-large-img">
+                                        <img src="/assets/img/product/product-4.jpg" alt=""/>
+                                    </div>
+                                    <div class="pro-large-img">
+                                        <img src="/assets/img/product/product-5.jpg" alt=""/>
+                                    </div>
+                                    <div class="pro-large-img">
+                                        <img src="/assets/img/product/product-6.jpg" alt=""/>
+                                    </div>
+                                    <div class="pro-large-img">
+                                        <img src="/assets/img/product/product-7.jpg" alt=""/>
+                                    </div>
+                                    <div class="pro-large-img">
+                                        <img src="/assets/img/product/product-8.jpg" alt=""/>
+                                    </div>
+                                    <div class="pro-large-img">
+                                        <img src="/assets/img/product/product-9.jpg" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="pro-nav">
+                                    <div class="pro-nav-thumb"><img src="/assets/img/product/product-4.jpg" alt="" /></div>
+                                    <div class="pro-nav-thumb"><img src="/assets/img/product/product-5.jpg" alt="" /></div>
+                                    <div class="pro-nav-thumb"><img src="/assets/img/product/product-6.jpg" alt="" /></div>
+                                    <div class="pro-nav-thumb"><img src="/assets/img/product/product-7.jpg" alt="" /></div>
+                                    <div class="pro-nav-thumb"><img src="/assets/img/product/product-8.jpg" alt="" /></div>
+                                    <div class="pro-nav-thumb"><img src="/assets/img/product/product-9.jpg" alt="" /></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="product-details-inner">
+                                    <div class="product-details-contentt">
+                                        <div class="pro-details-name mb-10">
+                                            <h3>Bose SoundLink Bluetooth Speaker</h3>
+                                        </div>
+                                        <div class="pro-details-review mb-20">
+                                            <ul>
+                                                <li>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                </li>
+                                                <li><a href="#">1 Reviews</a></li>
+                                                <li><a href="#">Write a Review</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="price-box mb-15">
+                                            <span class="regular-price"><span class="special-price">£50.00</span></span>
+                                            <span class="old-price"><del>£60.00</del></span>
+                                        </div>
+                                        <div class="product-detail-sort-des pb-20">
+                                            <p>Canon's press material for the EOS 5D states that it 'defines (a) new D-SLR category', while we're not typically too concerned</p>
+                                        </div>
+                                        <div class="pro-details-list pt-20">
+                                            <ul>
+                                                <li><span>Availability :</span>In Stock</li>
+                                            </ul>
+                                        </div>
+                                        <div class="product-availabily-option mt-15 mb-15">
+                                            <h3>Available Options</h3>
+                                            <div class="color-optionn">
+                                                <h4><sup>*</sup>color</h4>
+                                                <ul>
+                                                    <li>
+                                                        <a class="c-black" href="#" title="Black"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="c-blue" href="#" title="Blue"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="c-brown" href="#" title="Brown"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="c-gray" href="#" title="Gray"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="c-red" href="#" title="Red"></a>
+                                                    </li>
+                                                </ul> 
+                                            </div>
+                                        </div>
+                                        <div class="pro-quantity-box mb-30">
+                                            <div class="qty-boxx">
+                                                <label>qty :</label>
+                                                <input type="text" placeholder="0">
+                                                <button class="btn-cart lg-btn">add to cart</button>
+                                            </div>
+                                        </div>
+                                        <div class="pro-social-sharing">
+                                            <label>share :</label>
+                                            <ul>
+                                                <li class="list-inline-item">
+                                                    <a href="#" class="bg-facebook" title="Facebook">
+                                                        <i class="fa fa-facebook"></i>
+                                                        <span>like 0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#" class="bg-twitter" title="Twitter">
+                                                        <i class="fa fa-twitter"></i>
+                                                        <span>tweet</span>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#" class="bg-google" title="Google Plus">
+                                                        <i class="fa fa-google-plus"></i>
+                                                        <span>google +</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Quick view modal end -->
+
+	<!-- all js include here -->
+    <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/ajax-mail.js"></script>
+    <script src="/assets/js/main.js"></script>

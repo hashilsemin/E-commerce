@@ -18,7 +18,7 @@ module.exports = {
     getProduct:(vendor)=>{
         return new Promise(async(resolve,reject)=>{
            
-            let id = ""+vendor._id
+            let id = ""+vendor
           
             let product = await db.get().collection(collection.PRODUCT).find({ vendorId : id}).toArray()
             resolve(product)
@@ -57,6 +57,53 @@ module.exports = {
             })
         })
     },
+
+    checkUser: (vendorData) => {
+        return new Promise(async (resolve, reject) => {
+            var status = false
+            var admindb = await db.get().collection(collection.VENDOR).findOne({ email: vendorData.email })
+            console.log(admindb);
+            var response = {}
+            if (admindb) {
+                bcrypt.compare(vendorData.password, admindb.password).then((status) => {
+                    if (status) {
+                        console.log("1");
+                        resolve({ Login: true, admindb })
+                    } else {
+                        console.log("2");
+                        resolve({ passwordErr: true })
+                    }
+                })
+
+            } else {
+                resolve({ Login: false })
+                console.log("3");
+            }
+        })
+    },
+
+    blockVendor:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collection.PRODUCT).updateOne({_id:objectID(id)},{
+                $set:{
+                    block : "block"
+                }
+            }).then(()=>{
+                resolve()
+            })
+        })
+            },
+            unBlockVendor:(id)=>{
+                return new Promise(async(resolve,reject)=>{
+                    db.get().collection(collection.PRODUCT).updateOne({_id:objectID(id)},{
+                        $unset:{
+                            block : "block"
+                        }
+                    }).then(()=>{
+                        resolve()
+                    })
+                })
+                    },
 
 
 }

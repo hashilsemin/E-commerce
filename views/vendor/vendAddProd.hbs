@@ -27,18 +27,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Category</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                    <input type="text" name="category"  class="form-control" />
+                                                   
                                                                     
                                                                      <input type="text" name="vendorId" value="{{vendorId}}"  hidden/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                          
                                                          <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
@@ -80,17 +72,56 @@
                                                     <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Thumbnail</label>
+                                                                    <label class="login2 pull-right pull-right-pro">Thumbnail image</label>
                                                                 </div>
                                                                 <div class="col-lg-9">
-                                                                                   <input type="file" name="Image" class="form-control" onchange="viewImage(event)" > 
+                                                                                   <input type="file" name="Image1" class="form-control"  accept="image/*" onchange="viewImage(event)" > 
                                                                                   
-                                                      <img src="/product-image/{{product._id}}.jpg" alt="" style="width:100px;height:auto" id="imgView">
+                                                      <img  alt="" style="width:100px;height:auto" id="imgView">
                 
                                                                 </div>
                                                             </div>
                                                         </div>
                                     
+                                           <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3">
+                                                                    <label class="login2 pull-right pull-right-pro">Front View Image</label>
+                                                                </div>
+                                                                <div class="col-lg-9">
+                                                                                   <input type="file" name="Image2" class="form-control"  accept="image/*" onchange="viewImage1(event)" > 
+                                                                                  
+                                                      <img  alt="" style="width:100px;height:auto" id="imgView2">
+                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                               <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3">
+                                                                    <label class="login2 pull-right pull-right-pro">Side view Image</label>
+                                                                </div>
+                                                                <div class="col-lg-9">
+                                                                                   <input type="file" name="Image3" class="form-control"  accept="image/*" onchange="viewImage2(event)" > 
+                                                                                  
+                                                      <img src="/product-image/{{product._id}}sideimage.jpg" alt="" style="width:100px;height:auto" id="imgView3">
+                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                               <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3">
+                                                                    <label class="login2 pull-right pull-right-pro">Advertisment image</label>
+                                                                </div>
+                                                                <div class="col-lg-9">
+                                                                                   <input type="file" name="Image4" class="form-control"  accept="image/*" onchange="viewImage3(event)" > 
+                                                                                  
+                                                      <img  alt="" style="width:100px;height:auto" id="imgView4">
+                
+                                                                </div>
+                                                            </div>
+                                                        </div>
          
                                                     {{!-- photo end --}}
                                                      
@@ -125,6 +156,15 @@
 <script>
     function viewImage(event){
         document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage1(event){
+        document.getElementById('imgView2').src=URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage2(event){
+        document.getElementById('imgView3').src=URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage3(event){
+        document.getElementById('imgView4').src=URL.createObjectURL(event.target.files[0])
     }
 </script>
 

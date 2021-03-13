@@ -37,6 +37,111 @@
 			}
 		});
 		
+
+		$("#vendorLogin").validate(
+			{					
+				rules:
+				{	
+					email:
+					{
+						required: true,
+						email: true
+					},
+					password:
+					{
+						required: true,
+						minlength: 3,
+						maxlength: 20
+					}
+				},
+				messages:
+				{	
+					email:
+					{
+						required: 'Please enter your email address',
+						email: 'Please enter a VALID email address'
+					},
+					password:
+					{
+						required: 'Please enter your password',
+						minlength:"Please type 3 letters"
+					}
+				},					
+				
+				errorPlacement: function(error, element)
+				{
+					error.insertAfter(element.parent());
+				}
+			});
+
+
+
+			$("#vendorSignup").validate(
+				{					
+					rules:
+					{	
+						email:
+						{
+							required: true,
+							email: true
+						},
+						name:
+						{
+							required: true,
+							minlength: 3,
+							maxlength: 20
+						}
+						,
+						mobile:
+						{
+							required: true,
+							minlength: 3,
+							maxlength: 20
+						},
+						
+						address:
+						{
+							required: true,
+							minlength: 3,
+							maxlength: 20
+						}
+						
+
+					},
+					messages:
+					{	
+						email:
+						{
+							required: 'Please enter your email address',
+							email: 'Please enter a VALID email address'
+						},
+						name:
+						{
+							required: 'Please enter the name',
+						
+						},
+						mobile:
+						{
+							required: 'Please enter your mobile',
+							
+						},
+						address:
+						{
+							required: 'Please enter your address',
+							
+						}
+					},					
+					
+					errorPlacement: function(error, element)
+					{
+						error.insertAfter(element.parent());
+					}
+				});
+	
+
+
+
+
 		$("#adminpro-formsign").validate(
 			{					
 				rules:
@@ -76,6 +181,217 @@
 				}
 			});
 
+
+			$("#editCategory").validate(
+				{					
+					rules:
+					{	
+						category:
+						{
+							required: true,
+						
+						},
+						description:
+						{
+							required: true,
+							
+						}
+						
+						
+					},
+					messages:
+					{	
+						category:
+						{
+							required: 'Please enter the category name',
+							
+						},
+						description:
+						{
+							required: 'Please enter the description'
+						},
+					
+					},					
+					
+					errorPlacement: function(error, element)
+					{
+						error.insertAfter(element.parent());
+					}
+				});
+	
+				$("#addcategory").validate(
+					{					
+						rules:
+						{	
+							category:
+							{
+								required: true,
+							
+							},
+							description:
+							{
+								required: true,
+								
+							}
+							
+							
+						},
+						messages:
+						{	
+							category:
+							{
+								required: 'Please enter the category name',
+								
+							},
+							description:
+							{
+								required: 'Please enter the description'
+							},
+						
+						},					
+						
+						errorPlacement: function(error, element)
+						{
+							error.insertAfter(element.parent());
+						}
+					});
+
+
+					$("#addproduct").validate(
+						{					
+							rules:
+							{	
+								product:
+								{
+									required: true,
+								
+								},
+								category:
+								{
+									required: true,
+									
+								},
+								description:
+								{
+									required: true,
+									
+								},
+								price:
+								{
+									required: true,
+									
+								},
+								Image1:
+								{
+									required: true,
+									
+								},
+								Image2:
+								{
+									required: true,
+									
+								},
+								Image3:
+								{
+									required: true,
+									
+								},
+								Image4:
+								{
+									required: true,
+									
+								}
+
+								
+								
+							},
+							messages:
+							{	
+								category:
+								{
+									required: 'Please enter the category name',
+									
+								},
+								description:
+								{
+									required: 'Please enter the description'
+								},
+							
+							},					
+							
+							errorPlacement: function(error, element)
+							{
+								error.insertAfter(element.parent());
+							}
+						});
+
+						$("#editproduct").validate(
+							{					
+								rules:
+								{	
+									product:
+									{
+										required: true,
+									
+									},
+									category:
+									{
+										required: true,
+										
+									},
+									description:
+									{
+										required: true,
+										
+									},
+									price:
+									{
+										required: true,
+										
+									},
+									Image1:
+									{
+										required: true,
+										
+									},
+									Image2:
+									{
+										required: true,
+										
+									},
+									Image3:
+									{
+										required: true,
+										
+									},
+									Image4:
+									{
+										required: true,
+										
+									}
+	
+									
+									
+								},
+								messages:
+								{	
+									category:
+									{
+										required: 'Please enter the category name',
+										
+									},
+									description:
+									{
+										required: 'Please enter the description'
+									},
+								
+								},					
+								
+								errorPlacement: function(error, element)
+								{
+									error.insertAfter(element.parent());
+								}
+							});
 
 		$("#addvendor").validate(
 			{					

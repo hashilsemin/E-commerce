@@ -1,0 +1,300 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from demo.hasthemes.com/sinrato-preview/sinrato/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Jan 2021 10:39:17 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- Page Title -->
+	<title>E-shop</title>
+	<!--Fevicon-->
+	<link rel="icon" href="/assets/img/icon/favicon.ico" type="image/x-icon" />
+	<!-- Bootstrap css -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- linear-icon -->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/linear-icon.css">
+    <!-- all css plugins css -->
+    <link rel="stylesheet" href="/assets/css/plugins.css">
+    <!-- default style -->
+    <link rel="stylesheet" href="/assets/css/default.css">
+    <!-- Main Style css -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+
+    <!-- Modernizer JS -->
+    <script src="/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+</head>
+<body>
+	<!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- header area start -->
+    <header class="header-pos">
+        <div class="header-top black-bg">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-12">
+                        <div class="header-top-left">
+                            <ul>
+                                <li><span>Email: </span>support@Eshop.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <div class="box box-right">
+                            <ul>
+                                {{#if user}}
+                                <li class="settings">
+                                    <a class="ha-toggle" href="#">{{user.fname}}<span class="lnr lnr-chevron-down"></span></a>
+                                    <ul class="box-dropdown ha-dropdown">
+                                        
+                                      
+                                        <li><a href="/logout">logout</a></li>
+                                    </ul>
+                                </li>
+                                {{else}}
+                             
+                              <li class="settings">
+                                    <a class="ha-toggle" href="#">My Account<span class="lnr lnr-chevron-down"></span></a>
+                                    <ul class="box-dropdown ha-dropdown">
+                                        <li><a href="/signup">Sign up</a></li>
+                                        <li><a href="/login">Login</a></li>
+                                      
+                                    </ul>
+                                </li>
+                             
+                              {{/if}}
+                                 
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-middle home-header2 theme-bg">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                        <div class="logo">
+                            <a href="index.html"><img src="/assets/img/logo/logo-sinrato2.png" alt="brand-logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12 col-12 order-sm-last">
+                        <div class="header-middle-inner">
+                            <form action="https://demo.hasthemes.com/sinrato-preview/sinrato/method">
+                                <div class="top-cat hm1">
+                                    <div class="search-form">
+                                         <select>
+                                            <optgroup label="Electronics">
+                                                <option value="volvo">Laptop</option>
+                                                <option value="saab">watch</option>
+                                                <option value="saab">air cooler</option>
+                                                <option value="saab">audio</option>
+                                                <option value="saab">speakers</option>
+                                                <option value="saab">amplifires</option>
+                                            </optgroup>
+                                            <optgroup label="Fashion">
+                                                <option value="mercedes">Womens tops</option>
+                                                <option value="audi">Jeans</option>
+                                                <option value="audi">Shirt</option>
+                                                <option value="audi">Pant</option>
+                                                <option value="audi">Watch</option>
+                                                <option value="audi">Handbag</option>
+                                            </optgroup>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <input type="text" class="top-cat-field" placeholder="Search entire store here">
+                                <input type="button" class="top-search-btn" value="Search">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
+                        <div class="mini-cart-option">
+                            <ul>
+                                <li class="compare">
+                                    <a class="ha-toggle" href="compare.html"><span class="lnr lnr-sync"></span>Product compare</a>
+                                </li>
+                                <li class="wishlist">
+                                    <a class="ha-toggle" href="wishlist.html"><span class="lnr lnr-heart"></span><span class="count">1</span>wishlist</a>
+                                </li>
+                                <li class="my-cart">
+                                    <a class="ha-toggle" href="#"><span class="lnr lnr-cart"></span><span class="count">2</span>my cart</a>
+                                    <ul class="mini-cart-drop-down ha-dropdown">
+                                        <li class="mb-30">
+                                            <div class="cart-img">
+                                                <a href="product-details.html"><img alt="" src="assets/img/cart/cart-1.jpg"></a>
+                                            </div>
+                                            <div class="cart-info">
+                                                <h4><a href="product-details.html">Koss Porta Pro On Ear  Headphones </a></h4>
+                                                <span> <span>1 x </span>£165.00</span>
+                                            </div>
+                                            <div class="del-icon">
+                                                <i class="fa fa-times-circle"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="subtotal-text">Sub-total: </div>
+                                            <div class="subtotal-price">£48.94</div>
+                                        </li>
+                                        <li>
+                                            <div class="subtotal-text">Eco Tax (-2.00): </div>
+                                            <div class="subtotal-price">£1.51</div>
+                                        </li>
+                                        <li>
+                                            <div class="subtotal-text">Vat (20%): </div>
+                                            <div class="subtotal-price">£9.79</div>
+                                        </li>
+                                        <li>
+                                            <div class="subtotal-text">Total: </div>
+                                            <div class="subtotal-price"><span>£60.24</span></div>
+                                        </li>
+                                        <li class="mt-30">
+                                            <a class="cart-button hm2" href="cart.html">view cart</a>
+                                        </li>
+                                        <li>
+                                            <a class="cart-button hm2" href="checkout.html">checkout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-top-menu menu-style2 mb-40 sticker">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="top-main-menu">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li><a href="#">HOME<span class="lnr lnr-chevron-down"></span></a>
+                                            <ul class="dropdown">
+                                                <li><a href="index.html">Home Version 1</a></li>
+                                                <li><a href="index-2.html">Home Version 2</a></li>
+                                                <li><a href="index-3.html">Home Version 3</a></li>
+                                                <li><a href="index-4.html">Home Version 4</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">SHOP<span class="lnr lnr-chevron-down"></span></a>
+                                            <ul class="dropdown">
+                                                <li><a href="#">Shop Grid Layout <span class="lnr lnr-chevron-right"></span></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left sidebar</a></li>
+                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right sightbar</a></li>
+                                                        <li><a href="shop-grid-left-sidebar-4-column.html">shop grid left sidebar 4 col</a></li>
+                                                        <li><a href="shop-grid-right-sidebar-4-column.html">shop grid right sidebar 4 col</a></li>
+                                                        <li><a href="shop-grid-full-width-3-column.html">shop grid full width 3 col</a></li>
+                                                        <li><a href="shop-grid-full-width-4-column.html">shop grid full width 4 col</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#">Shop List Layout <span class="lnr lnr-chevron-right"></span></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="shop-list-left-sidebar.html">Shop lidt left sidebar</a></li>
+                                                        <li><a href="shop-list-right-sidebar.html">Shop list right sidebar</a></li>
+                                                        <li><a href="shop-list-full-width.html">Shop list full width</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#">Product Details <span class="lnr lnr-chevron-right"></span></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="product-details.html">Product Details</a></li>
+                                                        <li><a href="product-details-variable.html">Product Details Variable</a></li>
+                                                        <li><a href="product-details-external.html">Product Details External</a></li>
+                                                        <li><a href="product-details-group.html">Product Details Group</a></li>
+                                                        <li><a href="tab-style-one.html">tab style one</a></li>
+                                                        <li><a href="product-details-gallery-left.html">product details gallery left</a></li>
+                                                        <li><a href="product-details-gallery-right.html">product details gallery right</a></li>
+                                                        <li><a href="sticky-left-sidebar.html">sticky left sidebar</a></li>
+                                                        <li><a href="sticky-right-sidebar.html">sticky right sidebar</a></li>
+                                                        <li><a href="product-details-slider-box.html">product details slider box</a></li>
+                                                        <li><a href="product-details-slider-box.html">product details slider box</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="static"><a href="#">Pages<span class="lnr lnr-chevron-down"></span></a>
+                                            <ul class="mega-menu mega-full">
+                                                <li class="mega-title"><a href="#">Column one</a>
+                                                    <ul>
+                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left sidebar</a></li>
+                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right sightbar</a></li>
+                                                        <li><a href="shop-grid-full-width-4-column.html">Shop grid full width</a></li>
+                                                        <li><a href="shop-list-full-width.html">Shop list full width</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="mega-title"><a href="#">Column two</a>
+                                                    <ul>
+                                                        <li><a href="checkout.html">Check Out</a></li>
+                                                        <li><a href="cart.html">Cart</a></li>
+                                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                                        <li><a href="compare.html">Compare</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="mega-title"><a href="#">Column Three</a>
+                                                    <ul>
+                                                        <li><a href="product-details.html">Product Details</a></li>
+                                                        <li><a href="product-details-variable.html">Product Details Variable</a></li>
+                                                        <li><a href="product-details-external.html">Product Details External</a></li>
+                                                        <li><a href="product-details-group.html">Product Details Group</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="mega-title"><a href="#">Column Four</a>
+                                                    <ul>
+                                                        <li><a href="login.html">login</a></li>
+                                                        <li><a href="register.html">register2</a></li>
+                                                        <li><a href="my-account.html">my account</a></li>
+                                                        <li><a href="contact-us.html">contact us</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">BLOG<span class="lnr lnr-chevron-down"></span></a>
+                                            <ul class="dropdown">
+                                                <li><a href="blog-left-sidebar-3.html">Blog Left Sidebar 3 col</a></li>
+                                                <li><a href="blog-left-sidebar-4.html">Blog left Sidebar 4 col</a></li>
+                                                <li><a href="blog-right-sidebar-3.html">Blog Right Sidebar 3 col</a></li>
+                                                <li><a href="blog-right-sidebar-4.html">Blog Right Sidebar 4 col</a></li>
+                                                <li><a href="blog-full-3-column.html">Blog full width 3 col</a></li>
+                                                <li><a href="blog-full-4-column.html">Blog full width 4 col</a></li>
+                                                <li><a href="blog-full-5-column.html">Blog full width 5 col</a></li>
+                                                <li><a href="blog-details.html">Blog Details</a></li>
+                                                <li><a href="blog-details-audio.html">Blog Details audio</a></li>
+                                                <li><a href="blog-details-gallery.html">Blog Details gallery</a></li>
+                                                <li><a href="blog-details-video.html">Blog Details video</a></li>
+                                                <li><a href="blog-details-right-sidebar.html">Blog Details right sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact-us.html">CONTACT US</a></li>
+                                    </ul>
+                                </nav>
+                            </div> <!-- </div> end main menu -->
+                            <div class="header-call-action">
+                                <p><span class="lnr lnr-phone"></span>Hotline : <strong>1-001-234-5678</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-block d-lg-none"><div class="mobile-menu"></div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header area end -->
+    <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
+                                                                <script src="/assets/js/popper.min.js"></script>
+                                                                <script src="/assets/js/bootstrap.min.js"></script>
+                                                                <script src="/assets/js/plugins.js"></script>
+                                                                <script src="/assets/js/ajax-mail.js"></script>
+                                                                <script src="/assets/js/main.js"></script>
+                                                                </body>

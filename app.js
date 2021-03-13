@@ -32,7 +32,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(passport.initialize())
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,13 +40,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partial'}))
 app.use('/admin', adminRouter);
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 app.use('/vendor', venderRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
+  
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

@@ -4,6 +4,7 @@ var router = express.Router();
 const maxAge = 3 *34 * 60 * 60
 const adminHelpers = require("../helper/admin-helper")
 var jwt = require('jsonwebtoken');
+const { Db } = require('mongodb');
 const createToken = (id) =>{
   return jwt.sign({id},'my secret',{
     expiresIn:maxAge
@@ -23,7 +24,7 @@ const requireAuth = (req,res,next)=>{
     })
   }else{
     res.redirect('/admin/login')
-  }
+  } 
 }
 var errEmail;
 var errPass;
@@ -139,12 +140,53 @@ router.get('/deleteVendor/:id',((req,res)=>{
   })
 }))
 
+router.get('/blockVendor/:id',((req,res)=>{
+  let id=req.params.id
+  console.log(id);
+  adminHelpers.blockVendor(id).then(()=>{
+    res.redirect('/admin/vendor')
+  })
+}))
+router.get('/unblock/:id',((req,res)=>{
+  let id=req.params.id
+  console.log(id);
+  adminHelpers.unBlockVendor(id).then(()=>{
+    res.redirect('/admin/vendor')
+  })
+}))
+
+
 router.get('/category',requireAuth,async function (req, res, next) {
   let category = await adminHelpers.getCategory()
   console.log(category);
   res.render('admin/admCategory', ({ adminNav:true,category }));
 });
 
+
+router.get('/editCategory/:id',requireAuth,async function (req, res, next) {
+  let ID=req.params.id
+  console.log(ID);
+     let category = await adminHelpers.getCategoryForEdit(ID)
+  res.render('admin/editCategory', ({ adminNav:true,category }));
+});
+
+router.get('/deleteCategory/:id',(req,res)=>{
+  let ID=req.params.id
+  console.log(ID);
+  adminHelpers.deleteCategory(ID).then(()=>{
+    res.redirect('/admin/category')
+  })
+})
+  
+
+
+router.post('/editCategory',(req,res)=>{
+  console.log(req.body);
+  let data = req.body
+  adminHelpers.editCategory(data).then(()=>{
+    res.redirect('/admin/category')
+  })
+})
 
 router.get('/addCategory',requireAuth,((req, res)=> {
  

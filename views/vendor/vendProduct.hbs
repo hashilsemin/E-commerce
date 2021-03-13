@@ -33,7 +33,8 @@
                                                     <th data-field="email" data-editable="true">category</th>
                                                     <th data-field="phone" data-editable="true">Description</th>
                                                     <th data-field="company" data-editable="true">Price</th>
-                                                  
+                                                    <th data-field="status" data-editable="true">Status</th>
+                                                   {{!-- <th data-field="company" data-editable="true">Status</th> --}}
 
                                                     <th data-field="action">Action</th>
                                                 </tr>
@@ -47,11 +48,24 @@
                                                     <td>{{this.category}}</td>
                                                     <td>{{this.description}}</td>
                                                     <td>{{this.price}}</td>
-                                                
+                                                       {{#if this.block}}
+                                                    <td>blocked</td>
+                                                {{else}}
+                                                  <td>allowed</td>
+                                                  {{/if}}
+                                                 {{!-- <td>{{this.block}}</td> --}}
                                                     <td class="datatable-ct"> <a href="/vendor/editProduct/{{this._id}}" class="btn btn-primary">Edit</a>
                             <a href="/vendor/deleteProduct/{{this._id}}" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete {{this.product}} ? ')">Delete</a>
-                                                    </td>
+                                                   
+                                                    {{#if this.block}}
+                                                  <a href="/vendor/unblock/{{this._id}}" class="btn btn-warning"
+                                onclick="return confirm('Are you sure you want to unblock {{this.product}} ? ')">Unblock</a>
+                                                {{else}}
+                                                  <a href="/vendor/blockVendor/{{this._id}}" class="btn btn-warning"
+                                onclick="return confirm('Are you sure you want to block {{this.product  }} ? ')">Block &nbsp &nbsp</a>
+                                                  {{/if}}
+                                                    </td> 
                                                 </tr>
                                               {{/each}}
                                             </tbody>

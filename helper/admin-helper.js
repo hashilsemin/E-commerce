@@ -61,16 +61,17 @@ module.exports = {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log("email sent " + infp.response);
+                    console.log("email sent " + info.response);
 
                 }
             })
             vendorData.password = await bcrypt.hash(password, 10)
-
+            console.log(vendorData);
             db.get().collection(collection.VENDOR).updateOne({_id:objectID(vendorData._id)},
             {
                 $set:{
-                    status:"true"
+                    status:"true",
+                    password:vendorData.password
                 }
             }).then(()=>{
                 resolve()
@@ -156,8 +157,42 @@ module.exports = {
         })
     },
 
-    
-
+    blockVendor:(id)=>{
+return new Promise(async(resolve,reject)=>{
+    db.get().collection(collection.VENDOR).updateOne({_id:objectID(id)},{
+        $set:{
+            block : "block"
+        }
+    }).then(()=>{
+        db.get().collection(collection.PRODUCT).updateOne({vendorId:id},
+            {
+                $set:{
+                    "block":"block"
+                }
+            }).then(()=>{
+                resolve()
+            })
+    })
+})
+    },
+    unBlockVendor:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collection.VENDOR).updateOne({_id:objectID(id)},{
+                $unset:{
+                    block : "block"
+                }
+            }).then(()=>{
+                db.get().collection(collection.PRODUCT).updateOne({vendorID:id},{
+                    $unset :{
+                        block:""
+                    }
+                })
+                .then(()=>{
+                    resolve()
+                })
+            })
+        })
+            },
     getCategory:()=>{
         return new Promise(async(resolve,reject)=>{
             let category = await db.get().collection(collection.CATEGORY).find().toArray()
@@ -193,7 +228,34 @@ module.exports = {
           
             resolve(vendor)
         })
+    },
+    getCategoryForEdit:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let data = db.get().collection(collection.CATEGORY).findOne({_id:objectID(id)})
+            resolve(data)
+        })
+    },
+    editCategory:(data)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collection.CATEGORY).updateOne({_id:objectID(data.id)},{
+                $set:{
+                    category:data.category,
+                    description:data.description
+                }
+            }).then(()=>{
+                resolve()
+            })
+        })
+    },
+
+    deleteCategory:(ID)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.CATEGORY).deleteOne({_id:objectID(ID)}).then(()=>{
+                resolve()
+            })
+        })
     }
+
 }
 
 

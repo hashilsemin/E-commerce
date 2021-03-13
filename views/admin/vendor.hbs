@@ -46,11 +46,22 @@
                                                     <td>{{this.name}}</td>
                                                     <td>{{this.email}}</td>
                                                     <td>{{this.mobile}}</td>
-                                                    <td>{{this.address}}</td>
-                                                
+                                                    {{#if this.block}}
+                                                    <td>blocked</td>
+                                                {{else}}
+                                                  <td>allowed</td>
+                                                  {{/if}}
                                                     <td class="datatable-ct"> <a href="/admin/editVendor/{{this._id}}" class="btn btn-primary">Edit</a>
                             <a href="/admin/deleteVendor/{{this._id}}" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete {{this.name}} ? ')">Delete</a>
+                                  {{#if this.block}}
+                                                  <a href="/admin/unblock/{{this._id}}" class="btn btn-warning"
+                                onclick="return confirm('Are you sure you want to unblock {{this.name}} ? ')">Unblock</a>
+                                                {{else}}
+                                                  <a href="/admin/blockVendor/{{this._id}}" class="btn btn-warning"
+                                onclick="return confirm('Are you sure you want to block {{this.name}} ? ')">Block &nbsp &nbsp</a>
+                                                  {{/if}}
+
                                                     </td>
                                                 </tr>
                                               {{/each}}
