@@ -1,196 +1,652 @@
-      <div class="row">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="sparkline12-list shadow-reset mg-t-30">
+            <div class="sparkline12-hd">
+                <div class="main-sparkline12-hd">
+                    <h1>All Form Element</h1>
+                    <div class="sparkline12-outline-icon">
+                        <span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                        <span><i class="fa fa-wrench"></i></span>
+                        <span class="sparkline12-collapse-close"><i class="fa fa-times"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="sparkline12-graph">
+                <div class="basic-login-form-ad">
+                    <div class="row">
                         <div class="col-lg-12">
-                            <div class="sparkline12-list shadow-reset mg-t-30">
-                                <div class="sparkline12-hd">
-                                    <div class="main-sparkline12-hd">
-                                        <h1>All Form Element</h1>
-                                        <div class="sparkline12-outline-icon">
-                                            <span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
-                                            <span><i class="fa fa-wrench"></i></span>
-                                            <span class="sparkline12-collapse-close"><i class="fa fa-times"></i></span>
+                            <div class="all-form-element-inner">
+                                <form action="/vendor/addProduct" id="addproduct" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Name</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="product" class="form-control" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="sparkline12-graph">
-                                    <div class="basic-login-form-ad">
+
+
+                                    <input type="text" name="vendorId" value="{{vendorId}}" hidden />
+
+                                    <div class="form-group-inner">
                                         <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="all-form-element-inner">
-                                                    <form action="/vendor/addProduct" id="addproduct" method="POST" enctype="multipart/form-data">
-                                                        <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Name</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                    <input type="text"  name="product" class="form-control" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                   
-                                                                    
-                                                                     <input type="text" name="vendorId" value="{{vendorId}}"  hidden/>
-                                                          
-                                                         <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Category</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                    <div class="form-select-list">
-                                                                        <select class="form-control custom-select-value" name="category">
-                                                                            {{#each category}}
-                                                                            <option>{{this.name}}</option>
-                                                                            {{/each}}
-                                                                           
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Description</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                    <input type="text" name="description" class="form-control" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Price</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                    <input type="text" name="price"  class="form-control" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {{!-- photo --}}
-                                                    <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Thumbnail image</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                                   <input type="file" name="Image1" class="form-control"  accept="image/*" onchange="viewImage(event)" > 
-                                                                                  
-                                                      <img  alt="" style="width:100px;height:auto" id="imgView">
-                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                    
-                                           <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Front View Image</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                                   <input type="file" name="Image2" class="form-control"  accept="image/*" onchange="viewImage1(event)" > 
-                                                                                  
-                                                      <img  alt="" style="width:100px;height:auto" id="imgView2">
-                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                               <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Side view Image</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                                   <input type="file" name="Image3" class="form-control"  accept="image/*" onchange="viewImage2(event)" > 
-                                                                                  
-                                                      <img src="/product-image/{{product._id}}sideimage.jpg" alt="" style="width:100px;height:auto" id="imgView3">
-                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                               <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Advertisment image</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                                   <input type="file" name="Image4" class="form-control"  accept="image/*" onchange="viewImage3(event)" > 
-                                                                                  
-                                                      <img  alt="" style="width:100px;height:auto" id="imgView4">
-                
-                                                                </div>
-                                                            </div>
-                                                        </div>
-         
-                                                    {{!-- photo end --}}
-                                                     
-                                                       
-                                                   
-                                                        <div class="form-group-inner">
-                                                            <div class="login-btn-inner">
-                                                                <div class="row">
-                                                                    <div class="col-lg-3"></div>
-                                                                    <div class="col-lg-9">
-                                                                        <div class="login-horizental cancel-wp pull-left">
-                                                                            <button class="btn btn-white" type="submit">Cancel</button>
-                                                                            <button class="btn btn-sm btn-primary login-submit-cs" type="submit">Add the Vendor</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Category</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="form-select-list">
+                                                    <select class="form-control custom-select-value" name="category">
+                                                        {{#each category}}
+                                                        <option>{{this.category}}</option>
+                                                        {{/each}}
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Description</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="description" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Price</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="price" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{!-- photo --}}
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Thumbnail image</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                             
+                                                    {{!-- start1111 --}}
+                                                    	<input type="file" id="realfileInput" accept="image/*" />
+		<input type="button" id="realbtnCrop" value="Crop" />
+		{{!-- <input type="button" id="realbtnRestore" value="Restore" /> --}}
+<div>
+  <canvas id="canvasreal">
+    Your browser does not support the HTML5 canvas element.
+  </canvas>
+</div>		
+                                                <img alt="" style="width:100px;height:auto" id="imgView">
+<div style="width: 33%;" class="lion" id="resultreal"></div>
+ <input type="text" id="stringImage1" name="base64Code" hidden>
+ {{!-- end 1111--}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Front View Image</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                              
+{{!-- start 2222222 --}}
+		<input type="file" id="fileInput" accept="image/*" />
+		<input type="button" id="btnCrop" value="Crop" />
+		{{!-- <input type="button" id="btnRestore" value="Restore" /> --}}
+
+<div>
+  <canvas  id="canvas">
+    Your browser does not support the HTML5 canvas element.
+  </canvas>
+</div>		
+
+<div class="lion" id="result"></div>
+ <input type="text" id="stringImage" name="base64Code1" hidden>
+
+{{!-- end 222222 --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Side view Image</label>
+                                            </div>
+                                            <div class="col-lg-9">
+
+                         
+{{!-- start 3 --}}
+		<input type="file" id="ppfileInput" accept="image/*" />
+		<input type="button" id="ppbtnCrop" value="Crop" />
+		{{!-- <input type="button" id="ppbtnRestore" value="Restore" /> --}}
+
+<div>
+  <canvas  id="ppcanvas" >
+    Your browser does not support the HTML5 canvas element.
+  </canvas>
+</div>		
+<img alt="" style="width:100px;height:auto" id="imgView">
+<div class="lion"  style="width: 33%;" id="ppresult"></div>
+ <input type="text" id="ppstringImage" name="base64Code2" hidden>
+{{!-- end 3 --}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Advertisment
+                                                    image</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                            
+{{!-- start 4444 --}}
+		<input type="file" id="brfileInput" accept="image/*" />
+		<input type="button" id="brbtnCrop" value="Crop" />
+		{{!-- <input type="button" id="brbtnRestore" value="Restore" /> --}}
+
+<div>
+  <canvas  id="brcanvas">
+    Your browser does not support the HTML5 canvas element.
+  </canvas>
+</div>		
+
+<div class="lion" id="brresult"></div>
+ <input type="text" id="brstringImage" name="base64Code3" hidden>
+{{!-- end 444 --}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{!-- photo end --}}
+
+
+
+
+
+
+
+                                    <div class="form-group-inner">
+                                        <div class="login-btn-inner">
+                                            <div class="row">
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-9">
+                                                    <div class="login-horizental cancel-wp pull-left">
+                                                        <button class="btn btn-white" type="submit">Cancel</button>
+                                                        <button class="btn btn-sm btn-primary login-submit-cs"
+                                                            type="submit">Add the Product</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js"></script>
+
+{{!-- //1st script --}}
+<script>
+    var brcanvas  = $("#brcanvas"),
+    brcontext = brcanvas.get(0).getContext("2d"),
+    $brresult = $('#brresult');
+
+$('#brfileInput').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var img = new Image();
+           img.onload = function() {
+             brcontext.canvas.height = img.height;
+             brcontext.canvas.width  = img.width;
+             brcontext.drawImage(img, 0, 0);
+             var cropper = brcanvas.cropper({
+              
+             });
+             $('#brbtnCrop').click(function() {
+                // Get a string base 64 data url
+                var croppedImageDataURL = brcanvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                $brresult.replaceWith( $('<img>').attr('src', croppedImageDataURL) );
+                  document.getElementById("brstringImage").value = croppedImageDataURL;
+             });
+             $('#btnRestore').click(function() {
+               brcanvas.cropper('reset');
+               $brresult.empty();
+             });
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+});
+</script>
+
+<script>
+    var ppcanvas  = $("#ppcanvas"),
+    ppcontext = ppcanvas.get(0).getContext("2d"),
+    $ppresult = $('#ppresult');
+
+$('#ppfileInput').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var img = new Image();
+           img.onload = function() {
+             ppcontext.canvas.height = img.height;
+             ppcontext.canvas.width  = img.width;
+             ppcontext.drawImage(img, 0, 0);
+             var cropper = ppcanvas.cropper({
+               
+             });
+             $('#ppbtnCrop').click(function() {
+                // Get a string base 64 data url
+                var croppedImageDataURL = ppcanvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                $ppresult.replaceWith( $('<img>').attr('src', croppedImageDataURL) );
+                  document.getElementById("ppstringImage").value = croppedImageDataURL;
+             });
+             $('#btnRestore').click(function() {
+               ppcanvas.cropper('reset');
+               $ppresult.empty();
+             });
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+});
+</script>
 
 
 <script>
-    function viewImage(event){
-        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    var realcanvas  = $("#canvasreal"),
+    realcontext = realcanvas.get(0).getContext("2d"),
+    $realresult = $('#resultreal');
+
+$('#realfileInput').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var img = new Image();
+           img.onload = function() {
+             realcontext.canvas.height = img.height;
+             realcontext.canvas.width  = img.width;
+             realcontext.drawImage(img, 0, 0);
+             var cropper = realcanvas.cropper({
+             
+             });
+             $('#realbtnCrop').click(function() {
+                // Get a string base 64 data url
+                var croppedImageDataURL = realcanvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                $realresult.replaceWith( $('<img>').attr('src', croppedImageDataURL) );
+                console.log()
+                 document.getElementById("stringImage1").value = croppedImageDataURL;
+             });
+             $('#realbtnRestore').click(function() {
+               realcanvas.cropper('reset');
+               $realresult.empty();
+             });
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
     }
-    function viewImage1(event){
-        document.getElementById('imgView2').src=URL.createObjectURL(event.target.files[0])
+    else {
+      alert('No file(s) selected.');
     }
-    function viewImage2(event){
-        document.getElementById('imgView3').src=URL.createObjectURL(event.target.files[0])
-    }
-    function viewImage3(event){
-        document.getElementById('imgView4').src=URL.createObjectURL(event.target.files[0])
-    }
+});
 </script>
 
-     <!-- jquery
+
+
+<script>
+    var canvas  = $("#canvas"),
+    context = canvas.get(0).getContext("2d"),
+    $result = $('#result');
+
+$('#fileInput').on( 'change', function(){
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var img = new Image();
+           img.onload = function() {
+             context.canvas.height = img.height;
+             context.canvas.width  = img.width;
+             context.drawImage(img, 0, 0);
+             var cropper = canvas.cropper({
+              
+             });
+             $('#btnCrop').click(function() {
+                // Get a string base 64 data url
+                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                $result.replaceWith( $('<img>').attr('src', croppedImageDataURL) );
+                  document.getElementById("stringImage").value = croppedImageDataURL;
+             });
+             $('#btnRestore').click(function() {
+               canvas.cropper('reset');
+               $result.empty();
+             });
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+});
+</script>
+
+
+
+
+
+
+
+
+
+<style>
+    /* Limit image width to avoid overflow the container */
+img {
+
+  max-width: 25%; /* This rule is very important, please do not ignore this! */
+}
+.brreal {
+    width : 100px
+}
+
+.result {
+    width : 100px
+}
+#canvas {
+  height: 100px;
+  width: 100px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
+}
+#ppcanvas {
+  height: 100px;
+  width: 100px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
+}
+#canvasreal {
+  height: 100px;
+  width: 100px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
+}
+#brcanvas {
+  height: 100px;
+  width: 100px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
+}
+</style>
+
+
+{{!-- <script>
+    function viewImage(event) {
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage1(event) {
+        document.getElementById('imgView2').src = URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage2(event) {
+        document.getElementById('imgView3').src = URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage3(event) {
+        document.getElementById('imgView4').src = URL.createObjectURL(event.target.files[0])
+    }
+</script> --}}
+
+<!-- jquery
 		============================================ -->
-    <script src="/js/vendor/jquery-1.11.3.min.js"></script>
-    <!-- bootstrap JS
+<script src="/js/vendor/jquery-1.11.3.min.js"></script>
+<!-- bootstrap JS
 		============================================ -->
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- meanmenu JS
+{{!--
+<script src="/js/bootstrap.min.js"></script>
+<!-- meanmenu JS
 		============================================ -->
-    <script src="/js/jquery.meanmenu.js"></script>
-    <!-- mCustomScrollbar JS
+<script src="/js/jquery.meanmenu.js"></script> --}}
+<!-- mCustomScrollbar JS
 		============================================ -->
-    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <!-- sticky JS
+<script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- sticky JS
 		============================================ -->
-    <script src="/js/jquery.sticky.js"></script>
-    <!-- scrollUp JS
+<script src="/js/jquery.sticky.js"></script>
+<!-- scrollUp JS
 		============================================ -->
-    <script src="/js/jquery.scrollUp.min.js"></script>
-    <!-- form validate JS
+<script src="/js/jquery.scrollUp.min.js"></script>
+<!-- form validate JS
 		============================================ -->
-    <script src="/js/jquery.form.min.js"></script>
-    <script src="/js/jquery.validate.min.js"></script>
-    <script src="/js/form-active.js"></script>
-    <!-- main JS
+<script src="/js/jquery.form.min.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/form-active.js"></script>
+<!-- main JS
 		============================================ -->
-    <script src="/js/main.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<script>
+    // Start upload preview image
+
+
+
+
+    <style>
+        label.cabinet {
+            display: block;
+        cursor: pointer;
+    }
+
+    label.cabinet input.file {
+            position: relative;
+        height: 100%;
+        width: auto;
+        opacity: 0;
+        -moz-opacity: 0;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+        margin-top: -30px;
+    }
+
+    #upload-demo {
+            width: 250px;
+        height: 250px;
+        padding-bottom: 25px;
+    }
+
+    figure figcaption {
+            position: absolute;
+        bottom: 0;
+        color: #fff;
+        width: 100%;
+        padding-left: 9px;
+        padding-bottom: 5px;
+        text-shadow: 0 0 10px #000;
+    }
+</style>
+
+
+<script>
+    // vars1
+    var result = document.querySelector('.result'),
+        img_result = document.querySelector('.img-result'),
+        img_w = document.querySelector('.img-w'),
+        img_h = document.querySelector('.img-h'),
+        options = document.querySelector('.options'),
+        save = document.querySelector('.save'),
+        cropped = document.querySelector('.cropped'),
+        dwn = document.querySelector('.download'),
+        upload = document.querySelector('#file-input'),
+        cropper = '';
+
+
+    // on change show image with crop options
+    upload.addEventListener('change', (e) => {
+        if (e.target.files.length) {
+            // start file reader
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (e.target.result) {
+                    // create new image
+                    let img = document.createElement('img');
+                    img.id = 'image';
+                    img.src = e.target.result
+                    // clean result before
+                    result.innerHTML = '';
+                    // append new image
+                    result.appendChild(img);
+                    // show save btn and options
+                    save.classList.remove('hide');
+                    options.classList.remove('hide');
+                    // init cropper
+                    cropper = new Cropper(img);
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    // save on click
+    save.addEventListener('click', (e) => {
+        e.preventDefault();
+        // get result to data uri
+        var imgSrc = cropper.getCroppedCanvas({
+            width: img_w.value // input value
+        }).toDataURL();
+        console.log(imgSrc)
+        document.getElementById("stringImage").value = imgSrc;
+        // remove hide class of img
+        cropped.classList.remove('hide');
+        img_result.classList.remove('hide');
+        // show image cropped
+        cropped.src = imgSrc;
+        dwn.classList.remove('hide');
+        dwn.download = 'imagename.png';
+        dwn.setAttribute('href', imgSrc);
+    });
+</script>
+
+
+
+<script>
+    // vars2
+    var result = document.querySelector('.realresult'),
+        img_result = document.querySelector('.realimg-result'),
+        img_w = document.querySelector('.realimg-w'),
+        img_h = document.querySelector('.img-h'),
+        options = document.querySelector('.realoptions'),
+        save = document.querySelector('.realsave'),
+        cropped = document.querySelector('.realcropped'),
+        dwn = document.querySelector('.realdownload'),
+        upload = document.querySelector('#realfile-input'),
+        cropper = '';
+
+
+    // on change show image with crop options
+    upload.addEventListener('change', (e) => {
+        if (e.target.files.length) {
+            // start file reader
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (e.target.result) {
+                    // create new image
+                    let img = document.createElement('img');
+                    img.id = 'image';
+                    img.src = e.target.result
+                    // clean result before
+                    result.innerHTML = '';
+                    // append new image
+                    result.appendChild(img);
+                    // show save btn and options
+                    save.classList.remove('hide');
+                    options.classList.remove('hide');
+                    // init cropper
+                    cropper = new Cropper(img);
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    // save on click
+    save.addEventListener('click', (e) => {
+        e.preventDefault();
+        // get result to data uri
+        var imgSrc = cropper.getCroppedCanvas({
+            width: img_w.value // input value
+        }).toDataURL();
+        console.log(imgSrc)
+        document.getElementById("stringImage").value = imgSrc;
+        // remove hide class of img
+        cropped.classList.remove('hide');
+        img_result.classList.remove('hide');
+        // show image cropped
+        cropped.src = imgSrc;
+        dwn.classList.remove('hide');
+        dwn.download = 'imagename.png';
+        dwn.setAttribute('href', imgSrc);
+    });
+</script>

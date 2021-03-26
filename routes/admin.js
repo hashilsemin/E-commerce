@@ -64,7 +64,7 @@ router.post('/login',async(req, res)=>{
   console.log(response);
   let admin=response.admindb
   if(response.Login){
-    console.log("kitii");
+    
      const token = createToken(admin._id)
      console.log(token);
      res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000})
@@ -106,6 +106,12 @@ router.get('/vendor',requireAuth,async function (req, res, next) {
   res.render('admin/vendor', ({ adminNav:true ,vendor }));
 });
 
+router.get('/user',requireAuth,async function (req, res, next) {
+  let user = await adminHelpers.getUser()
+  res.render('admin/admUser', ({ adminNav:true ,user }));
+});
+
+
 router.get('/addVendor',requireAuth,((req, res)=> {
  
   res.render('admin/addVendor', ({ adminNav:true}));
@@ -140,6 +146,15 @@ router.get('/deleteVendor/:id',((req,res)=>{
   })
 }))
 
+router.get('/deleteUser/:id',((req,res)=>{
+  let id=req.params.id
+  console.log(id);
+  adminHelpers.deleteUser(id).then(()=>{
+    res.redirect('/admin/user')
+  })
+}))
+
+
 router.get('/blockVendor/:id',((req,res)=>{
   let id=req.params.id
   console.log(id);
@@ -147,11 +162,26 @@ router.get('/blockVendor/:id',((req,res)=>{
     res.redirect('/admin/vendor')
   })
 }))
-router.get('/unblock/:id',((req,res)=>{
+router.get('/unblockVendor/:id',((req,res)=>{
   let id=req.params.id
   console.log(id);
   adminHelpers.unBlockVendor(id).then(()=>{
     res.redirect('/admin/vendor')
+  })
+}))
+
+router.get('/blockUser/:id',((req,res)=>{
+  let id=req.params.id
+  console.log(id);
+  adminHelpers.blockUser(id).then(()=>{
+    res.redirect('back')
+  })
+}))
+router.get('/unblockUser/:id',((req,res)=>{
+  let id=req.params.id
+  console.log(id);
+  adminHelpers.unBlockUser(id).then(()=>{
+    res.redirect('/admin/user')
   })
 }))
 
@@ -211,4 +241,45 @@ adminHelpers.addCategory(req.body).then(()=>{
   res.redirect('/admin/category')
 })
 }))
+router.get('/blockUserByReport/:id/:report',((req,res)=>{
+  let id=req.params.id
+  let report = req.params.report
+  console.log(report);
+  console.log("naaaaaaaaaaaaaaaaaaaaaaaaa");
+  console.log(id);
+  adminHelpers.blockUser(id).then(()=>{
+    console.log(report);
+    adminHelpers.deleteReport(report).then(()=>{
+      res.redirect('back')
+    })
+    
+  })
+}))
+router.get('/deleteUserByReport/:id/:report',((req,res)=>{
+  let id=req.params.id
+  let report = req.params.report
+  console.log(report);
+  console.log("naaaaaaaaaaaaaaaaaaaaaaaaa");
+  console.log(id);
+  adminHelpers.deleteUser(id).then(()=>{
+    console.log(report);
+    adminHelpers.deleteReport(report).then(()=>{
+      res.redirect('back')
+    })
+    
+  })
+}))
+
+router.get('/order',(async(req,res)=>{
+  let order = await adminHelpers.getOrder()
+res.render('admin/admOrder',({adminNav:true,order}))
+
+  console.log(order);
+}))
+
+router.get('/vendorComplaints',async(req,res)=>{
+  let report = await adminHelpers.getVendReports()
+    res.render('admin/admVendReport',({report,adminNav:true}))
+
+})
 module.exports = router;

@@ -79,6 +79,13 @@ module.exports = {
 
         })
     },
+    getVendReports:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let report = await db.get().collection(collection.REPORT).find().toArray()
+            console.log(report);
+            resolve(report)
+        })
+    },
 
 
     addVendor: (vendorData) => {
@@ -125,6 +132,13 @@ module.exports = {
             resolve(vendor)
         })
     },
+    getUser:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let user = await db.get().collection(collection.USER).find().toArray()
+            console.log(user);
+            resolve(user)
+        })
+    },
     getpendingVendor:()=>{
         return new Promise(async(resolve,reject)=>{
             let vendor = await db.get().collection(collection.VENDOR).find({status:"false"}).toArray()
@@ -153,6 +167,12 @@ module.exports = {
     deleteVendor:(vendorId)=>{
         return new Promise(async(resolve,reject)=>{
             db.get().collection(collection.VENDOR).deleteOne({_id:objectID(vendorId)})
+            resolve()
+        })
+    },
+    deleteUser:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collection.USER).deleteOne({_id:objectID(userId)})
             resolve()
         })
     },
@@ -193,6 +213,33 @@ return new Promise(async(resolve,reject)=>{
             })
         })
             },
+
+
+
+            blockUser:(id)=>{
+                return new Promise(async(resolve,reject)=>{
+                    db.get().collection(collection.USER).updateOne({_id:objectID(id)},{
+                        $set:{
+                            block : "block"
+                        }
+                    }).then(()=>{
+                        resolve()
+                    })
+                })
+                    },
+                    unBlockUser:(id)=>{
+                        return new Promise(async(resolve,reject)=>{
+                            db.get().collection(collection.USER).updateOne({_id:objectID(id)},{
+                                $unset:{
+                                    block : "block"
+                                }
+                            }).then(()=>{
+                                resolve()
+                            })
+                        })
+                            },
+
+
     getCategory:()=>{
         return new Promise(async(resolve,reject)=>{
             let category = await db.get().collection(collection.CATEGORY).find().toArray()
@@ -253,6 +300,26 @@ return new Promise(async(resolve,reject)=>{
             db.get().collection(collection.CATEGORY).deleteOne({_id:objectID(ID)}).then(()=>{
                 resolve()
             })
+        })
+    },
+    getOrder:()=>{
+        return new Promise (async(resolve,reject)=>{
+            let order = await db.get().collection(collection.ORDER).aggregate([
+                {
+                    $unwind:'$product'
+                }
+            ]).toArray()
+            resolve(order)
+        })
+    },
+    deleteReport:(reportId)=>{
+        return new Promise((resolve,reject)=>{
+            console.log(reportId+"hdlf");
+            db.get().collection(collection.REPORT).removeOne({_id:objectID(reportId)}).then((response)=>{
+                console.log(response);
+                resolve()
+            })
+           
         })
     }
 

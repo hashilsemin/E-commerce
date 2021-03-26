@@ -1,0 +1,389 @@
+<!-- Start cart Wrapper -->
+<div class="shopping-cart-wrapper pb-70">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <main id="primary" class="site-main">
+                    <div class="shopping-cart">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="section-title">
+                                    <h3>Shopping Cart</h3>
+                                </div>
+                                <form action="#">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <td>Image</td>
+                                                    <td>Product Name</td>
+
+                                                    <td>Quantity</td>
+                                                    <td>Unit Price</td>
+                                                    {{!-- <td>Total price</td> --}}
+                                                    <td>Actions</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each products}}
+                                                <tr>
+                                                    <td>
+                                                        <a href="/viewProduct/{{this.product._id}}"><img
+                                                                src="/product-images/{{this.product._id}}first.jpg"
+                                                                alt="Cart Product Image" title="Compete Track Tote"
+                                                                class="img-thumbnail"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="product-details.html">{{this.product.product}}</a>
+                                                        <span>{{this.product.category}}</span>
+                                                        {{!-- <span>Color: Brown</span>
+                                                        <span>Reward Points: 300</span> --}}
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="input-group btn-block">
+
+                                                            <button
+                                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',-1,'{{this.totalPrice}}')"
+                                                                type="button" class="btn btn-danger "><i
+                                                                    class="fa fa-minus"></i></button>
+                                                            <div class="product-qty">
+                                                                    {{!-- quanttttt --}}
+                                                                <input onload="quant()" type="text"
+                                                                    id="{{this.product._id}}"
+                                                                    value="{{this.products.quantity}}">
+                                                            </div>
+                                                            <button
+                                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',1,'{{this.totalPrice}}')"
+                                                                type="button" class="btn btn-primary "><i
+                                                                    class="fa fa-plus"></i></button>
+
+                                                        </div>
+                                                        {{!-- screeeeeeeee --}}
+                                                        {{!-- <script>
+                                                            window.onload = function () {
+                                                                let quantity=document.getElementById("{{this.product._id}}").value
+                                                         
+                                                                document.getElementById("{{this.product._id}}2").innerHTML=quantity*("{{this.product.price}}")
+                                                            }
+
+                                                        </script> --}}
+                                                    </td>
+                                                    <td><span id="unit">{{this.product.price}}</span> ₹</td>
+                                                    {{!-- <td><span id="{{this.product._id}}2"></span>{{this.totalPrice}} ₹</td> --}}
+                                                    <td><button
+                                                            onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',0,'{{this.totalPrice}}')"
+                                                            type="button" class="btn btn-warning ">Remove
+                                                            product</i></button></td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+
+
+                                <script>
+
+
+
+
+                                    function changeQuantity(cartId, proId, userId, count,totalPrice) {
+                                        console.log(proId)
+
+                                        let quantity = parseInt(document.getElementById(proId).value)
+                                          //let unit = parseInt(document.getElementById("unit").innerHTML)
+                                          console.log(totalPrice)
+                                          console.log("sarahete")
+                                        
+                                        count = parseInt(count)
+                                        $.ajax({
+                                            url: '/changeQuantity',
+                                            data: {
+                                                user: userId,
+                                                cart: cartId,
+                                                product: proId,
+                                                count: count,
+                                                quantity: quantity,
+                                                totalPrice:totalPrice
+
+                                            },
+                                            method: 'post',
+                                            success: (response) => {
+                                                console.log("bott")
+                                                console.log(response)
+
+                                                console.log("aboce")
+                                                if (response.removeProduct) {
+                                                    console.log("hello makpppppppppppppppppppppppppppel")
+                                                    alert('Product removed from cart')
+                                                    location.reload()
+                                                } else {
+                                                    console.log(count)
+                                                    console.log(quantity)
+                                                    document.getElementById(proId).value = quantity + count
+                                                    console.log(response)
+                                                    document.getElementById('total').innerHTML = response
+                                                    console.log("loololol under")
+                                                    console.log(totalPrice)
+                                                    
+                                                }
+                                            }
+                                        })
+
+
+                                    }
+                                </script>
+
+
+
+
+
+                                {{!-- <div class="cart-accordion-wrapper mt-full mt-40">
+                                    <h3>What would you like to do next?</h3>
+                                    <p>Choose if you have a discount code or reward points you want to use or would like
+                                        to estimate your delivery cost.</p>
+                                    <div id="cart_accordion" class="mt-4" role="tablist">
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingCoupon">
+                                                <h4 class="mb-0">
+                                                    <a data-toggle="collapse" href="#collapseCoupon"
+                                                        aria-expanded="false" aria-controls="collapseCoupon">Use Coupon
+                                                        Code<i class="ion ion-ios-arrow-down"></i></a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseCoupon" class="collapse" role="tabpanel"
+                                                aria-labelledby="headingCoupon" data-parent="#cart_accordion">
+                                                <div class="card-body">
+                                                    <div class="input-group">
+                                                        <label class="col-12 col-sm-12 col-md-3"
+                                                            for="input-coupon">Enter your coupon here</label>
+                                                        <div class="col-12 col-sm-12 col-md-9">
+                                                            <div class="input-group">
+                                                                <input type="text" name="coupon" value=""
+                                                                    placeholder="Enter your coupon here"
+                                                                    id="input-coupon" class="form-control">
+                                                                <input type="button" value="Apply Coupon"
+                                                                    id="button-coupon"
+                                                                    class="btn btn-secondary cart-pg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingTax">
+                                                <h4 class="mb-0">
+                                                    <a class="collapsed" data-toggle="collapse" href="#collapseTax"
+                                                        aria-expanded="false" aria-controls="collapseTax">Estimate
+                                                        Shipping &amp; Taxes<i class="ion ion-ios-arrow-down"></i></a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTax" class="collapse" role="tabpanel"
+                                                aria-labelledby="headingTax" data-parent="#cart_accordion">
+                                                <div class="card-body cart-select">
+                                                    <p class="pb-20">Enter your destination to get a shipping estimate.
+                                                    </p>
+                                                    <div class="input-group form-group">
+                                                        <label class="col-12 col-sm-12 col-md-3"
+                                                            for="input-country"><span class="text-danger">*</span>
+                                                            Country</label>
+                                                        <div class="col-12 col-sm-12 col-md-9">
+                                                            <select name="country_id" id="input-country"
+                                                                class="form-control nice-select">
+                                                                <option value=""> --- Please Select --- </option>
+                                                                <option value="">Argentina</option>
+                                                                <option value="">Bangladesh</option>
+                                                                <option value="">Belgium</option>
+                                                                <option value="">Brazil</option>
+                                                                <option value="">Germany</option>
+                                                                <option value="">India</option>
+                                                                <option value="">United Kingdom</option>
+                                                                <option value="">United States</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group form-group">
+                                                        <label class="col-12 col-sm-12 col-md-3" for="input-zone"><span
+                                                                class="text-danger">*</span> Region / State</label>
+                                                        <div class="col-12 col-sm-12 col-md-9">
+                                                            <select name="zone_id" id="input-zone"
+                                                                class="form-control nice-select">
+                                                                <option value=""> --- Please Select --- </option>
+                                                                <option value="">Alabama</option>
+                                                                <option value="">Arizona</option>
+                                                                <option value="">California</option>
+                                                                <option value="">Florida</option>
+                                                                <option value="">Newyork</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group form-group mb-5">
+                                                        <label class="col-12 col-sm-12 col-md-3"
+                                                            for="input-postcode"><span class="text-danger">*</span> Post
+                                                            Code</label>
+                                                        <div class="col-12 col-sm-12 col-md-9">
+                                                            <input type="text" name="postcode" value=""
+                                                                placeholder="Post Code" id="input-postcode"
+                                                                class="form-control mb-0">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" id="button-quote"
+                                                        class="btn btn-secondary">Get Quotes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingGift">
+                                                <h4 class="mb-0">
+                                                    <a class="collapsed" data-toggle="collapse" href="#collapseGift"
+                                                        aria-expanded="false" aria-controls="collapseGift">Use Gift
+                                                        Certificate<i class="ion ion-ios-arrow-down"></i></a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseGift" class="collapse" role="tabpanel"
+                                                aria-labelledby="headingGift" data-parent="#cart_accordion">
+                                                <div class="card-body">
+                                                    <div class="input-group">
+                                                        <label class="col-12 col-sm-12 col-md-3"
+                                                            for="input-voucher">Enter your gift certificate code
+                                                            here</label>
+                                                        <div class="col-12 col-sm-12 col-md-9">
+                                                            <div class="input-group">
+                                                                <input type="text" name="voucher" value=""
+                                                                    placeholder="Enter your gift certificate code here"
+                                                                    id="input-voucher" class="form-control">
+                                                                <input type="button" value="Apply Gift Certificate"
+                                                                    id="button-boucher"
+                                                                    class="btn btn-secondary cart-pg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                <div class="cart-amount-wrapper">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-4 offset-md-8">
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Total:</strong></td>
+                                                        <td><span id="total" class="color-primary">{{totalValue}}
+                                                                ₹</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cart-button-wrapper d-flex justify-content-between mt-4">
+                                    <a href="/" class="btn btn-secondary">Continue Shopping</a>
+                                    <a href="/checkout" class="btn btn-secondary dark align-self-end">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end of shopping-cart -->
+                </main> <!-- end of #primary -->
+            </div>
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div>
+<!-- End cart Wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footer-top pt-50 pb-50">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="footer-single-widget">
+                    <div class="widget-title">
+                        <div class="footer-logo mb-30">
+                            <a href="index.html">
+                                <img src="assets/img/logo/logo-sinrato.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <p>E-shop is popular for it's immense
+                            customer service, we are videly availble in 123 countries,
+                            We aim to develop the human nature and to take practice in every challenge.
+                        </p>
+                        <div class="payment-method">
+                            <h4>payment</h4>
+                            <img src="/images/pays.jpeg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- single widget end -->
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer-single-widget">
+                    <div class="widget-title">
+                        <h4>contact us</h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="footer-useful-link">
+                            <ul>
+                                <li><span>Address:</span>
+                                    4710-4890
+                                    Breckinridge
+                                    St,Fayetteville,
+                                    NC 28311</li>
+                                <li><span>email:</span>
+                                    support@sinrato.com
+                                </li>
+                                <li><span>Call
+                                        us:</span>
+                                    <strong>1-1001-234-5678</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- single widget end -->
+            {{!-- <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer-single-widget">
+                    <div class="widget-title">
+                        <h4>Our Twitter Feed</h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="twitter-article">
+                            <div class="twitter-text">
+                                Check out "Alice -
+                                Multipurpose
+                                Responsive #Magento
+                                #Theme" on #Envato
+                                by <a href="#">@sinratos</a>
+                                #Themeforest <a href="#">https://t.co/DNdhAwzm88</a>
+                                <span class="tweet-time"><i class="fa fa-twitter"></i><a href="#">30
+                                        sep</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- single widget end --> --}}
+        </div>
+    </div>
+</div>
+<!-- footer top area end -->

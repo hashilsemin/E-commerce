@@ -1,0 +1,262 @@
+<!-- Start of My Account Wrapper -->
+<div class="my-account-wrapper pb-20">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="user-info mb-30">
+                <div class="row align-items-center no-gutters">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="single-info">
+                            <p class="user-name">Hello <span>{{user.fname}}</span> <br>not {{user.fname}}? <a class="log-out"
+                                    href="login.html">Log Out</a></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="single-info">
+                            <p>Need Assistance? Customer service at <a href="#">admin@example.com</a></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                       <div class="single-info justify-content-lg-center">
+                            <a class="btn btn-secondary" href="/changePassword">Change your password</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
+                        <div class="single-info justify-content-lg-center">
+                            <a class="btn btn-secondary" href="/addAddress">Add a new address</a>
+                        </div>
+                    </div>
+                </div> <!-- end of row -->
+            </div> <!-- end of user-info -->
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="section-title left-aligned">
+                <h3>Account Details</h3> 
+                <a class="btn btn-secondary" href="/editProfile">Edit profile</a>
+            </div>
+            <form action="" method="">
+
+                <div class="form-group row">
+                    <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">First
+                        Name</label>
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                        {{user.fname}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="l-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Last
+                        Name</label>
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                          {{user.lname}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Email
+                        Address</label>
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                         {{user.email}}
+                    </div>
+                </div>
+
+                {{!-- <div class="section-title left-aligned">
+                    <h3>Your address</h3>
+                </div>
+
+                <div class="form-row mb-3">
+                    <div class="form-group col-12 col-sm-12 col-md-12">
+                        <label for="p_address">Address <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="p_address" required>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="form-group col-12 col-sm-12 col-md-6">
+                        <label for="city_name">City <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="city_name" required>
+                    </div>
+
+                </div>
+                <div class="form-row mb-3">
+                    <div class="form-group col-12 col-sm-12 col-md-6">
+                        <label for="province_name">Province <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="province_name" required>
+                    </div>
+
+                </div>
+
+
+                <div class="form-row mb-3">
+                    <div class="form-group col-12 col-sm-12 col-md-6">
+                        <label for="zip_code">Zip Code <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="zip_code" required>
+                    </div>
+
+                </div>
+                <div class="form-row mb-3">
+                    <div class="form-group col-12 col-sm-12 col-md-6">
+                        <label for="tel_number">telephone</label>
+                        <input type="tel" class="form-control" id="tel_number">
+                    </div> --}}
+
+                </div>
+                <div class="register-box d-flex justify-content-end mt-half">
+                    {{!-- <button type="submit" class="btn btn-secondary">Save</button> --}}
+                </div>
+            </form>
+
+        </div>
+    </div> <!-- end of row -->
+</div> <!-- end of container -->
+</div>
+<!-- End of My Account Wrapper -->
+
+<div class="my-account-wrapper pb-20">
+    <div class="container-fluid">
+        <div class="section-title left-aligned">
+            <h3>Your address</h3>
+        </div>
+        <div class="row">
+
+            {{#each address}}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-item mb-30">
+                    <div class="product-caption" style="font-size: large;">
+                        <div class="manufacture-product">
+                            <p style="font-size: x-large;">{{this.address}}</p>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.city}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.province}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.zip}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.mobile}}</h4>
+                        </div>
+
+
+<a class="btn btn-warning" href="/editAddress/{{this._id}}">Edit</a>    
+<a class="btn btn-danger" href="/deleteAddress/{{this._id}}"  onclick="return confirm('Are you sure you want to delete this address? ')">Delete</a>
+
+                    </div>
+                </div> <!-- end single grid item -->
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<!-- scroll to top -->
+<div class="scroll-top not-visible">
+    <i class="fa fa-angle-up"></i>
+</div> <!-- /End Scroll to Top -->
+
+<!-- footer area start -->
+<footer>
+    <!-- news-letter area start -->
+    {{!-- <div class="newsletter-group">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="newsletter-box">
+                        <div class="newsletter-inner">
+                            <div class="newsletter-title">
+                                <h3>Sign Up For Newsletters</h3>
+                                <p>Be the First to Know. Sign up for newsletter today</p>
+                            </div>
+                            <div class="newsletter-box">
+                                <form id="mc-form">
+                                    <input type="email" id="mc-email" autocomplete="off" class="email-box"
+                                        placeholder="enter your email">
+                                    <button class="newsletter-btn" type="submit" id="mc-submit">subscribe !</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="link-follow">
+                            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://plus.google.com/discover"><i class="fa fa-google-plus"></i></a>
+                            <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <!-- mailchimp-alerts Start -->
+                    <div class="mailchimp-alerts">
+                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                        <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                        <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                    </div><!-- mailchimp-alerts end -->
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    <!-- news-letter area end -->
+    <!-- footer top area start -->
+                                                                    <div class="footer-top pt-50 pb-50">
+                                                                        <div class="container-fluid">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                                                                    <div class="footer-single-widget">
+                                                                                        <div class="widget-title">
+                                                                                            <div
+                                                                                                class="footer-logo mb-30">
+                                                                                                <a href="index.html">
+                                                                                                    <img src="assets/img/logo/logo-sinrato.png"
+                                                                                                        alt="">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="widget-body">
+                                                                                            <p>E-shop is popular for it's immense
+                                                                                                customer service, we are videly availble in 123 countries,
+                                                                                                We aim to develop the human nature and to take practice in every challenge.
+                                                                                            </p>
+                                                                                            <div class="payment-method">
+                                                                                                <h4>payment</h4>
+                                                                                                <img src="/images/pays.jpeg"
+                                                                                                    alt="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> <!-- single widget end -->
+                                                                              
+                                                                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                                                                    <div class="footer-single-widget">
+                                                                                        <div class="widget-title">
+                                                                                            <h4>contact us</h4>
+                                                                                        </div>
+                                                                                        <div class="widget-body">
+                                                                                            <div
+                                                                                                class="footer-useful-link">
+                                                                                                <ul>
+                                                                                                    <li><span>Address:</span>
+                                                                                                        4710-4890
+                                                                                                        Breckinridge
+                                                                                                        St,Fayetteville,
+                                                                                                        NC 28311</li>
+                                                                                                    <li><span>email:</span>
+                                                                                                        support@sinrato.com
+                                                                                                    </li>
+                                                                                                    <li><span>Call
+                                                                                                            us:</span>
+                                                                                                        <strong>1-1001-234-5678</strong>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> <!-- single widget end -->
+<!-- footer area end -->
+
+<!-- all js include here -->
+<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/ajax-mail.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+
+<!-- Mirrored from demo.hasthemes.com/sinrato-preview/sinrato/my-account.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Jan 2021 10:39:25 GMT -->
+
+</html>

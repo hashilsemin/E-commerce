@@ -15,11 +15,29 @@ var app = express();
 const flash = require('express-flash')
 const session = require('express-session')
 var fileUpload=require('express-fileupload')
+var base64ToImage = require('base64-to-image');
 // view engine setup
 app.use(fileUpload())
 app.use(flash())
 
-
+var hbsexp = hbs.create({
+  helpers: {
+    multiply: function(a, b) {
+     parseInt(a)
+     parseInt(b)
+      return Number(a) * Number(b);
+    },
+      test: function () { return "Lorem ipsum" },
+      json: function (value, options) {
+          return JSON.stringify(value);
+      }
+  },
+  extname:'hbs',
+  defaultLayout:'layout',
+  partialsDir:__dirname+'/views/partial',
+  layoutsDir:__dirname+'/views/layout/'
+  
+});
 
 //...
 
@@ -38,7 +56,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partial'}))
+app.engine('hbs',hbsexp.engine)
+// app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partial'}))
 app.use('/admin', adminRouter);
 app.use('/', usersRouter);
 app.use('/vendor', venderRouter);
@@ -47,6 +66,15 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
   
+// helpers.multiply = function(a, b) {
+//   if (!isNumber(a)) {
+//     throw new TypeError('expected the first argument to be a number');
+//   }
+//   if (!isNumber(b)) {
+//     throw new TypeError('expected the second argument to be a number');
+//   }
+//   return Number(a) * Number(b);
+// };
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

@@ -57,10 +57,10 @@
         <div class="left-sidebar-pro">
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <a href="#"><img src="/img/message/1.jpg" alt="" />
+                    {{!-- <a href="#"><img src="/img/message/1.jpg" alt="" /> --}}
                     </a>
-                    <h3>Andrar Son</h3>
-                    <p>Developer</p>
+                    <h3>Admin</h3>
+                    <p>E-shop</p>
                     <strong>AP+</strong>
                 </div>
                 <div class="left-custom-menu-adp-wrap">
@@ -77,29 +77,27 @@
                                
                             </div>
                         </li>
+                          <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-pie-chart"></i> <span class="mini-dn">Users</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+                                <a href="/admin/user" class="dropdown-item">View users</a>
+        
+                            </div>
+                        </li>
                         <li class="nav-item"><a href="" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span class="mini-dn">Category</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
                                 <a href="/admin/category" class="dropdown-item">View category</a>
-                                <a href="data-maps.html" class="dropdown-item">Data Maps</a>
+                                {{!-- <a href="data-maps.html" class="dropdown-item">Data Maps</a>
                                 <a href="pdf-viewer.html" class="dropdown-item">Pdf Viewer</a>
                                 <a href="x-editable.html" class="dropdown-item">X-Editable</a>
                                 <a href="code-editor.html" class="dropdown-item">Code Editor</a>
                                 <a href="tree-view.html" class="dropdown-item">Tree View</a>
                                 <a href="preloader.html" class="dropdown-item">Preloader</a>
-                                <a href="images-cropper.html" class="dropdown-item">Images Cropper</a>
+                                <a href="images-cropper.html" class="dropdown-item">Images Cropper</a> --}}
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-pie-chart"></i> <span class="mini-dn">Miscellaneous</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="profile.html" class="dropdown-item">Profile</a>
-                                <a href="contact-client.html" class="dropdown-item">Contact Client</a>
-                                <a href="contact-client-v.1.html" class="dropdown-item">Contact Client v.1</a>
-                                <a href="project-list.html" class="dropdown-item">Project List</a>
-                                <a href="project-details.html" class="dropdown-item">Project Details</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-bar-chart-o"></i> <span class="mini-dn">Charts</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                      
+                        <li class="nav-item"><a href="/admin/order"  role="button" aria-expanded="false" class="nav-link "><i class="fa big-icon fa-bar-chart-o"></i> <span class="mini-dn">Order</span></a>
+                            {{!-- <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
                                 <a href="bar-charts.html" class="dropdown-item">Bar Charts</a>
                                 <a href="line-charts.html" class="dropdown-item">Line Charts</a>
                                 <a href="area-charts.html" class="dropdown-item">Area Charts</a>
@@ -107,15 +105,15 @@
                                 <a href="c3.html" class="dropdown-item">C3 Charts</a>
                                 <a href="sparkline.html" class="dropdown-item">Sparkline Charts</a>
                                 <a href="peity.html" class="dropdown-item">Peity Charts</a>
-                            </div>
+                            </div> --}}
                         </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-table"></i> <span class="mini-dn">Data Tables</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                        <li class="nav-item"><a href="/admin/vendorComplaints" role="button" aria-expanded="false" class="nav-link "><i class="fa big-icon fa-table"></i> <span class="mini-dn">Vendor Complaints</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
                                 <a href="static-table.html" class="dropdown-item">Static Table</a>
                                 <a href="data-table.html" class="dropdown-item">Data Table</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Forms Elements</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                        {{!-- <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Forms Elements</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown form-left-menu-std animated flipInX">
                                 <a href="basic-form-element.html" class="dropdown-item">Basic Elements</a>
                                 <a href="advance-form-element.html" class="dropdown-item">Advance Elements</a>
@@ -124,8 +122,8 @@
                                 <a href="tinymc.html" class="dropdown-item">Text Editor</a>
                                 <a href="dual-list-box.html" class="dropdown-item">Dual List Box</a>
                             </div>
-                        </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-desktop"></i> <span class="mini-dn">App views</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                        </li> --}}
+                        {{!-- <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-desktop"></i> <span class="mini-dn">App views</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown apps-left-menu-std animated flipInX">
                                 <a href="notifications.html" class="dropdown-item">Notifications</a>
                                 <a href="alerts.html" class="dropdown-item">Alerts</a>
@@ -135,8 +133,8 @@
                                 <a href="accordion.html" class="dropdown-item">Accordion</a>
                                 <a href="tab-menus.html" class="dropdown-item">Tab Menus</a>
                             </div>
-                        </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-files-o"></i> <span class="mini-dn">Pages</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                        </li> --}}
+                        {{!-- <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-files-o"></i> <span class="mini-dn">Pages</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown pages-left-menu-std animated flipInX">
                                 <a href="login.html" class="dropdown-item">Login</a>
                                 <a href="register.html" class="dropdown-item">Register</a>
@@ -147,7 +145,7 @@
                                 <a href="order.html" class="dropdown-item">Order</a>
                                 <a href="comment.html" class="dropdown-item">Comment</a>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </nav>
@@ -171,9 +169,9 @@
                             <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12">
                                 <div class="header-top-menu tabl-d-n">
                                     <ul class="nav navbar-nav mai-top-nav">
-                                        <li class="nav-item"><a href="#" class="nav-link">Home</a>
+                                        <li class="nav-item"><a href="/admin" class="nav-link">Home</a>
                                         </li>
-                                        <li class="nav-item"><a href="#" class="nav-link">About</a>
+                                        {{!-- <li class="nav-item"><a href="#" class="nav-link">About</a>
                                         </li>
                                         <li class="nav-item"><a href="#" class="nav-link">Services</a>
                                         </li>
@@ -187,7 +185,7 @@
                                                 <a href="#" class="dropdown-item">Contact Support</a>
                                             </div>
                                         </li>
-                                        <li class="nav-item"><a href="#" class="nav-link">Support</a>
+                                        <li class="nav-item"><a href="#" class="nav-link">Support</a> --}}
                                         </li>
                                     </ul>
                                 </div>
@@ -196,10 +194,10 @@
                                 <div class="header-right-info">
                                     <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                         <li class="nav-item dropdown">
-                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="adminpro-icon adminpro-chat-pro"></span><span class="indicator-ms"></span></a>
+                                           
                                             <div role="menu" class="author-message-top dropdown-menu animated flipInX">
                                                 <div class="message-single-top">
-                                                    <h1>Message</h1>
+                                                    {{!-- <h1>Message</h1> --}}
                                                 </div>
                                                 <ul class="message-menu">
                                                     <li>
@@ -209,7 +207,7 @@
                                                             </div>
                                                             <div class="message-content">
                                                                 <span class="message-date">16 Sept</span>
-                                                                <h2>Advanda Cro</h2>
+                                                                <h2>Account details</h2>
                                                                 <p>Please done this project as soon possible.</p>
                                                             </div>
                                                         </a>
@@ -256,7 +254,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="indicator-nt"></span></a>
+                                        {{!-- <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="indicator-nt"></span></a>
                                             <div role="menu" class="notification-author dropdown-menu animated flipInX">
                                                 <div class="notification-single-top">
                                                     <h1>Notifications</h1>
@@ -315,7 +313,7 @@
                                                     <a href="#">View All Notification</a>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item">
                                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                 <span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
@@ -335,7 +333,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-tasks"></i></a>
+                                        {{!-- <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-tasks"></i></a>
 
                                             <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated flipInX">
                                                 <ul class="nav nav-tabs custon-set-tab">
@@ -771,7 +769,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -788,16 +786,9 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="/admin">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                             <ul class="collapse dropdown-header-top">
-                                                <li><a href="dashboard.html">Dashboard v.1</a>
-                                                </li>
-                                                <li><a href="dashboard-2.html">Dashboard v.2</a>
-                                                </li>
-                                                <li><a href="analytics.html">Analytics</a>
-                                                </li>
-                                                <li><a href="widgets.html">Widgets</a>
-                                                </li>
+                                              
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
@@ -930,3 +921,73 @@
                 </div>
             </div>
             <!-- Mobile Menu end -->
+
+
+
+
+
+
+
+   <!-- Chat Box End-->
+    <!-- jquery
+		============================================ -->
+    <script src="/js/vendor/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="/js/jquery.meanmenu.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="/js/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="/js/jquery.scrollUp.min.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="/js/wow/wow.min.js"></script>
+    <!-- counterup JS
+		============================================ -->
+    <script src="/js/counterup/jquery.counterup.min.js"></script>
+    <script src="/js/counterup/waypoints.min.js"></script>
+    <script src="/js/counterup/counterup-active.js"></script>
+    <!-- jvectormap JS
+		============================================ -->
+    <script src="/js/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="/js/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/js/jvectormap/jvectormap-active.js"></script>
+    <!-- peity JS
+		============================================ -->
+    <script src="/js/peity/jquery.peity.min.js"></script>
+    <script src="/js/peity/peity-active.js"></script>
+    <!-- sparkline JS
+		============================================ -->
+    <script src="/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="/js/sparkline/sparkline-active.js"></script>
+    <!-- flot JS
+		============================================ -->
+    <script src="/js/flot/jquery.flot.js"></script>
+    <script src="/js/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="/js/flot/jquery.flot.spline.js"></script>
+    <script src="/js/flot/jquery.flot.resize.js"></script>
+    <script src="/js/flot/jquery.flot.pie.js"></script>
+    <script src="/js/flot/jquery.flot.symbol.js"></script>
+    <script src="/js/flot/jquery.flot.time.js"></script>
+    <script src="/js/flot/dashtwo-flot-active.js"></script>
+    <!-- data table JS
+		============================================ -->
+    <script src="/js/data-table/bootstrap-table.js"></script>
+    <script src="/js/data-table/tableExport.js"></script>
+    <script src="/js/data-table/data-table-active.js"></script>
+    <script src="/js/data-table/bootstrap-table-editable.js"></script>
+    <script src="/js/data-table/bootstrap-editable.js"></script>
+    <script src="/js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="/js/data-table/colResizable-1.5.source.js"></script>
+    <script src="/js/data-table/bootstrap-table-export.js"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="/js/main.js"></script>

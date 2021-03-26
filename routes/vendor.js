@@ -2,6 +2,7 @@ var express = require('express');
 const { Db } = require('mongodb');
 const { JsonWebTokenError } = require('jsonwebtoken');
 var router = express.Router();
+var base64ToImage = require('base64-to-image');
 const maxAge = 3 *34 * 60 * 60
 const vendorHelpers = require("../helper/vendor-helper")
 const adminHelpers = require("../helper/admin-helper")
@@ -14,12 +15,32 @@ const createToken = (id) =>{
   })
 }
 
+const checkBlock = (req,res,next)=>{
+  console.log("kikikikikik");
+
+  let decoded = jwt.decode(req.cookies.jwt1);
+  console.log(decoded);
+  console.log("++++++++========+++++++");
+ 
+  console.log("********************8888");
+  vendorHelpers.checkBlock(decoded.id).then((block)=>{
+    if(block){
+     
+      res.redirect('/vendor/logout')
+    }else{
+      console.log("vannuuuu11111111111111");
+      next()
+    }
+  })
+}
+
+
 const requireAuth = (req,res,next)=>{
-  console.log(req);
-  console.log(req.cookie);
+
   //res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   const token = req.cookies.jwt1
   if(token){
+    console.log("compaaaaaaaaa");
     jwt.verify(token,'my secret', (err,decodedToken)=>{
       if(err){
         console.log(err.message);
@@ -35,11 +56,17 @@ const requireAuth = (req,res,next)=>{
 
 
 
-router.get('/', requireAuth, function(req, res, next) {
-    res.render('vendor/vendHome', ({ vendorNav:true }));
+router.get('/',requireAuth,checkBlock, async function(req, res, next) {
+  console.log("kikikiki");
+  var decoded = jwt.decode(req.cookies.jwt1);
+  console.log(decoded.id);
+  var vendorId = decoded.id
+  let vendorDetails = await vendorHelpers.getName(vendorId)
+ 
+    res.render('vendor/vendHome', ({ vendorNav:true,vendorDetails }));
   });
 
-  router.get('/product',async function (req, res, next) {
+  router.get('/product',checkBlock,async function (req, res, next) {
     var decoded = jwt.decode(req.cookies.jwt1);
     console.log(decoded.id);
     var vendorId = decoded.id
@@ -102,7 +129,7 @@ router.get('/logout', (req, res) => {
   res.cookie('jwt1','')
   res.redirect('/vendor/login')
 })
-router.get('/addProduct',async(req,res)=>{
+router.get('/addProduct',checkBlock,async(req,res)=>{
   let decoded = jwt.decode(req.cookies.jwt1);
   var vendorId = decoded.id
   let category = await adminHelpers.getCategory()
@@ -112,46 +139,46 @@ router.get('/addProduct',async(req,res)=>{
 })
 
 router.post('/addProduct',((req,res)=>{
-  console.log("hi");
-  console.log(req.files.Image);
-  console.log(req.body);
+ 
+  let addBody = req.body
 
   var product = req.body
   let decoded = jwt.decode(req.cookies.jwt1);
   var vendorId = decoded.id
+
+ 
   
-   console.log("--------------------------------");
-    console.log(product);
-    console.log(vendorId);
+    var base64Str = addBody.base64Code;
+    var base64Str1 = addBody.base64Code1;
+    var base64Str2 = addBody.base64Code2;
+    var base64Str3 = addBody.base64Code3;
+    delete product.base64Code
+delete product.base64Code1
+delete product.base64Code2
+delete product.base64Code3
+
+    var path ='public/product-images/';
+    var path2 ='public/product-images/';
+    var path3 ='public/product-images/';
+    var path4 ='public/product-images/';
+   
+
+    
     vendorHelpers.addProduct(product,vendorId).then((id) => {
    console.log(id);
- 
+   var optionalObj1 = {'fileName': id+"first", 'type':'jpg'};
+   var optionalObj2 = {'fileName': id+"second", 'type':'jpg'};
+   var optionalObj3 = {'fileName': id+"third", 'type':'jpg'};
+   var optionalObj4 = {'fileName': id+"ad", 'type':'jpg'};
+   console.log("--------------------------------");
+   console.log("ivide rthenne");
+   var imageInfo = base64ToImage(base64Str,path,optionalObj1); 
+   var imageInfo2 = base64ToImage(base64Str1,path2,optionalObj2); 
+   var imageInfo3 = base64ToImage(base64Str2,path3,optionalObj3); 
+   var imageInfo4 = base64ToImage(base64Str3,path4,optionalObj4); 
 
 
-  let image1=req.files.Image1
-  image1.mv('public/product-images/'+id+'thumbnail.jpg',(err,done)=>{
-  
-})
-let image2=req.files.Image2
-image2.mv('public/product-images/'+id+'front.jpg',(err,done)=>{
-
-
-})
-let image3=req.files.Image3
-image3.mv('public/product-images/'+id+'side.jpg',(err,done)=>{
-
-})
-let image4=req.files.Image4
-image4.mv('public/product-images/'+id+'ad.jpg',(err,done)=>{
-  if(!err){
-    res.redirect('/vendor/product')
-  }
-  else{
-    console.log(err); 
-  }
-
-
-})
+res.redirect('/vendor/product')
     })
 }))
 router.get('/deleteProduct/:id',((req,res)=>{
@@ -166,7 +193,7 @@ console.log(id);
 
 ))
 
-router.get('/editProduct/:id',(async(req,res)=>{
+router.get('/editProduct/:id',checkBlock,(async(req,res)=>{
   let id = req.params.id
   console.log(id);
   console.log("-------------------------------");
@@ -174,6 +201,8 @@ router.get('/editProduct/:id',(async(req,res)=>{
   let category = await adminHelpers.getCategory()
   console.log(product);
   let decoded = jwt.decode(req.cookies.jwt1);
+  console.log(decoded);
+  console.log("----------------------------------------------");
   var vendorId = decoded.id
   res.render('vendor/productEdit',({vendorNav:true,product,vendorId,id,category }))
 })
@@ -182,18 +211,18 @@ router.post('/edit-product',(async(req,res)=>{
 console.log(req.body);
 vendorHelpers.editProduct(req.body).then((id)=>{
   let image1=req.files.Image1
-  image1.mv('public/product-images/'+id+'thumbnail.jpg',(err,done)=>{
+  image1.mv('public/product-images/'+id+'first.jpg',(err,done)=>{
    
  
  
 })
 let image2=req.files.Image2
-image2.mv('public/product-images/'+id+'front.jpg',(err,done)=>{
+image2.mv('public/product-images/'+id+'second.jpg',(err,done)=>{
  
 
 })
 let image3=req.files.Image3
-image3.mv('public/product-images/'+id+'side.jpg',(err,done)=>{
+image3.mv('public/product-images/'+id+'third.jpg',(err,done)=>{
  
 
 })
@@ -226,6 +255,58 @@ router.get('/unblock/:id',((req,res)=>{
     res.redirect('/vendor/product')
   })
 }))
+router.get('/order',(async(req,res)=>{
+  let decoded = jwt.decode(req.cookies.jwt1);
+  var vendorId = decoded.id
+let order= await vendorHelpers.getOrder(vendorId)
+console.log(order);
+res.render('vendor/vendorders',({vendorNav:true,order}))
+}))
 
+router.get('/Pendingorder',(async(req,res)=>{
+  let decoded = jwt.decode(req.cookies.jwt1);
+  var vendorId = decoded.id
+let order= await vendorHelpers.getPendingOrder(vendorId)
+console.log(order);
+res.render('/order')
+}))
 
+router.get('/viewOrder/:id/:proId',(async(req,res)=>{
+  let orderId = req.params.id
+  let proId = req.params.proId
+  let order = await vendorHelpers.getViewOrder(orderId)
+let ordernew=order[0]
+  console.log("aychaaaaaaaaa");
+ var name=ordernew.product[0].product.product
+ console.log(name);   
+  // let products = await vendorHelpers.getProductOrder(id)
+  res.render('vendor/orderPage',({vendorNav:true,ordernew,name})) 
+}))
+router.get('/ship/:id/:name',(req,res)=>{
+  console.log("okokokokokokoko");
+  let name=req.params.name
+let id= req.params.id
+console.log(name);
+console.log("paisssssssssssssssssss");
+userHelper.shipOrder(id,name).then(()=>{  
+console.log("makaleeeeeeeeee");
+res.redirect('/vendor/order')
+})
+})
+router.get('/customers',async(req,res)=>{
+  let decoded = jwt.decode(req.cookies.jwt1);
+  var vendorId = decoded.id
+  let name = await vendorHelpers.getVendorName(vendorId)
+let customer = await vendorHelpers.getCustomer(vendorId)
+console.log(name);
+console.log("bbyyyyyyyyyy");
+  res.render('vendor/vendCustomer',({customer,vendorNav:true,vendorId,name}))
+})
+router.post('/reportUser',(req,res)=>{
+ 
+  vendorHelpers.reportUser(req.body).then(()=>{
+    res.redirect('/vendor/customers')
+  })
+})
+ 
   module.exports = router;

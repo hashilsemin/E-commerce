@@ -1,0 +1,455 @@
+  
+
+  <div class="my-account-wrapper pb-20">
+    <div class="container">
+        <div class="section-title ">
+            <h3>Choose your address</h3>
+        </div><div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
+                        <div class="single-info justify-content-lg-center">
+                            <a class="btn btn-secondary" href="/addAddressOrder">Add a new address</a>
+                        </div>
+                    </div>
+        <div class="row">
+
+            {{#each address}}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-item mb-30" onclick="addAddress('{{this.address}}','{{this.city}}','{{this.province}}','{{this.zip}}',{{this.mobile}})">
+                    <div class="product-caption">
+                        <div class="manufacture-product" >
+                            <p style="font-size: large;" >{{this.address}}</p>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.city}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.province}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.zip}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.mobile}}</h4>
+                        </div>
+
+
+
+
+                    </div>
+                </div> <!-- end single grid item -->
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+  <!-- Start of Checkout Wrapper -->
+    <div class="checkout-wrapper pt-10 pb-70">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <main id="primary" class="site-main">
+                        <div class="user-actions-area">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    {{!-- <div class="user-actions user-login">
+                                        <h3>Returning customer? <span id="show_login">Click here to login.</span></h3>
+                                        <div id="checkout_login" class="display-content">
+                                            <div class="login-info">
+                                                <p class="login-text">If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing & Shipping section.</p>
+                                                <form>
+                                                    <div class="form-row mb-3">
+                                                        <div class="form-group col-12 col-sm-12 col-md-6">
+                                                            <label for="login_user">Username Or Email <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" id="login_user" required>
+                                                        </div>
+                                                        <div class="form-group col-12 col-sm-12 col-md-6">
+                                                            <label for="login_pass">Password <span class="text-danger">*</span></label>
+                                                            <input type="password" class="form-control" id="login_pass" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row align-items-center mb-3">
+                                                        <div class="form-group col-4 col-sm-2 col-md-2 col-lg-1">
+                                                            <button type="submit" class="btn btn-secondary">Login</button>
+                                                        </div>
+                                                        <div class="form-group col-8 col-sm-10 col-md-10 col-lg-11">
+                                                            <div class="form-check">
+                                                                <div class="custom-checkbox">
+                                                                    <input class="form-check-input" type="checkbox" id="remember_check">
+                                                                    <span class="checkmark"></span>
+                                                                    <label class="form-check-label" for="remember_check">remember Me</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="lost-password">
+                                                        <a href="#">Lost your password?</a>
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of user-actions --> --}}
+
+                                    {{!-- <div class="user-actions user-coupon">
+                                        <h3>Have A Coupon? <span id="show_coupon">Click Here To Enter Your Code.</span></h3>
+                                        <div id="checkout_coupon" class="display-content">
+                                            <div class="coupon-info">
+                                                <form action="#">
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-12 col-md-6">
+                                                            <div class="input-group">
+                                                                <input type="text" name="coupon" value="" placeholder="Coupon Code" id="input-coupon" class="form-control mr-3" required>
+                                                                <input type="submit" value="Apply Coupon" id="button-coupon" class="btn btn-secondary">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of user-actions --> --}}
+                                </div>
+                            </div> <!-- end of row -->
+                        </div> <!-- end of user-actions -->
+
+                        <div class="checkout-area">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7">
+                                    <div class="checkout-form">
+                                        <div class="section-title left-aligned">
+                                            <h3>Billing Details</h3>
+                                        </div>
+
+                                        <form action="/placeOrder" method="POST" id="check">
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label for="first_name">First Name <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="first_name" name="fname" value="{{user.fname}}" required>
+                                                </div>
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label for="last_name">Last Name <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="last_name" name="lname" value="{{user.lname}}" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                   <label for="email_address">Email Address <span class="text-danger">*</span></label>
+                                                    <input type="email" class="form-control" id="email_address" name="email" value="{{user.email}}"required>
+                                                </div>
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                   
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-12">
+                                                    <label for="p_address">Address <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="myAddress" name="address" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label for="city_name">City <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="city" name="city" required>
+                                                </div>
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label for="province_name">Province <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="providence" id="province" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label for="zip_code">Zip Code <span class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control" name="zip" id="zip" required>
+                                                </div>
+                                                 <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label for="tel_number">telephone</label>
+                                                    <input type="tel" class="form-control" name="mobile" id="mobile">
+                                                </div>
+                                            </div>
+                   
+                        
+                                           
+                                            <div class="form-row">
+                                                <div class="form-group col-12 col-sm-12 col-md-12">
+                                                    <label for="order_notes">Order Notes</label>
+                                                    <textarea class="form-control" id="order_notes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                </div>
+                                            </div>
+                                    
+                                    </div> <!-- end of checkout-form -->
+                                </div>
+
+
+
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-5">
+                                    <div class="order-summary">
+                                        <div class="section-title left-aligned">
+                                          
+                                        </div>
+                                        <div class="product-container">
+                                            <div class="product-list">
+                                                <div class="product-inner media align-items-center">
+                                                    <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
+                                                      
+                                                    </div>
+                                                    <div class="media-body">
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-list">
+                                                <div class="product-inner media align-items-center">
+                                                    <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
+                                                      
+                                                    </div>
+                                                    <div class="media-body">
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end of product-container -->
+                                        <div class="order-review">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr class="cart-subtotal">
+                                                            <th>Subtotal</th>
+                                                            <td class="text-center">$440.00</td>
+                                                        </tr>            
+                                                        <tr class="order-total">
+                                                            <th>Total</th>
+                                                            <td class="text-center"><strong>$440.00</strong></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="checkout-payment">
+                                           
+                                                <div class="form-row">
+                                                    <div class="custom-radio" >
+                                                        <input class="form-check-input" type="radio" name="payment" id="check_payment" value="razorpay" checked>
+                                                        <span class="checkmark"></span>
+                                                        <label class="form-check-label" for="check_payment">Razorpay</label>
+
+                                                        <div class="payment-info" id="check_pay">
+                                                            <p>Pay via Razorpay. Mastercard,Visa,UPI,Online banking and much more.</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="custom-radio" >
+                                                        <input class="form-check-input" type="radio" name="payment" id="cash_delivery_payment" value="cash">
+                                                        <span class="checkmark"></span>
+                                                        <label class="form-check-label" for="cash_delivery_payment">Cash on Delivery</label>
+
+                                                        <div class="payment-info" id="cash_pay">
+                                                            <p>Pay with cash upon delivery.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-radio">
+                                                        <input class="form-check-input" type="radio" name="payment" id="paypal_payment" value="paypal">
+                                                        <span class="checkmark"></span>
+                                                        <label class="form-check-label" for="paypal_payment">PayPal Express Checkout</label>
+
+                                                        <div class="payment-info" id="paypal_pay">
+                                                            <p>Pay via PayPal. You can pay with your credit card if you don’t have a PayPal account.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-check">
+                                                        <div class="custom-checkbox">
+                                                            <input class="form-check-input" type="checkbox" id="terms_acceptance" required>
+                                                            <span class="checkmark"></span>
+                                                            <label class="form-check-label" for="terms_acceptance">I agree to the <a href="#">terms of service</a> and will adhere to them unconditionally.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row justify-content-end">
+                                                    
+                                                     <button type="submit" class="btn btn-secondary dark">Continue to Payment</button>
+                                                </div>
+                                            </form>
+                                        </div> <!-- end of checkout-payment -->
+                                    </div> <!-- end of order-summary -->
+                                </div>
+                            </div> <!-- end of row -->
+                        </div> <!-- end of checkout-area -->
+                    </main> <!-- end of #primary -->
+                </div>
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div>
+    <!-- End of Checkout Wrapper -->
+<div id="paay">   </div>
+   <!-- scroll to top -->
+    <div class="scroll-top not-visible">
+        <i class="fa fa-angle-up"></i>
+    </div> <!-- /End Scroll to Top -->
+    {{!-- scriptsss --}}
+
+
+     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+  //This function displays Smart Payment Buttons on your web page.
+</script>
+<script>
+function scrollWin(x, y) {
+  window.scrollBy(x, y);
+}
+</script>
+<style>
+    html {
+  scroll-behavior: smooth;
+}
+</style>
+<script>
+     $("#check").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:'/placeOrder',
+            method:'post',
+            data:$('#check').serialize(),
+            success:((response)=>{
+                console.log(response)
+              
+                if(response.payment=="cash"){
+                    location.href='/orderPlaced'
+                }else if(response.payment=="razorPay"){
+                    razorPayment(response)
+                }else{
+                    scrollWin(0, 1550)
+                    console.log(response)
+                      paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+
+            value: response.totalAmount
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        alert('Transaction completed');
+        console.log(response)
+
+         location.href='/orderPlaced/'+response._id+''
+      });
+    }
+  }).render('#paay');
+                }
+                    
+                
+            })
+        }) 
+    })
+
+            function razorPayment(order){
+var options = {
+    "key": "rzp_test_oqOom6V3IbHjCo", // Enter the Key ID generated from the Dashboard
+    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+      verifypayment(response,order)
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+    
+    var rzp1 = new Razorpay(options);
+ rzp1.open();
+    }
+     function verifypayment(payment,order){
+            $.ajax({
+                url:'/verify-payment',
+                data:{
+                    payment,
+                    order
+                },
+                method:'post',
+                success:(response)=>{
+                    console.log(response)
+                    if(response.status){
+                        location.href='/orderPlaced'
+                    }else{
+                        alert('payment failed')
+                    }
+                }
+            })
+        }
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AYreSwLxKJuvWm8OC9g0haEMg1aIz7G-wA4KSFGIP3cfrQcm3EbhKzR8YgTdlSKFT7VgU5YBa0Uc3IGg"></script>
+<script>
+    
+    
+    
+    
+  </script>
+
+<script>
+    function addAddress(address,city,province,zip,mobile){
+       console.log(address)
+      document.getElementById("myAddress").value = address
+      document.getElementById("city").value = city
+      document.getElementById("province").value = province
+      document.getElementById("zip").value = zip
+      document.getElementById("mobile").value = mobile
+      scrollWin(0, 350)
+    }
+</script>
+    <!-- footer area start -->  
+    <footer>
+        <!-- news-letter area start -->
+        <div class="newsletter-group">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="newsletter-box">
+                            <div class="newsletter-inner">
+                                <div class="newsletter-title">
+                                    <h3>Sign Up For Newsletters</h3>
+                                    <p>Be the First to Know. Sign up for newsletter today</p>
+                                </div>
+                                <div class="newsletter-box">
+                                    <form id="mc-form">
+                                        <input type="email" id="mc-email" autocomplete="off" class="email-box" placeholder="enter your email">
+                                        <button class="newsletter-btn" type="submit" id="mc-submit">subscribe !</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="link-follow">
+                                <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                                <a href="https://plus.google.com/discover"><i class="fa fa-google-plus"></i></a>
+                                <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <!-- mailchimp-alerts Start -->
+                        <div class="mailchimp-alerts">
+                            <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                            <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                            <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                        </div><!-- mailchimp-alerts end -->
+                    </div>
+                </div>
+            </div>
+        </div>

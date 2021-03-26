@@ -6,8 +6,12 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "base-64": "^1.0.0",
+    "base64-to-image": "^1.0.2",
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
+    "cropperjs": "^1.5.11",
+    "croppie": "^2.6.5",
     "debug": "~2.6.9",
     "express": "^4.16.4",
     "express-fileupload": "^1.2.1",
@@ -18,6 +22,7 @@
     "handlebars": "^4.7.7",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "js-image-zoom": "^0.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongod": "^2.0.0",
     "mongodb": "^3.6.4",
@@ -25,6 +30,8 @@
     "nodemailer": "^6.5.0",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "razorpay": "^2.0.6",
+    "twilio": "^3.59.0"
   }
 }

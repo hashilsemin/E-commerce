@@ -57,48 +57,41 @@
         <div class="section-title module-three">
 
             <div class="boxx-tab">
-                <ul class="nav my-tab">
-                    <li>
-                    </li>
-                    <li>
-
-                    </li>
-                    <li>
-                    </li>
-                </ul>
+             
             </div>
         </div>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="module-one">
-                <div class="module-four-wrapper custom-seven-column">
+                <div class="module-four-wrapper custom-seven-column" id="myItems">
                     <!-- single item end -->
                     {{#each products}}
                 
                         <div class="col mb-30">
-                            <div class="product-item">
-                                <div class="product-thumb">
+                            <div class="product-item" >
+                                <div class="product-thumb" >
+                                    
                                     <a href="/viewProduct/{{this._id}}">
-                                        <img src="/product-images/{{this._id}}front.jpg" class="pri-img" alt="">
-                                        <img src="/product-images/{{this._id}}ad.jpg" class="sec-img" alt="">
+                                        <img src="/product-images/{{this._id}}first.jpg"  class="pri-img" style=" max-height: 110px;"  alt="">
+                                        <img src="/product-images/{{this._id}}second.jpg"  class="sec-img" alt="">
                                     </a>
                                     <div class="box-label">
                                         <div class="label-product label_sale">
                                             <span></span>
                                         </div>
                                     </div>
-                                    <div class="action-links">
+                                    {{!-- <div class="action-links">
                                         <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                         <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
                                         <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i
                                                 class="lnr lnr-magnifier"></i></a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="product-caption">
                                     <div class="manufacture-product">
-                                        <p><a href="shop-grid-left-sidebar.html">{{this.product}}</a></p>
+                                        <h5 class="nameOfProduct"><a href="">{{this.product}}</h5></p>
                                     </div>
                                     <div class="product-name">
-                                        <h4><a href="product-details.html">{{this.category}}</a></h4>
+                                        <h4><a href="">{{this.category}}</a></h4>
                                     </div>
                                     <div class="ratings">
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -108,9 +101,10 @@
                                         <span><i class="lnr lnr-star"></i></span>
                                     </div>
                                     <div class="price-box">
-                                        <span class="regular-price">{{this.price}}</span>
+                                        <span class="regular-price"> {{this.price}} ₹</span>
                                     </div>
-                                    <button class="btn-cart" type="button">add to cart</button>
+                                    
+                                    <button class="btn-cart" onclick="addToCart('{{this._id}}','{{../user}}')" type="button" >add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -118,13 +112,66 @@
                         {{/each}}
 
 
+<script>
+     function myFunction() {
+        var input, filter, cards, cardContainer, h5, title, i;
+        input = document.getElementById("myFilter");
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById("myItems");
+        cards = cardContainer.getElementsByClassName("product-item");
+        console.log("input"+input)
+        console.log("filter"+filter)
+        console.log("cardContainer"+cardContainer)
+        console.log("cards"+cards)
+
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector(".manufacture-product h5.nameOfProduct");
+            console.log("title"+title)
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
 
 
 
+<script>
+    function addToCart(proId,user){
+        if(user){
+ console.log(proId)
+        let productId = proId
+        $.ajax({
+            url:'/addToCart',
+            data:{
+                proId:productId
+            },
+            method:'post',
+            success:(response)=>{
+                
+                if(response){
+                    alert("Item added to cart")
+                    document.getElementById("cartCount").innerHTML=response.count
+                }
+            }
+        })
+        }else{
+            console.log("jjkjkjkjkjkjkjkj")
+  window.location.href= "/login";
+        }
+       
+    }
 
 
+</script>
 
-
+<script>
+function loadImage() {
+  alert("Image is loaded");
+}
+</script>
 
 
 
@@ -3433,7 +3480,7 @@
                                                                 <!-- footer area start -->
                                                                 <footer>
                                                                     <!-- news-letter area start -->
-                                                                    <div class="newsletter-group">
+                                                                    {{!-- <div class="newsletter-group">
                                                                         <div class="container-fluid">
                                                                             <div class="row">
                                                                                 <div class="col-lg-12">
@@ -3493,7 +3540,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> --}}
                                                                     <!-- news-letter area end -->
                                                                     <!-- footer top area start -->
                                                                     <div class="footer-top pt-50 pb-50">
@@ -3511,53 +3558,19 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="widget-body">
-                                                                                            <p>We are a team of
-                                                                                                designers and developers
-                                                                                                that create high quality
-                                                                                                Magento, Prestashop,
-                                                                                                Opencart.</p>
+                                                                                            <p>E-shop is popular for it's immense
+                                                                                                customer service, we are videly availble in 123 countries,
+                                                                                                We aim to develop the human nature and to take practice in every challenge.
+                                                                                            </p>
                                                                                             <div class="payment-method">
                                                                                                 <h4>payment</h4>
-                                                                                                <img src="assets/img/payment/payment.png"
+                                                                                                <img src="/images/pays.jpeg"
                                                                                                     alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div> <!-- single widget end -->
-                                                                                <div class="col-lg-2 col-md-6 col-sm-6">
-                                                                                    <div class="footer-single-widget">
-                                                                                        <div class="widget-title">
-                                                                                            <h4>Information</h4>
-                                                                                        </div>
-                                                                                        <div class="widget-body">
-                                                                                            <div
-                                                                                                class="footer-useful-link">
-                                                                                                <ul>
-                                                                                                    <li><a
-                                                                                                            href="about.html">about
-                                                                                                            us</a></li>
-                                                                                                    <li><a href="#">Delivery
-                                                                                                            Information</a>
-                                                                                                    </li>
-                                                                                                    <li><a href="#">Privacy
-                                                                                                            Policy</a>
-                                                                                                    </li>
-                                                                                                    <li><a href="#">Terms
-                                                                                                            &
-                                                                                                            Conditions</a>
-                                                                                                    </li>
-                                                                                                    <li><a href="#">Contact
-                                                                                                            Us</a></li>
-                                                                                                    <li><a
-                                                                                                            href="#">Returns</a>
-                                                                                                    </li>
-                                                                                                    <li><a href="#">Site
-                                                                                                            Map</a></li>
-                                                                                                </ul>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div> <!-- single widget end -->
+                                                                              
                                                                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                                                                     <div class="footer-single-widget">
                                                                                         <div class="widget-title">
@@ -3584,7 +3597,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div> <!-- single widget end -->
-                                                                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                                                                {{!-- <div class="col-lg-3 col-md-6 col-sm-6">
                                                                                     <div class="footer-single-widget">
                                                                                         <div class="widget-title">
                                                                                             <h4>Our Twitter Feed</h4>
@@ -3611,276 +3624,9 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div> <!-- single widget end -->
+                                                                                </div> <!-- single widget end --> --}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <!-- footer top area end -->
-                                                                    <!-- footer bottom area start -->
-                                                                    <div class="footer-bottom">
-                                                                        <div class="container-fluid">
-                                                                            <div class="row">
-                                                                                <div class="col-12">
-                                                                                    <div class="footer-bottom-content">
-                                                                                        <div class="footer-copyright">
-                                                                                            <p>Copyright © 2019 <a
-                                                                                                    href="#">sinratos</a>.
-                                                                                                All Right Reserved</p>
-                                                                                        </div>
-                                                                                        <div class="footer-custom-link">
-                                                                                            <a href="#">Brands</a>
-                                                                                            <a href="#">Specials</a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- footer bottom area end -->
-                                                                </footer>
-                                                                <!-- footer area end -->
-
-                                                                <!-- Quick view modal start -->
-                                                                <div class="modal fade" id="quickk_view">
-                                                                    <div class="container">
-                                                                        <div
-                                                                            class="modal-dialog modal-lg modal-dialog-centered">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <button type="button" class="close"
-                                                                                        data-dismiss="modal">&times;</button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <div class="row">
-                                                                                        <div class="col-lg-5">
-                                                                                            <div
-                                                                                                class="product-large-slider mb-20">
-                                                                                                <div
-                                                                                                    class="pro-large-img">
-                                                                                                    <img src="assets/img/product/product-4.jpg"
-                                                                                                        alt="" />
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="pro-large-img">
-                                                                                                    <img src="assets/img/product/product-5.jpg"
-                                                                                                        alt="" />
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="pro-large-img">
-                                                                                                    <img src="assets/img/product/product-6.jpg"
-                                                                                                        alt="" />
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="pro-large-img">
-                                                                                                    <img src="assets/img/product/product-7.jpg"
-                                                                                                        alt="" />
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="pro-large-img">
-                                                                                                    <img src="assets/img/product/product-8.jpg"
-                                                                                                        alt="" />
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="pro-large-img">
-                                                                                                    <img src="assets/img/product/product-9.jpg"
-                                                                                                        alt="" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="pro-nav">
-                                                                                                <div
-                                                                                                    class="pro-nav-thumb">
-                                                                                                    <img src="assets/img/product/product-4.jpg"
-                                                                                                        alt="" /></div>
-                                                                                                <div
-                                                                                                    class="pro-nav-thumb">
-                                                                                                    <img src="assets/img/product/product-5.jpg"
-                                                                                                        alt="" /></div>
-                                                                                                <div
-                                                                                                    class="pro-nav-thumb">
-                                                                                                    <img src="assets/img/product/product-6.jpg"
-                                                                                                        alt="" /></div>
-                                                                                                <div
-                                                                                                    class="pro-nav-thumb">
-                                                                                                    <img src="assets/img/product/product-7.jpg"
-                                                                                                        alt="" /></div>
-                                                                                                <div
-                                                                                                    class="pro-nav-thumb">
-                                                                                                    <img src="assets/img/product/product-8.jpg"
-                                                                                                        alt="" /></div>
-                                                                                                <div
-                                                                                                    class="pro-nav-thumb">
-                                                                                                    <img src="assets/img/product/product-9.jpg"
-                                                                                                        alt="" /></div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-lg-7">
-                                                                                            <div
-                                                                                                class="product-details-inner">
-                                                                                                <div
-                                                                                                    class="product-details-contentt">
-                                                                                                    <div
-                                                                                                        class="pro-details-name mb-10">
-                                                                                                        <h3>Bose
-                                                                                                            SoundLink
-                                                                                                            Bluetooth
-                                                                                                            Speaker</h3>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="pro-details-review mb-20">
-                                                                                                        <ul>
-                                                                                                            <li>
-                                                                                                                <span><i
-                                                                                                                        class="fa fa-star"></i></span>
-                                                                                                                <span><i
-                                                                                                                        class="fa fa-star"></i></span>
-                                                                                                                <span><i
-                                                                                                                        class="fa fa-star"></i></span>
-                                                                                                                <span><i
-                                                                                                                        class="fa fa-star"></i></span>
-                                                                                                                <span><i
-                                                                                                                        class="fa fa-star"></i></span>
-                                                                                                            </li>
-                                                                                                            <li><a
-                                                                                                                    href="#">1
-                                                                                                                    Reviews</a>
-                                                                                                            </li>
-                                                                                                        </ul>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="price-box mb-15">
-                                                                                                        <span
-                                                                                                            class="regular-price"><span
-                                                                                                                class="special-price">£50.00</span></span>
-                                                                                                        <span
-                                                                                                            class="old-price"><del>£60.00</del></span>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="product-detail-sort-des pb-20">
-                                                                                                        <p>Canon's press
-                                                                                                            material for
-                                                                                                            the EOS 5D
-                                                                                                            states that
-                                                                                                            it 'defines
-                                                                                                            (a) new
-                                                                                                            D-SLR
-                                                                                                            category',
-                                                                                                            while we're
-                                                                                                            not
-                                                                                                            typically
-                                                                                                            too
-                                                                                                            concerned
-                                                                                                        </p>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="pro-details-list pt-20">
-                                                                                                        <ul>
-                                                                                                            <li><span>Availability
-                                                                                                                    :</span>In
-                                                                                                                Stock
-                                                                                                            </li>
-                                                                                                        </ul>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="product-availabily-option mt-15 mb-15">
-                                                                                                        <h3>Available
-                                                                                                            Options</h3>
-                                                                                                        <div
-                                                                                                            class="color-optionn">
-                                                                                                            <h4><sup>*</sup>color
-                                                                                                            </h4>
-                                                                                                            <ul>
-                                                                                                                <li>
-                                                                                                                    <a class="c-black"
-                                                                                                                        href="#"
-                                                                                                                        title="Black"></a>
-                                                                                                                </li>
-                                                                                                                <li>
-                                                                                                                    <a class="c-blue"
-                                                                                                                        href="#"
-                                                                                                                        title="Blue"></a>
-                                                                                                                </li>
-                                                                                                                <li>
-                                                                                                                    <a class="c-brown"
-                                                                                                                        href="#"
-                                                                                                                        title="Brown"></a>
-                                                                                                                </li>
-                                                                                                                <li>
-                                                                                                                    <a class="c-gray"
-                                                                                                                        href="#"
-                                                                                                                        title="Gray"></a>
-                                                                                                                </li>
-                                                                                                                <li>
-                                                                                                                    <a class="c-red"
-                                                                                                                        href="#"
-                                                                                                                        title="Red"></a>
-                                                                                                                </li>
-                                                                                                            </ul>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="pro-quantity-box mb-30">
-                                                                                                        <div
-                                                                                                            class="qty-boxx">
-                                                                                                            <label>qty
-                                                                                                                :</label>
-                                                                                                            <input
-                                                                                                                type="text"
-                                                                                                                placeholder="0">
-                                                                                                            <button
-                                                                                                                class="btn-cart lg-btn">add
-                                                                                                                to
-                                                                                                                cart</button>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="pro-social-sharing">
-                                                                                                        <label>share
-                                                                                                            :</label>
-                                                                                                        <ul>
-                                                                                                            <li
-                                                                                                                class="list-inline-item">
-                                                                                                                <a href="#"
-                                                                                                                    class="bg-facebook"
-                                                                                                                    title="Facebook">
-                                                                                                                    <i
-                                                                                                                        class="fa fa-facebook"></i>
-                                                                                                                    <span>like
-                                                                                                                        0</span>
-                                                                                                                </a>
-                                                                                                            </li>
-                                                                                                            <li
-                                                                                                                class="list-inline-item">
-                                                                                                                <a href="#"
-                                                                                                                    class="bg-twitter"
-                                                                                                                    title="Twitter">
-                                                                                                                    <i
-                                                                                                                        class="fa fa-twitter"></i>
-                                                                                                                    <span>tweet</span>
-                                                                                                                </a>
-                                                                                                            </li>
-                                                                                                            <li
-                                                                                                                class="list-inline-item">
-                                                                                                                <a href="#"
-                                                                                                                    class="bg-google"
-                                                                                                                    title="Google Plus">
-                                                                                                                    <i
-                                                                                                                        class="fa fa-google-plus"></i>
-                                                                                                                    <span>google
-                                                                                                                        +</span>
-                                                                                                                </a>
-                                                                                                            </li>
-                                                                                                        </ul>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- Quick view modal end -->
-
-                                                                <!-- all js include here -->
-                                                            
+                                                                  

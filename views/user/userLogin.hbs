@@ -26,9 +26,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- responsive css -->
     <link rel="stylesheet" href="assets/css/responsive.css">
-
-    <!-- Modernizer JS -->
-    <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    {{!-- <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/ajax-mail.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script> --}}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 </head>
 <body>
 	<!--[if lte IE 9]>
@@ -53,23 +58,29 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
                                     <div class="login-form">
-                                        <form action="/login" method="POST">
+                                        <form action="/login" id="userLogin" method="POST">
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email address</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+                                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" >
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="password" class="form-control" id="c-password" name="password" placeholder="Password" required>
+                                                    <input type="password" class="form-control" id="c-password" name="password" placeholder="Password" >
                                                     <button class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
-                                                <p><a href="#">Forgot your password?</a></p>
+                                                {{!-- <p><a href="#">Forgot your password?</a></p> --}}
                                                 <button type="submit" class="btn btn-secondary mb-4 mt-4">Sign In</button>
+                                            
+                                            </div>
+                                            <div class="login-box mt-1 text-center">
+                                                {{!-- <p><a href="#">Forgot your password?</a></p> --}}
+                                               
+                                                    <a href="/otpLoginPage" class="btn btn-danger mb-4 mt-4">Sign in with OTP</a>
                                             </div>
                                             <div class="text-center pt-20 top-bordered">
                                                 <p>No account? <a href="/signup">Create one here</a>.</p>
@@ -363,13 +374,53 @@
     <!-- Quick view modal end -->
 
 	<!-- all js include here -->
-    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/ajax-mail.js"></script>
-    <script src="assets/js/main.js"></script>
+
+     
+    <!-- Modernizer JS -->
 </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
 
 <!-- Mirrored from demo.hasthemes.com/sinrato-preview/sinrato/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Jan 2021 10:39:16 GMT -->
 </html>
+
+<script>
+    $(function() {
+  // Initialize form validation on the registration form.
+  // It has the name attribute "registration"
+  $("#userLogin").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+   
+      email: {
+        required: true,
+        // Specify that email should be validated
+        // by the built-in "email" rule
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 3
+      }
+    },
+    // Specify validation error messages
+    messages: {
+     
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 3 characters long"
+      },
+      email: "Please enter a valid email address"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>

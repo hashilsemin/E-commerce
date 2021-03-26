@@ -29,6 +29,8 @@
 
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+
 </head>
  
  
@@ -57,7 +59,7 @@
                                             <div class="form-group row">
                                                 <label for="f-name" class="col-12 col-sm-12 col-md-4 col-form-label">First Name</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" id="f-name" name="fname" >
+                                                    <input type="text" class="form-control" id="fname" name="fname" >
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -80,20 +82,16 @@
                                                     
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Confirm Password</label>
-                                                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" class="form-control" id="c-password" name="cpassword" required="">
-                                                   
-                                                </div>
-                                            </div>
+                     
                                            
                                           
                                             <div class="register-box d-flex justify-content-end mt-20">
                                                 <button type="submit" class="btn btn-secondary">Register</button>
                                             </div>
                                         </form>
+                                        <a href="/signupOtp" class="btn btn-danger">Signup with Otp</a>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div> <!-- end of user-login -->
@@ -243,13 +241,61 @@
 
 
 	<!-- all js include here -->
-    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/ajax-mail.js"></script>
-    <script src="assets/js/main.js"></script>
+    
 </body>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+
+
+
+
+
 
 <!-- Mirrored from demo.hasthemes.com/sinrato-preview/sinrato/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Jan 2021 10:39:25 GMT -->
 </html>
+
+
+
+<script>
+    $(function() {
+  // Initialize form validation on the registration form.
+  // It has the name attribute "registration"
+  $("#userSignup").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+   
+      email: {
+        required: true,
+        // Specify that email should be validated
+        // by the built-in "email" rule
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 3
+      },
+      fname:{
+          required:true
+      }
+    },
+    // Specify validation error messages
+    messages: {
+     
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 3 characters long"
+      },
+      email: "Please enter a valid email address"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>

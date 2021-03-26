@@ -3,5 +3,9 @@ module.exports = {
     VENDOR: 'vendor',
     PRODUCT: 'product',
     CATEGORY:'category,',
-    USER:'user'
+    USER:'user',
+    CART:'cart',
+    ADDRESS:'address',
+    ORDER:'order',
+    REPORT:'report'
 }

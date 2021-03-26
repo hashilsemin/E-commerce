@@ -1,16 +1,24 @@
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
+const db = require('./config/connection')
+const collection = require('./config/collection')
+const objectID = require('mongodb').ObjectID
+
 function initialize(passport) {
-    
+  console.log("44444444444");
   const authenticateUser = async (email, password, done) => {
-    const user = getUserByEmail(email)
+    
+    console.log("''''''kjbj''''''");
+    var user =await db.get().collection(collection.USER).findOne({email:email})
+    console.log("---cccccccccccccccccccc");
+    console.log(user);
     if (user == null) {
       return done(null, false, { message: 'No user with that email' })
     }
 
     try {
-      if (await bcrypt.compare(password, user.password)) {
+      if (await bcrypt.compare(password, user.password)) { 
         return done(null, user)
       } else {
         return done(null, false, { message: 'Password incorrect' })
@@ -21,9 +29,11 @@ function initialize(passport) {
   }
 
   passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUser))
-  passport.serializeUser((user, done) => done(null, user.id))
-  passport.deserializeUser((id, done) => {
-    return done(null, getUserById(id))
+
+  passport.serializeUser((user, done) => done(null, user._id))
+  passport.deserializeUser(async(id, done) => {
+      let userId = await db.get().collection(collection.USER).findOne({_id:objectID(id)})
+    return done(null, userId)
   })
 }
 

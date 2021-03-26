@@ -29,7 +29,7 @@
                                             <thead>
                                                 <tr>
                                                     <th data-field="state" data-checkbox="true"></th>
-                                                    <th data-field="id">ID</th>
+                                         
                                                     <th data-field="name" data-editable="true">Name</th>
                                                     <th data-field="email" data-editable="true">Email</th>
                                                     <th data-field="phone" data-editable="true">Phone</th>
@@ -42,7 +42,9 @@
                                                 {{#each vendor}}
                                                 <tr>
                                                     <td></td>
-                                                    <td>1</td>
+                                            
+
+                                                 
                                                     <td>{{this.name}}</td>
                                                     <td>{{this.email}}</td>
                                                     <td>{{this.mobile}}</td>
@@ -51,11 +53,11 @@
                                                 {{else}}
                                                   <td>allowed</td>
                                                   {{/if}}
-                                                    <td class="datatable-ct"> <a href="/admin/editVendor/{{this._id}}" class="btn btn-primary">Edit</a>
+                                                    <td class="datatable-ct"> 
                             <a href="/admin/deleteVendor/{{this._id}}" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete {{this.name}} ? ')">Delete</a>
                                   {{#if this.block}}
-                                                  <a href="/admin/unblock/{{this._id}}" class="btn btn-warning"
+                                                  <a href="/admin/unblockVendor/{{this._id}}" class="btn btn-warning"
                                 onclick="return confirm('Are you sure you want to unblock {{this.name}} ? ')">Unblock</a>
                                                 {{else}}
                                                   <a href="/admin/blockVendor/{{this._id}}" class="btn btn-warning"
