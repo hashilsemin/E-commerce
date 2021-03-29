@@ -31,14 +31,16 @@
                             
                                         <div class="sinrato-product-des">
                                             <p> You can cancel your order but if the payment is online cash will be returned to your E-shop wallet</p>
+                                         Shipping Status:<span class="regular-price"><span class="special-price">{{#if this.product.product.ship}} {{this.product.product.ship}} {{else}} Pending{{/if}}</span></span>
                                         </div>
                                     </div>
                                     <div class="sinrato-box-action">
                                         <div class="price-box">
                                             <span class="regular-price"><span class="special-price">R.s {{this.product.totalPrice}}</span></span>
+                                           
                                             {{!-- <span class="old-price"><del>£60.00</del></span> --}}
                                         </div>
-                                        <button class="btn-cart" type="button">Cancel Order</button>
+                                        {{!-- <button class="btn-cart" type="button">Cancel Order</button> --}}
                                         <div class="action-links sinrat-list-icon">
                                             {{!-- <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>

@@ -235,17 +235,19 @@ console.log("blevrrrrrrrrrrr");
                 },
                 {
                     $group:{
-                        _id:null,
-                      
-                        total:{$sum:
-                         { $multiply:['$quantity',{ $toInt: '$product.price' }]}}
+                        _id:{
+                            total: {$sum:
+                                { $multiply:['$quantity',{ $toInt: '$product.price' }]}},unit:{$multiply:['$quantity',{ $toInt: '$product.price' }]}
+                        },
+
                     } 
                  }
                 
             ]).toArray()
             console.log("sssshihs");
-                console.log(total);
-            resolve(total[0].total)
+            console.log(total);
+                console.log(total[0]._id);
+            resolve(total[0]._id)
         })
     } ,
     addAddress:(address)=>{
@@ -387,7 +389,7 @@ console.log("blevrrrrrrrrrrr");
         return new Promise(async(resolve,reject)=>{
            let order = await db.get().collection(collection.ORDER).aggregate([
                {
-                   $match:{userId:userId}
+                   $match:{userId:userId,status:{$ne:"pending"}}
                },
          
                {
@@ -429,7 +431,8 @@ resolve()
                     lname:body.lname
                 
                 }
-            }).then(()=>{
+            }).then((data)=>{
+                console.log(data);
                 resolve()
             })
         })

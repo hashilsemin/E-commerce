@@ -226,7 +226,9 @@ router.post('/verifyOtp', (req, res,next) => {
             console.log(data);
               if (data.status === "approved") {
                 userHelpers.getUserByNumber(req.body.mobile).then((response)=>{
-                  
+                  if(!response){
+                    res.redirect('/otpLoginPage')
+                  }
                   req.body.email=response.email
                   req.body.password="ppp"
                     console.log(req.body);
@@ -281,7 +283,13 @@ console.log("opopopopopopopopopopopo");
                   })(req,res,next)
 
                 })
-              }
+              }else {
+                res.status(400).send({
+                    message: "Wrong phone number or code :(",
+                    phonenumber: req.query.phonenumber,
+                    data
+                })
+            }
           })
   } else {
       res.status(400).send({
@@ -323,14 +331,22 @@ console.log("opopopopopopopopopopopo");
 
 
 router.get('/viewProduct/:id',(async(req,res)=>{
+
   let id = req.params.id
   console.log(id);
   console.log("----------------");
-  let total = await userHelpers.getTotalCount(req.user._id)
-let count = total.length
-  let product = await vendorHelpers.getProductforEdit(id)
-  console.log(product);
-  res.render('user/prodDetails',({userNav:true,product,count}))
+  if(req.user){
+    let total = await userHelpers.getTotalCount(req.user._id)
+    let count = total.length
+      let product = await vendorHelpers.getProductforEdit(id)
+      console.log(product);
+      res.render('user/prodDetails',({userNav:true,product,count}))
+  }else{
+    let product = await vendorHelpers.getProductforEdit(id)
+    console.log(product);
+    res.render('user/prodDetails',({userNav:true,product}))
+  }
+
  
 
 
@@ -380,7 +396,8 @@ router.post('/changeQuantity',(req,res,next)=>{
     if(response.removeProduct){
       res.json(response)
     }else{
-      response.total=await userHelpers.getTotalAmount(req.body.user).then((response)=>{
+       userHelpers.getTotalAmount(req.body.user).then((response)=>{
+        console.log("sksksksksk");
         console.log(response);
         res.json(response)
       })
@@ -551,9 +568,11 @@ router.get('/order',checkAuthenticated,(async(req,res)=>{
   console.log(id);
   console.log("evfrrrrrrrrrrrrrrrrr");
 let order= await userHelpers.getMyOrder(id)
-console.log(order[0].product);
+console.log(order);
+console.log("hoooowwwwwwwwwwwwwwww");
 let total = await userHelpers.getTotalCount(req.user._id)
 let count = total.length
+
 res.render('user/userOrder',({userNav:true,order,user,count}))
 
 }))
@@ -570,15 +589,29 @@ router.post('/changePassword',((req,res)=>{
   })
 }))
 router.get('/editProfile',(async(req,res)=>{
-  let id=req.user._id
+  var id=req.user._id
   console.log(id);
   let user = await userHelpers.getUserInfo(id)
   res.render('user/editProfile',({id,userNav:true,user}))
 }))
 router.post('/editProfile',((req,res)=>{
+  
   userHelpers.editProfile(req.body,req.user._id).then(()=>{
-    console.log("makale");
+    console.log(req.body);
+    console.log("lolololololol");
+    var id=req.user._id
+    let image4=req.files.Image3
+image4.mv('public/user-image/'+id+'.jpg',(err,done)=>{
+  if(!err){
     res.redirect('/profile')
+  }
+  else{
+    console.log(err); 
+  }
+
+
+})
+    
   })
 }))
 

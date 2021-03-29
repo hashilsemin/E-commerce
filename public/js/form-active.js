@@ -281,22 +281,22 @@
 									required: true,
 									
 								},
-								Image1:
+								realfileInput:
 								{
 									required: true,
 									
 								},
-								Image2:
+								resultreal:
 								{
 									required: true,
 									
 								},
-								Image3:
+								fileInput:
 								{
 									required: true,
 									
 								},
-								Image4:
+								brfileInput:
 								{
 									required: true,
 									

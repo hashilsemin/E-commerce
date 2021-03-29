@@ -61,7 +61,7 @@
                     </a>
                     {{#if vendorDetails}}
                     <h3>{{vendorDetails.name}}</h3>
-                    <p>{{vendorDetails.email}}</p>
+                   
                     {{/if}}
                     <strong>E-shop</strong>
                 </div>
@@ -81,7 +81,7 @@
                         <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-envelope"></i> <span class="mini-dn">Order</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
                                 <a href="/vendor/order" class="dropdown-item">All orders</a>
-                                <a href="/vendor/pendingOrder" class="dropdown-item">Pending Orders</a>
+                                {{!-- <a href="/vendor/pendingOrder" class="dropdown-item">Pending Orders</a> --}}
                                
                             </div>
                         </li>
@@ -264,14 +264,14 @@
                                                 <span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
                                             </a>
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
-                                                <li><a href="#"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>My Account</a>
+                                                {{!-- <li><a href="#"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>My Account</a>
+                                                </li> --}}
+                                                <li><a href="vendor/profile"><span class="adminpro-icon adminpro-user-rounded author-log-ic"></span>My Profile</a>
                                                 </li>
-                                                <li><a href="#"><span class="adminpro-icon adminpro-user-rounded author-log-ic"></span>My Profile</a>
-                                                </li>
-                                                <li><a href="#"><span class="adminpro-icon adminpro-money author-log-ic"></span>User Billing</a>
+                                                {{!-- <li><a href="#"><span class="adminpro-icon adminpro-money author-log-ic"></span>User Billing</a>
                                                 </li>
                                                 <li><a href="#"><span class="adminpro-icon adminpro-settings author-log-ic"></span>Settings</a>
-                                                </li>
+                                                </li> --}}
                                                 <li><a href="/vendor/logout"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Log Out</a>
                                                 </li>
                                             </ul>

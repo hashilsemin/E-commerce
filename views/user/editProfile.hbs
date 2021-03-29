@@ -3,7 +3,7 @@
             <div class="section-title left-aligned">
                 <h3>Account Details</h3>
             </div>
-            <form action="/editProfile" method="post">
+            <form action="/editProfile" method="post" enctype="multipart/form-data">
 
                 <div class="form-group row">
                     <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Email</label>
@@ -23,8 +23,22 @@
                         <input type="type" name="lname" value="{{user.lname}}" class="form-control" >
                     </div>
                 </div>
-               
+                  <div class="form-group row">
+                    <label for="l-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                                           <input type="file" name="Image3" accept="image/*" class="form-control"
+                                                    onchange="userView3(event)">
 
+                                                <img src="/product-images/{{user._id}}three.jpg" alt=""
+                                                    style="width:100px;height:auto" id="userView" >
+                    </div>
+                </div>
+               
+<script>
+     function userView3(event) {
+        document.getElementById('userView').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>
                 {{!-- <div class="section-title left-aligned">
                     <h3>Your address</h3>
                 </div>

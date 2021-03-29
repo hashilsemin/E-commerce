@@ -66,7 +66,7 @@
                     <!-- single item end -->
                     {{#each products}}
                 
-                        <div class="col mb-30">
+                        <div class="myman col mb-30">
                             <div class="product-item" >
                                 <div class="product-thumb" >
                                     
@@ -88,10 +88,10 @@
                                 </div>
                                 <div class="product-caption">
                                     <div class="manufacture-product">
-                                        <h5 class="nameOfProduct"><a href="">{{this.product}}</h5></p>
+                                        <h5 class="nameOfProduct"><a href="/viewProduct/{{this._id}}">{{this.product}}</h5></p>
                                     </div>
                                     <div class="product-name">
-                                        <h4><a href="">{{this.category}}</a></h4>
+                                        <h4>{{this.category}}</h4>
                                     </div>
                                     <div class="ratings">
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -119,6 +119,7 @@
         filter = input.value.toUpperCase();
         cardContainer = document.getElementById("myItems");
         cards = cardContainer.getElementsByClassName("product-item");
+        myman = document.getElementsByClassName("myman")
         console.log("input"+input)
         console.log("filter"+filter)
         console.log("cardContainer"+cardContainer)
@@ -128,9 +129,9 @@
             title = cards[i].querySelector(".manufacture-product h5.nameOfProduct");
             console.log("title"+title)
             if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-                cards[i].style.display = "";
+                myman[i].style.display = "";
             } else {
-                cards[i].style.display = "none";
+                myman[i].style.display = "none";
             }
         }
     }

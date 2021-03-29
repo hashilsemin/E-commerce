@@ -321,6 +321,71 @@ return new Promise(async(resolve,reject)=>{
             })
            
         })
+    },
+    getTotalUser:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let total = await db.get().collection(collection.USER).find().count()
+            resolve(total)
+        })
+    },
+    
+    getTotalVendor:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let total = await db.get().collection(collection.VENDOR).find().count()
+            resolve(total)
+        })
+    },
+    
+    getTotalOrder:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let total = await db.get().collection(collection.ORDER).find().count()
+            resolve(total)
+        })
+    },
+    getTotalBusiness:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let total = await db.get().collection(collection.ORDER).aggregate([
+                {
+                    $group:{
+                        _id:null,
+                           totalAmount:{$sum:'$totalAmount'}
+                        }
+                    
+                }
+            ]).toArray()
+            console.log("machane");
+            console.log(total);
+            resolve(total)
+        })
+    },
+    getTotalCOD:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let COD = await db.get().collection(collection.ORDER).find({payment:"cash"}).count()
+            console.log(COD);
+            resolve(COD)
+        })
+    },
+    getTotalRazorPay:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let COD = await db.get().collection(collection.ORDER).find({payment:"razorpay"}).count()
+            console.log(COD);
+            resolve(COD)
+        })
+    },
+    getTotalPaypal:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let COD = await db.get().collection(collection.ORDER).find({payment:"paypal"}).count()
+            console.log(COD);
+            resolve(COD)
+        })
+    },
+    getSalesReport:(date)=>{
+        console.log(date.toDate+ " 00:00:00.000Z");
+        return new Promise(async(resolve,reject)=>{
+            let report = await db.get().collection(collection.ORDER).find({date:{$gte:new Date(date.toDate+ " 00:00:00.000Z"),$lt:new Date(date.fromDate+ " 23:59:00.000Z")}}).toArray()
+           console.log(report);
+           resolve(report)
+        })
     }
 
 }

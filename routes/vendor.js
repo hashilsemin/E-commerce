@@ -63,7 +63,30 @@ router.get('/',requireAuth,checkBlock, async function(req, res, next) {
   var vendorId = decoded.id
   let vendorDetails = await vendorHelpers.getName(vendorId)
  
-    res.render('vendor/vendHome', ({ vendorNav:true,vendorDetails }));
+  let totalCustomer1 = await vendorHelpers.getTotalUser(vendorId)
+let totalCustomer = totalCustomer1[0]
+console.log(totalCustomer);
+console.log("liiiiiiiiiiiiii");
+  let totalProduct = await vendorHelpers.getTotalProduct(vendorId)
+  console.log(totalProduct+"hifiiiiiiii");
+  let totalOrder = await vendorHelpers.getTotalOrder(vendorId)
+  let totalOrder1 = totalOrder[0]
+  console.log(totalOrder1);
+  console.log("i gottaaaaa");
+  let totalBusiness = await vendorHelpers.getTotalBusiness(vendorId)
+  let totalBusiness1 = totalBusiness[0]
+  // let totalCOD = await vendorHelpers.getTotalCOD()
+  // let totalRazorpay = await vendorHelpers.getTotalRazorPay()
+  
+  // let totalPaypal = await vendorHelpers.getTotalPaypal()
+  // console.log(totalCOD,totalRazorpay,totalPaypal);
+  
+  // totalB = totalBusiness[0].totalAmount
+
+
+
+
+    res.render('vendor/vendHome', ({ vendorNav:true,vendorDetails,totalCustomer,totalProduct,totalOrder1,totalBusiness1 }));
   });
 
   router.get('/product',checkBlock,async function (req, res, next) {
@@ -308,5 +331,35 @@ router.post('/reportUser',(req,res)=>{
     res.redirect('/vendor/customers')
   })
 })
+
+
+
+
+router.get('/orderReport',async(req,res)=>{
+
+  res.render('vendor/orderReport',({vendorNav:true}))
+})
  
+router.post('/orderSales',async(req,res)=>{
+
+  console.log(req.body);
+  let decoded = jwt.decode(req.cookies.jwt1);
+  var vendorId = decoded.id
+  let report = await vendorHelpers.getSalesReport(req.body,vendorId)
+  res.render('vendor/orderReport',({report,vendorNav:true}))
+})
+router.get('/profile',async(req,res)=>{
+  let decoded = jwt.decode(req.cookies.jwt1);
+  var vendorId = decoded.id
+  console.log(vendorId);
+  let vendor = await vendorHelpers.getVendorInfo(vendorId)
+  let vendor1=vendor[0]
+console.log(vendor1);
+  res.render('vendor/profile',({vendorNav:true,vendor1}))
+})
+
+
+
+
+
   module.exports = router;

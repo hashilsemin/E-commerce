@@ -29,11 +29,21 @@ const requireAuth = (req,res,next)=>{
 var errEmail;
 var errPass;
 /* GET home page. */
-router.get('/',requireAuth, function(req, res, next) {
+router.get('/',requireAuth, async function(req, res, next) {
 
- 
+ let totalUser = await adminHelpers.getTotalUser()
+let totalVendor = await adminHelpers.getTotalVendor()
+let totalOrder = await adminHelpers.getTotalOrder()
+let totalBusiness = await adminHelpers.getTotalBusiness()
+let totalCOD = await adminHelpers.getTotalCOD()
+let totalRazorpay = await adminHelpers.getTotalRazorPay()
 
-    res.render('admin/admHom', ({ adminNav:true }));
+let totalPaypal = await adminHelpers.getTotalPaypal()
+console.log(totalCOD,totalRazorpay,totalPaypal);
+
+totalB = totalBusiness[0].totalAmount
+
+    res.render('admin/admHom', ({ adminNav:true,totalUser,totalVendor,totalOrder,totalB,totalCOD,totalRazorpay,totalPaypal }));
 
   
 });
@@ -98,6 +108,11 @@ router.get('/logout',((req,res)=>{
   res.redirect('/admin/login')
 }))
 
+router.post('/orderSales',async(req,res)=>{
+  console.log(req.body);
+  let report = await adminHelpers.getSalesReport(req.body)
+  res.render('admin/orderReport',({report,adminNav:true}))
+})
 
 
 
@@ -130,6 +145,10 @@ router.get('/pendingVendor',async(req,res)=>{
   res.render('admin/pendingVendor',({pending,adminNav:true}))
 })
 
+router.get('/orderReport',async(req,res)=>{
+
+  res.render('admin/orderReport',({adminNav:true}))
+})
 
 router.post('/addVendor',requireAuth,((req,res)=>{
   console.log(req.body);
