@@ -68,8 +68,9 @@
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="password" class="form-control" id="c-password" name="password" placeholder="Password" >
-                                                    {{!-- <button class="pass-show-btn" type="button">Show</button> --}}
+                                                    <input type="password" class="form-control" id="pass" name="password" placeholder="Password" >
+                                                    <button onclick="togglePass()" class="pass-show-btn" id="boom" type="button">Show</button>
+                                               <button onclick="toggle()" class="pass-show-btn" style="display: none;" id="boomno" type="button">Hide</button>
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
@@ -96,7 +97,20 @@
         </div> <!-- end of container -->
     </div>
     <!-- End of Login Wrapper -->
+<script>
+    function togglePass(){
+        document.getElementById('pass').type="text"
+        document.getElementById('boom').style.display="none"
+        document.getElementById('boomno').style.display=""
 
+    }
+     function toggle(){
+        document.getElementById('pass').type="password"
+        document.getElementById('boomno').style.display="none"
+        document.getElementById('boom').style.display=""
+
+    }
+</script>
    <!-- scroll to top -->
     <div class="scroll-top not-visible">
         <i class="fa fa-angle-up"></i>

@@ -234,20 +234,20 @@ console.log("blevrrrrrrrrrrr");
                     }
                 },
                 {
-                    $group:{
-                        _id:{
-                            total: {$sum:
-                                { $multiply:['$quantity',{ $toInt: '$product.price' }]}},unit:{$multiply:['$quantity',{ $toInt: '$product.price' }]}
-                        },
-
-                    } 
-                 }
+                    
+                        $group:{
+                            _id:null,
+                          
+                            total:{$sum:{ $multiply:['$quantity',{$toInt:'$product.price'}]}}
+                        } 
+                     } 
+                 
                 
             ]).toArray()
             console.log("sssshihs");
             console.log(total);
-                console.log(total[0]._id);
-            resolve(total[0]._id)
+                console.log(total[0]);
+            resolve(total[0].total)
         })
     } ,
     addAddress:(address)=>{
@@ -480,7 +480,8 @@ console.log("josssssssssssss");
                 resolve(data)
             })
         })
-    }
+    },
+   
 
 
 

@@ -44,13 +44,28 @@
                         <div class="header-top-left">
                             <ul>
                                 <li><span>Email: </span>support@Eshop.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
                         <div class="box box-right">
                             <ul>
+                                {{#if user}}
+                                 <li  class="setting mr-5">
+                                    <a  class="ha-toggle" href="#">Get my refferal code<span class="lnr lnr-chevron-down"></span></a>
+                                    <ul style="width: 300px; padding: 10px" class="box-dropdown ha-dropdown">
+                                        <li>Copy your refferal link</li>
+                                        <li><div style="width: 100px;">
+                                            <input type="text" id="copy" value="http://localhost:3000/SignUp/{{user._id}}" readonly>
+                                            <button class="btn-warning" onclick="myCopy()">Copy text</button>
+                                            </div>
+                                        </a></li>
+                                    
+                                      
+                                    </ul>
+                                </li>
+                                {{/if}}
                                 {{#if user}}
                                 <li class="settings">
                                     <a class="ha-toggle" href="#">{{user.fname}}<span class="lnr lnr-chevron-down"></span></a>
@@ -67,6 +82,7 @@
                                     <ul class="box-dropdown ha-dropdown">
                                         <li><a href="/signup">Sign up</a></li>
                                         <li><a href="/login">Login</a></li>
+                                        
                                       
                                     </ul>
                                 </li>
@@ -80,6 +96,17 @@
                 </div>
             </div>
         </div>
+        {{!-- copy --}}
+        <script>
+function myCopy() {
+  var copyText = document.getElementById("copy");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+{{!-- copy --}}
         <div class="header-middle home-header2 theme-bg">
             <div class="container-fluid">
                 <div class="row align-items-center">
@@ -92,7 +119,7 @@
                         <div class="header-middle-inner">
                             <form action="https://demo.hasthemes.com/sinrato-preview/sinrato/method">
                                 {{!-- <div class="top-cat hm1">
-                                    <div class="search-form">
+                                    <div class="    ch-form">
                                          <select>
                                             <optgroup label="Electronics">
                                                 <option value="volvo">Laptop</option>

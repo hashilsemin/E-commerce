@@ -7,9 +7,11 @@
   },
   "dependencies": {
     "base-64": "^1.0.0",
+    "base64-arraybuffer": "^0.2.0",
     "base64-to-image": "^1.0.2",
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
+    "cowsay": "^1.4.0",
     "cropperjs": "^1.5.11",
     "croppie": "^2.6.5",
     "debug": "~2.6.9",

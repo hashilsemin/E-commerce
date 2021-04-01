@@ -101,7 +101,11 @@
                                         <span><i class="lnr lnr-star"></i></span>
                                     </div>
                                     <div class="price-box">
-                                        <span class="regular-price"> {{this.price}} ₹</span>
+                                        {{#if this.actual}}
+                                        <span class="regular-price"><strike style="color: red;">{{this.actual}}</strike> {{this.price}} ₹</span>
+                                        {{else}}
+                                        <span class="regular-price">{{this.price}} ₹</span>
+                                        {{/if}}
                                     </div>
                                     
                                     <button class="btn-cart" onclick="addToCart('{{this._id}}','{{../user}}')" type="button" >add to cart</button>

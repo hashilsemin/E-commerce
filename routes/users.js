@@ -94,6 +94,14 @@ router.get('/signup',(req,res)=>{
   res.render('user/signup')
 })
 
+router.get('/signup/:id',(req,res)=>{
+  let id = req.params.id
+
+  res.render('user/referralSignup',({id}))
+})
+
+
+
 router.post('/signup',(req,res,next)=>{
  let password= req.body.password
   userHelpers.signUpUser(req.body).then((data)=>{
@@ -365,7 +373,7 @@ console.log(products.length);
 if(products.length>0){
   totalValue=await userHelpers.getTotalAmount(id)
 }
-console.log(id);
+console.log(id);            
 console.log("=============================");
 console.log(products);
 let total = await userHelpers.getTotalCount(req.user._id)
@@ -401,7 +409,6 @@ router.post('/changeQuantity',(req,res,next)=>{
         console.log(response);
         res.json(response)
       })
-    
     }
     
   
@@ -647,7 +654,7 @@ let id = req.params.id
 
 router.get('/x',((req,res)=>{
  
-  res.render('user/x')
+  res.render('user/x',{vendorNav:true})
 }))
 // router.get('/addCart:/id',(req,res)=>{
 // let productId = req.params.id

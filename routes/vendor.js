@@ -15,6 +15,7 @@ const createToken = (id) =>{
   })
 }
 
+
 const checkBlock = (req,res,next)=>{
   console.log("kikikikikik");
 
@@ -89,6 +90,24 @@ console.log("liiiiiiiiiiiiii");
     res.render('vendor/vendHome', ({ vendorNav:true,vendorDetails,totalCustomer,totalProduct,totalOrder1,totalBusiness1 }));
   });
 
+router.post('/makeOffer/',(req,res)=>{
+  console.log(req.body);
+ vendorHelpers.makeOffer(req.body).then(()=>{
+   res.redirect('/vendor/product')
+ })
+
+})
+router.get('/deleteOffer/:id',(req,res)=>{
+  let id = req.params.id
+  console.log(id);
+  vendorHelpers.deleteOffer(id).then(()=>{
+    console.log("yo");
+    res.redirect('/vendor/product')
+  })
+})
+
+
+
   router.get('/product',checkBlock,async function (req, res, next) {
     var decoded = jwt.decode(req.cookies.jwt1);
     console.log(decoded.id);
@@ -161,24 +180,26 @@ router.get('/addProduct',checkBlock,async(req,res)=>{
   res.render('vendor/vendAddProd',({vendorNav:true,vendorId,category}))
 })
 
-router.post('/addProduct',((req,res)=>{
+router.post('/addProduct',(async(req,res)=>{
  
-  let addBody = req.body
+  let addBody = await req.body
 
-  var product = req.body
+console.log("all is welllllllllllllllll");
+ 
   let decoded = jwt.decode(req.cookies.jwt1);
   var vendorId = decoded.id
 
  
   
-    var base64Str = addBody.base64Code;
-    var base64Str1 = addBody.base64Code1;
-    var base64Str2 = addBody.base64Code2;
-    var base64Str3 = addBody.base64Code3;
-    delete product.base64Code
-delete product.base64Code1
-delete product.base64Code2
-delete product.base64Code3
+    var base64Str = await req.body.base64Code;
+    var base64Str1 = await req.body.base64Code1;
+    var base64Str2 = await req.body.base64Code2;
+    var base64Str3 = await  req.body.base64Code3;
+    console.log(base64Str3);
+    delete req.body.base64Code
+delete req.body.base64Code1
+delete req.body.base64Code2
+delete req.body.base64Code3
 
     var path ='public/product-images/';
     var path2 ='public/product-images/';
@@ -187,7 +208,7 @@ delete product.base64Code3
    
 
     
-    vendorHelpers.addProduct(product,vendorId).then((id) => {
+    vendorHelpers.addProduct(req.body,vendorId).then(async(id) => {
    console.log(id);
    var optionalObj1 = {'fileName': id+"first", 'type':'jpg'};
    var optionalObj2 = {'fileName': id+"second", 'type':'jpg'};
@@ -195,12 +216,14 @@ delete product.base64Code3
    var optionalObj4 = {'fileName': id+"ad", 'type':'jpg'};
    console.log("--------------------------------");
    console.log("ivide rthenne");
-   var imageInfo = base64ToImage(base64Str,path,optionalObj1); 
-   var imageInfo2 = base64ToImage(base64Str1,path2,optionalObj2); 
-   var imageInfo3 = base64ToImage(base64Str2,path3,optionalObj3); 
-   var imageInfo4 = base64ToImage(base64Str3,path4,optionalObj4); 
+   base64ToImage(base64Str,path,optionalObj1); 
+    base64ToImage(base64Str1,path2,optionalObj2); 
+    base64ToImage(base64Str2,path3,optionalObj3); 
+   base64ToImage(base64Str3,path4,optionalObj4); 
+ 
 
 
+    }).then(()=>{ 
 res.redirect('/vendor/product')
     })
 }))

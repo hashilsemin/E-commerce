@@ -1,7 +1,18 @@
   <!-- header area start -->
 
+   
+<script>
+var options = {
+    width: 400,
+    zoomWidth: 500,
+    offset: {vertical: 0, horizontal: 10}
 
+};
+new ImageZoom(document.getElementById("img-container"), options);
+ 
+</script>
   
+
     <!-- product details wrapper start -->
     <div class="product-details-main-wrapper pb-80 pt-35">
         <div class="container-fluid">
@@ -9,39 +20,69 @@
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-6">
-                            <div class="pro-details-gallery-thumb mb-30" >
-                                <a href="#"><div id="img-container"><img src="/product-images/{{product._id}}first.jpg" style="width 200px; height: 200px;"  alt=""></div></a>
-                                <div class="img-view" >
-                                    <a class="img-popup" href="/product-images/{{product._id}}ad.jpg"><i class="fa fa-search"></i></a>
-                                </div>
+                         
+                              <div id="img-container" style="z-index: 2;">
+                                  <img src="/product-images/{{product._id}}first.jpg" style="width 200px; height: 200px;"  alt="">
+                              </div>
+                      
+                        </div>
+                        <div class="col-6">
+                              <div id="img-container2" style="z-index: 1;">
+                               <img src="/product-images/{{product._id}}second.jpg" style="width 200px; height: 200px;" alt="">
+                                
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="pro-details-gallery-thumb mb-30">
-                                <a href="#"><img src="/product-images/{{product._id}}second.jpg" style="width 200px; height: 200px;" alt=""></a>
-                                <div class="img-view">
-                                    <a class="img-popup" href="/product-images/{{product._id}}front.jpg"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
+                       <div id="img-container3" style="z-index: 2;">
+                               <img src="/product-images/{{product._id}}third.jpg" style="width 200px; height: 200px" alt="">
+                              </div>
+                              
+                           
                         </div>
                         <div class="col-6">
-                            <div class="pro-details-gallery-thumb mb-30">
-                                <a href="#"><img src="/product-images/{{product._id}}third.jpg" style="width 200px; height: 200px" alt=""></a>
-                                <div class="img-view">
-                                    <a class="img-popup" href="/product-images/{{product._id}}thumbnail.jpg"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="pro-details-gallery-thumb mb-30">
-                                <a href="#"><img src="/product-images/{{product._id}}ad.jpg" style="width 200px; height: 200px;" alt=""></a>
-                                <div class="img-view">
-                                    <a class="img-popup" href="/product-images/{{product._id}}side.jpg"><i class="fa fa-search"></i></a>
-                                </div>
+                            <div id="img-container4" style="z-index: 1;">
+                              <img src="/product-images/{{product._id}}ad.jpg" style="width 200px; height: 200px;" alt="">
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+                  <script>
+var optionsw = {
+    width: 400,
+    zoomWidth: 500, 
+    offset: {vertical: 0, horizontal: 10}
+
+};
+
+new ImageZoom(document.getElementById("img-container"), options);
+ 
+
+
+new ImageZoom(document.getElementById("img-container2"), optionsw);
+ 
+</script>
+   <script>
+var optionsx = {
+    width: 400,
+    zoomWidth: 500, 
+    offset: {vertical: 0, horizontal: 10}
+
+};
+new ImageZoom(document.getElementById("img-container3"), optionsx);
+ 
+</script>
+ <script>
+var optionsy = {
+    width: 400,
+    zoomWidth: 500, 
+    offset: {vertical: 0, horizontal: 10}
+
+};
+new ImageZoom(document.getElementById("img-container4"), optionsy);
+ 
+</script>
+
                 <div class="col-lg-6">
                     <div class="product-details-inner">
                         <div class="product-details-contentt">
@@ -61,7 +102,11 @@
                                 </ul>
                             </div>
                             <div class="price-box mb-15">
-                                <span class="regular-price"><span class="special-price">{{product.price}}  ₹</span></span>
+                                <span class="regular-price"><span class="special-price">{{#if product.actual}}
+                                        <span class="regular-price"><strike style="color: red;">{{product.actual}}</strike> {{product.price}} </span>
+                                        {{else}}
+                                        <span class="regular-price">{{product.price}} </span>
+                                        {{/if}} ₹</span></span>
                                 {{!-- <span class="old-price"><del>£60.00</del></span> --}}
                             </div>
                             <div class="product-detail-sort-des pb-20">
@@ -69,7 +114,11 @@
                             </div>
                             <div class="pro-details-list pt-20">
                                 <ul>
-                                    <li><span>Price :</span>{{product.price}}</li>
+                                    <li><span>Price :</span>{{#if product.actual}}
+                                        <span class="regular-price"><strike style="color: red;">{{product.actual}}</strike> {{product.price}} ₹</span>
+                                        {{else}}
+                                        <span class="regular-price">{{product.price}} ₹</span>
+                                        {{/if}}</li>
                                     {{!-- <li><span>Brands :</span><a href="#">Canon</a></li>
                                     <li><span>Product Code :</span>Digital</li>
                                     <li><span>Reward Points :</span>200</li>

@@ -87,8 +87,8 @@
                                                         Your browser does not support the HTML5 canvas element.
                                                     </canvas>
                                                 </div>
-                                                <img alt="" style="width:100px;height:auto" id="imgView">
-                                                <div style="width: 33%;" class="lion"  id="resultreal"></div>
+                                                
+                                                <div style="width: 33%;" class="lion"  id="resultreal"><img id="realnewImage" src=""></div>
                                                 <input type="text" id="stringImage1" name="base64Code" hidden>
                                                 {{!-- end 1111--}}
                                             </div>
@@ -113,7 +113,7 @@
                                                     </canvas>
                                                 </div>
 
-                                                <div class="lion" id="result"></div>
+                                                <div class="lion" style="width: 33%;" id="result"><img id="thenewImage" src=""></div>
                                                 <input type="text" id="stringImage" name="base64Code1" hidden>
 
                                                 {{!-- end 222222 --}}
@@ -139,8 +139,8 @@
                                                         Your browser does not support the HTML5 canvas element.
                                                     </canvas>
                                                 </div>
-                                                <img alt="" style="width:100px;height:auto" id="imgView">
-                                                <div class="lion" style="width: 33%;" id="ppresult"></div>
+                                                
+                                                <div class="lion" style="width: 33%;" id="ppresult"><img id="ppnewImage" src=""></div>
                                                 <input type="text" id="ppstringImage" name="base64Code2" hidden>
                                                 {{!-- end 3 --}}
 
@@ -159,7 +159,7 @@
                                                 <input type="file" id="brfileInput" name="brfileInput" accept="image/*" />
                                                 <input type="button" id="brbtnCrop"  value="Crop"
                                                     style="display: none;" />
-                                                {{!-- <input type="button" id="brbtnRestore" value="Restore" /> --}}
+                                                <input type="button" id="brbtnRestore" value="Restore" style="display: none;" />
 
                                                 <div>
                                                     <canvas id="brcanvas">
@@ -167,7 +167,9 @@
                                                     </canvas>
                                                 </div>
 
-                                                <div class="lion" id="brresult"></div>
+                                                <div class="lion" style="width: 33%;" id="brresult">
+                                                    <img id="brnewImage" src="">
+                                                </div>
                                                 <input type="text" id="brstringImage" name="base64Code3" hidden>
                                                 {{!-- end 444 --}}
                                             </div>
@@ -225,31 +227,60 @@
         $brresult = $('#brresult');
 
     $('#brfileInput').on('change', function () {
+        console.log(this.files)
+        console.log("mappauuuuuuuuuu")
+        console.log(this.files[0])
+        
         if (this.files && this.files[0]) {
             if (this.files[0].type.match(/^image\//)) {
                 var reader = new FileReader();
+              
+                console.log(reader);
+                console.log("tiktiktiktiktiktitk")
+
                 reader.onload = function (evt) {
-                    var img = new Image();
-                    img.onload = function () {
-                        brcontext.canvas.height = img.height;
-                        brcontext.canvas.width = img.width;
+                    
+                    var brimg = new Image();
+                console.log("IMAAAAAAAAAAAAAAAGE")
+                console.log(brimg)
+                
+
+                    brimg.onload = function () {
+                        console.log("55555")
+                        brcontext.canvas.height = brimg.height;
+                        brcontext.canvas.width = brimg.width;
                         document.getElementById("brbtnCrop").style.display = ""
-                        brcontext.drawImage(img, 0, 0);
+                        document.getElementById("brbtnRestore").style.display = ""
+                        
+                        brcontext.drawImage(brimg, 0, 0);
+
+
+                        brcanvas.cropper('destroy');
+                       
                         var cropper = brcanvas.cropper({
-                            aspectRatio: 16 / 9
+                            aspectRatio: 1 / 1,
+                            viewMode:1,
+                            
+                            
                         });
+                        
                         $('#brbtnCrop').click(function () {
+                             
                             // Get a string base 64 data url
-                            var croppedImageDataURL = brcanvas.cropper('getCroppedCanvas').toDataURL("image/png");
-                            $brresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            var croppedImageDataURL = brcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            document.getElementById('brnewImage').src=croppedImageDataURL
+                            //$brresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             document.getElementById("brstringImage").value = croppedImageDataURL;
+                            console.log(croppedImageDataURL)
                         });
-                        $('#btnRestore').click(function () {
+                        $('#brbtnRestore').click(function () {
+                           
                             brcanvas.cropper('reset');
-                            $brresult.empty();
+                            //$brresult.empty();
+                          
                         });
                     };
-                    img.src = evt.target.result;
+                    brimg.src = evt.target.result;
                 };
                 reader.readAsDataURL(this.files[0]);
             }
@@ -274,19 +305,22 @@
             if (this.files[0].type.match(/^image\//)) {
                 var reader = new FileReader();
                 reader.onload = function (evt) {
-                    var img = new Image();
-                    img.onload = function () {
-                        ppcontext.canvas.height = img.height;
-                        ppcontext.canvas.width = img.width;
+                    var ppimg = new Image();
+                    ppimg.onload = function () {
+                        ppcontext.canvas.height = ppimg.height;
+                        ppcontext.canvas.width = ppimg.width;
                         document.getElementById("ppbtnCrop").style.display = ""
-                        ppcontext.drawImage(img, 0, 0);
+                        ppcontext.drawImage(ppimg, 0, 0);
+                        ppcanvas.cropper('destroy');
                         var cropper = ppcanvas.cropper({
-                            aspectRatio: 16 / 9
+                            aspectRatio: 1 / 1,
+                            viewMode:1
                         });
                         $('#ppbtnCrop').click(function () {
                             // Get a string base 64 data url
-                            var croppedImageDataURL = ppcanvas.cropper('getCroppedCanvas').toDataURL("image/png");
-                            $ppresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            var croppedImageDataURL = ppcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            document.getElementById('ppnewImage').src=croppedImageDataURL
+                            //$ppresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             document.getElementById("ppstringImage").value = croppedImageDataURL;
                         });
                         $('#btnRestore').click(function () {
@@ -294,7 +328,7 @@
                             $ppresult.empty();
                         });
                     };
-                    img.src = evt.target.result;
+                    ppimg.src = evt.target.result;
                 };
                 reader.readAsDataURL(this.files[0]);
             }
@@ -320,19 +354,22 @@
             if (this.files[0].type.match(/^image\//)) {
                 var reader = new FileReader();
                 reader.onload = function (evt) {
-                    var img = new Image();
-                    img.onload = function () {
-                        realcontext.canvas.height = img.height;
-                        realcontext.canvas.width = img.width;
-                        realcontext.drawImage(img, 0, 0);
+                    var realimg = new Image();
+                    realimg.onload = function () {
+                        realcontext.canvas.height = realimg.height;
+                        realcontext.canvas.width = realimg.width;
+                        realcontext.drawImage(realimg, 0, 0);
+                        realcanvas.cropper('destroy');
                         document.getElementById("realbtnCrop").style.display = ""
                         var cropper = realcanvas.cropper({
-                            aspectRatio: 16 / 9
+                            aspectRatio:1 / 1,
+                            viewMode:1
                         });
                         $('#realbtnCrop').click(function () {
                             // Get a string base 64 data url
-                            var croppedImageDataURL = realcanvas.cropper('getCroppedCanvas').toDataURL("image/png");
-                            $realresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            var croppedImageDataURL = realcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            document.getElementById('realnewImage').src=croppedImageDataURL
+                            //$realresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             console.log()
                             document.getElementById("stringImage1").value = croppedImageDataURL;
                         });
@@ -341,7 +378,7 @@
                             $realresult.empty();
                         });
                     };
-                    img.src = evt.target.result;
+                    realimg.src = evt.target.result;
                 };
                 reader.readAsDataURL(this.files[0]);
             }
@@ -373,14 +410,19 @@
                         context.canvas.height = img.height;
                         context.canvas.width = img.width;
                         context.drawImage(img, 0, 0);
+                        canvas.cropper('destroy');
                         document.getElementById("btnCrop").style.display = ""
                         var cropper = canvas.cropper({
-                            aspectRatio: 16 / 9
+                            aspectRatio: 1 / 1,
+                            viewMode:1,
+                          
                         });
                         $('#btnCrop').click(function () {
                             // Get a string base 64 data url
-                            var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png");
-                            $result.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            
+                            var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            document.getElementById('thenewImage').src=croppedImageDataURL
+                            //$result.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             document.getElementById("stringImage").value = croppedImageDataURL;
                         });
                         $('#btnRestore').click(function () {
@@ -506,165 +548,3 @@
 <script src="/js/main.js"></script>
 
 
-
-<script>
-    // Start upload preview image
-
-
-
-
-    <style>
-        label.cabinet {
-            display: block;
-        cursor: pointer;
-    }
-
-    label.cabinet input.file {
-            position: relative;
-        height: 100%;
-        width: auto;
-        opacity: 0;
-        -moz-opacity: 0;
-        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
-        margin-top: -30px;
-    }
-
-    #upload-demo {
-            width: 250px;
-        height: 250px;
-        padding-bottom: 25px;
-    }
-
-    figure figcaption {
-            position: absolute;
-        bottom: 0;
-        color: #fff;
-        width: 100%;
-        padding-left: 9px;
-        padding-bottom: 5px;
-        text-shadow: 0 0 10px #000;
-    }
-</style>
-
-
-<script>
-            // vars1
-            var result = document.querySelector('.result'),
-            img_result = document.querySelector('.img-result'),
-            img_w = document.querySelector('.img-w'),
-            img_h = document.querySelector('.img-h'),
-            options = document.querySelector('.options'),
-            save = document.querySelector('.save'),
-            cropped = document.querySelector('.cropped'),
-            dwn = document.querySelector('.download'),
-            upload = document.querySelector('#file-input'),
-            cropper = '';
-
-
-            // on change show image with crop options
-    upload.addEventListener('change', (e) => {
-        if (e.target.files.length) {
-            // start file reader
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                if (e.target.result) {
-                    // create new image
-                    let img = document.createElement('img');
-                    img.id = 'image';
-                    img.src = e.target.result
-                    // clean result before
-                    result.innerHTML = '';
-                    // append new image
-                    result.appendChild(img);
-                    // show save btn and options
-                    save.classList.remove('hide');
-                    options.classList.remove('hide');
-                    // init cropper
-                    cropper = new Cropper(img);
-                }
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
-
-    // save on click
-    save.addEventListener('click', (e) => {
-        e.preventDefault();
-        // get result to data uri
-        var imgSrc = cropper.getCroppedCanvas({
-            width: img_w.value // input value
-        }).toDataURL();
-        console.log(imgSrc)
-        document.getElementById("stringImage").value = imgSrc;
-        // remove hide class of img
-        cropped.classList.remove('hide');
-        img_result.classList.remove('hide');
-        // show image cropped
-        cropped.src = imgSrc;
-        dwn.classList.remove('hide');
-        dwn.download = 'imagename.png';
-        dwn.setAttribute('href', imgSrc);
-    });
-</script>
-
-
-
-<script>
-    // vars2
-    var result = document.querySelector('.realresult'),
-        img_result = document.querySelector('.realimg-result'),
-        img_w = document.querySelector('.realimg-w'),
-        img_h = document.querySelector('.img-h'),
-        options = document.querySelector('.realoptions'),
-        save = document.querySelector('.realsave'),
-        cropped = document.querySelector('.realcropped'),
-        dwn = document.querySelector('.realdownload'),
-        upload = document.querySelector('#realfile-input'),
-        cropper = '';
-
-
-    // on change show image with crop options
-    upload.addEventListener('change', (e) => {
-        if (e.target.files.length) {
-            // start file reader
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                if (e.target.result) {
-                    // create new image
-                    let img = document.createElement('img');
-                    img.id = 'image';
-                    img.src = e.target.result
-                    // clean result before
-                    result.innerHTML = '';
-                    // append new image
-                    result.appendChild(img);
-                    // show save btn and options
-                    save.classList.remove('hide');
-                    options.classList.remove('hide');
-                    // init cropper
-                    cropper = new Cropper(img);
-                }
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
-
-    // save on click
-    save.addEventListener('click', (e) => {
-        e.preventDefault();
-        // get result to data uri
-        var imgSrc = cropper.getCroppedCanvas({
-            width: img_w.value // input value
-        }).toDataURL();
-        console.log(imgSrc)
-        document.getElementById("stringImage").value = imgSrc;
-        // remove hide class of img
-        cropped.classList.remove('hide');
-        img_result.classList.remove('hide');
-        // show image cropped
-        cropped.src = imgSrc;
-        dwn.classList.remove('hide');
-        dwn.download = 'imagename.png';
-        dwn.setAttribute('href', imgSrc);
-    });
-</script>

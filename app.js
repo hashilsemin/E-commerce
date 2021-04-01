@@ -65,7 +65,7 @@ app.use('/vendor', venderRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-  
+
 // helpers.multiply = function(a, b) {
 //   if (!isNumber(a)) {
 //     throw new TypeError('expected the first argument to be a number');
@@ -92,4 +92,13 @@ db.connect((err)=>{
     console.log("sucesfull");
   }
 })
-module.exports = app;
+
+// var cowsay = require("cowsay");
+
+// console.log(cowsay.say({
+//     text : "Ni oru killadi thenne",
+//     e : "oO",
+//     T : "U "
+// }));  
+module.exports = app; 
+     

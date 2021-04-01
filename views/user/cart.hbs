@@ -20,7 +20,7 @@
 
                                                     <td>Quantity</td>
                                                     <td>Unit Price</td>
-                                                    {{!-- <td>Total price</td> --}}
+                                                    <td>Total price</td>
                                                     <td>Actions</td>
                                                 </tr>
                                             </thead>
@@ -44,17 +44,17 @@
                                                         <div class="input-group btn-block">
 
                                                             <button
-                                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',-1,'{{this.totalPrice}}')"
+                                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',-1,'{{this.product.price}}')"
                                                                 type="button" class="btn btn-danger "><i
                                                                     class="fa fa-minus"></i></button>
                                                             <div class="product-qty">
                                                                     {{!-- quanttttt --}}
-                                                                <input onload="quant()" type="text"
+                                                                <input type="text"
                                                                     id="{{this.product._id}}"
                                                                     value="{{this.products.quantity}}">
                                                             </div>
                                                             <button
-                                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',1,'{{this.totalPrice}}')"
+                                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',1,'{{this.product.price}}')"
                                                                 type="button" class="btn btn-primary "><i
                                                                     class="fa fa-plus"></i></button>
 
@@ -70,7 +70,7 @@
                                                         </script> --}}
                                                     </td>
                                                     <td><span id="unit">{{this.product.price}}</span> ₹</td>
-                                                    {{!-- <td><span id="{{this.product._id}}2"></span>{{this.totalPrice}} ₹</td> --}}
+                                                    <td><span id="{{this.product._id}}2">{{this.totalPrice}}</span> ₹</td>
                                                     <td><button
                                                             onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',0,'{{this.totalPrice}}')"
                                                             type="button" class="btn btn-warning ">Remove
@@ -121,11 +121,13 @@
                                                 } else {
                                                     console.log(count)
                                                     console.log(quantity)
+                                                    console.log(totalPrice)
+                                                    document.getElementById(proId+"2").innerHTML=totalPrice*(quantity+count)
                                                     document.getElementById(proId).value = quantity + count
                                                     console.log(response)
-                                                    document.getElementById('total').innerHTML = response.total
+                                                    document.getElementById('total').innerHTML = response
                                                     console.log("loololol under")
-                                                    console.log(totalPrice)
+                                                    
                                                     
                                                 }
                                             }
@@ -276,8 +278,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td><strong>Total:</strong></td>
-                                                        <td><span id="total" class="color-primary">{{totalValue.total}}
-                                                                ₹</span></td>
+                                                        <td><span id="total" class="color-primary">{{totalValue}}
+                                                                </span>₹</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

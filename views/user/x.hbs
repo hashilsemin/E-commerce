@@ -1,102 +1,180 @@
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {box-sizing: border-box;}
+    <!-- favicon
+		============================================ -->
+    <link rel="stylesheet" href="/css/form/themesaller-forms.css">
+    <!-- colorpicker CSS
+		============================================ -->
+    <link rel="stylesheet" href="/css/colorpicker/colorpicker.css">
+    <!-- select2 CSS
+		============================================ -->
+    <link rel="stylesheet" href="/css/select2/select2.min.css">
+    <!-- chosen CSS
+		============================================ -->
+    <link rel="stylesheet" href="/css/chosen/bootstrap-chosen.css">
+    <!-- ionRangeSlider CSS
+		============================================ -->
+    <link rel="stylesheet" href="/css/ionRangeSlider/ion.rangeSlider.css">
+    <link rel="stylesheet" href="/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
+    <!-- style CSS
 
-.img-zoom-container {
-  position: relative;
-}
-
-.img-zoom-lens {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  /*set the size of the lens:*/
-  width: 40px;
-  height: 40px;
-}
-
-.img-zoom-result {
-  border: 1px solid #d4d4d4;
-  /*set the size of the result div:*/
-  width: 300px;
-  height: 300px;
-}
-</style>
-<script>
-function imageZoom(imgID, resultID) {
-  var img, lens, result, cx, cy;
-  img = document.getElementById(imgID);
-  result = document.getElementById(resultID);
-  /*create lens:*/
-  lens = document.createElement("DIV");
-  lens.setAttribute("class", "img-zoom-lens");
-  /*insert lens:*/
-  img.parentElement.insertBefore(lens, img);
-  /*calculate the ratio between result DIV and lens:*/
-  cx = result.offsetWidth / lens.offsetWidth;
-  cy = result.offsetHeight / lens.offsetHeight;
-  /*set background properties for the result DIV:*/
-  result.style.backgroundImage = "url('" + img.src + "')";
-  result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
-  /*execute a function when someone moves the cursor over the image, or the lens:*/
-  lens.addEventListener("mousemove", moveLens);
-  img.addEventListener("mousemove", moveLens);
-  /*and also for touch screens:*/
-  lens.addEventListener("touchmove", moveLens);
-  img.addEventListener("touchmove", moveLens);
-  function moveLens(e) {
-    var pos, x, y;
-    /*prevent any other actions that may occur when moving over the image:*/
-    e.preventDefault();
-    /*get the cursor's x and y positions:*/
-    pos = getCursorPos(e);
-    /*calculate the position of the lens:*/
-    x = pos.x - (lens.offsetWidth / 2);
-    y = pos.y - (lens.offsetHeight / 2);
-    /*prevent the lens from being positioned outside the image:*/
-    if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
-    if (x < 0) {x = 0;}
-    if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
-    if (y < 0) {y = 0;}
-    /*set the position of the lens:*/
-    lens.style.left = x + "px";
-    lens.style.top = y + "px";
-    /*display what the lens "sees":*/
-    result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
-  }
-  function getCursorPos(e) {
-    var a, x = 0, y = 0;
-    e = e || window.event;
-    /*get the x and y positions of the image:*/
-    a = img.getBoundingClientRect();
-    /*calculate the cursor's x and y coordinates, relative to the image:*/
-    x = e.pageX - a.left;
-    y = e.pageY - a.top;
-    /*consider any page scrolling:*/
-    x = x - window.pageXOffset;
-    y = y - window.pageYOffset;
-    return {x : x, y : y};
-  }
-}
-</script>
 </head>
-<body>
 
-<h1>Image Zoom</h1>
+<body class="materialdesign">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Header top area start-->
+<div class="col-lg-12">
+                                                <div class="themesaller-forms mg-b-20">
+                                                    <div class="spacer-b16a">
+                                                        <label for="amount">Maximum price:</label>
+                                                        <input type="text" id="amount" class="slider-input">
+                                                    </div>
+                                                    <div class="slider-wrapper yellow-slider">
+                                                        <div id="slider2"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+ 
+                        <div class="col-lg-6">
+                            <div class="sparkline13-list shadow-reset mg-t-30">
+                                
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="themesaller-forms mg-b-20">
+                                                    <div class="spacer-b16a">
+                                                        <label for="amount">Maximum price:</label>
+                                                        <input type="text" id="amount" class="slider-input">
+                                                    </div>
+                                                    <div class="slider-wrapper yellow-slider">
+                                                        <div id="slider2"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+    <!-- Footer Start-->
+    <div class="footer-copyright-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-copy-right">
+                        <p>Copyright &#169; 2018 Colorlib All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End-->
+    <!-- Chat Box Start-->
+    <div class="chat-list-wrap">
+        <div class="chat-list-adminpro">
+            <div class="chat-button">
+                <span data-toggle="collapse" data-target="#chat" class="chat-icon-link"><i class="fa fa-comments"></i></span>
+            </div>
+            <div id="chat" class="collapse chat-box-wrap shadow-reset animated zoomInLeft">
+                <div class="chat-main-list">
+                    <div class="chat-heading">
+                        <h2>Messanger</h2>
+                    </div>
+                    <div class="chat-content chat-scrollbar">
+                        <div class="author-chat">
+                            <h3>Monica <span class="chat-date">10:15 am</span></h3>
+                            <p>Hi, what you are doing and where are you gay?</p>
+                        </div>
+                        <div class="client-chat">
+                            <h3>Mamun <span class="chat-date">10:10 am</span></h3>
+                            <p>Now working in graphic design with coding and you?</p>
+                        </div>
+                        <div class="author-chat">
+                            <h3>Monica <span class="chat-date">10:05 am</span></h3>
+                            <p>Practice in programming</p>
+                        </div>
+                        <div class="client-chat">
+                            <h3>Mamun <span class="chat-date">10:02 am</span></h3>
+                            <p>That's good man! carry on...</p>
+                        </div>
+                    </div>
+                    <div class="chat-send">
+                        <input type="text" placeholder="Type..." />
+                        <span><button type="Submit">Send</button></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Chat Box End-->
+    <!-- jquery
+		============================================ -->
+    <script src="/js/vendor/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="/js/jquery.meanmenu.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="/js/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="/js/jquery.scrollUp.min.js"></script>
+    <!-- counterup JS
+		============================================ -->
+    <script src="/js/counterup/jquery.counterup.min.js"></script>
+    <script src="/js/counterup/waypoints.min.js"></script>
+    <!-- modal JS
+		============================================ -->
+    <script src="/js/modal-active.js"></script>
+    <!-- touchspin JS
+		============================================ -->
+    <script src="/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="/js/touchspin/touchspin-active.js"></script>
+    <!-- colorpicker JS
+		============================================ -->
+    <script src="/js/colorpicker/jquery.spectrum.min.js"></script>
+    <script src="/js/colorpicker/color-picker-active.js"></script>
+    <!-- datapicker JS
+		============================================ -->
+    <script src="/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="/js/datapicker/datepicker-active.js"></script>
+    <!-- input-mask JS
+		============================================ -->
+    <script src="/js/input-mask/jasny-bootstrap.min.js"></script>
+    <!-- chosen JS
+		============================================ -->
+    <script src="/js/chosen/chosen.jquery.js"></script>
+    <script src="/js/chosen/chosen-active.js"></script>
+    <!-- select2 JS
+		============================================ -->
+    <script src="/js/select2/select2.full.min.js"></script>
+    <script src="/js/select2/select2-active.js"></script>
+    <!-- ionRangeSlider JS
+		============================================ -->
+    <script src="/js/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="/js/ionRangeSlider/ion.rangeSlider.active.js"></script>
+    <!-- rangle-slider JS
+		============================================ -->
+    <script src="/js/rangle-slider/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="/js/rangle-slider/jquery-ui-touch-punch.min.js"></script>
+    <script src="/js/rangle-slider/rangle-active.js"></script>
+    <!-- knob JS
+		============================================ -->
+    <script src="/js/knob/jquery.knob.js"></script>
+    <script src="/js/knob/knob-active.js"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="/js/main.js"></script>
+</body>
 
-<p>Mouse over the image:</p>
-
-<div class="img-zoom-container">
-  <img id="myimage" src="/user-image/f4.jpeg" width="300" height="240">
-  <div id="myresult" class="img-zoom-result"></div>
-</div>
-
-<p>The image must be placed inside a container with relative positioning.</p>
-<p>The result can be put anywhere on the page, but must have the class name "img-zoom-result".</p>
-<p>Make sure both the image and the result have IDs. These IDs are used when a javaScript initiates the zoom effect.</p>
-
-<script>
-// Initiate zoom effect:
-imageZoom("myimage", "myresult");
-</script>
-
+</html>

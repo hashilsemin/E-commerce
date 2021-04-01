@@ -126,16 +126,16 @@ module.exports = {
 
     },
     getOrder: (vendorId) => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             console.log(vendorId);
             let orders = await db.get().collection(collection.ORDER).aggregate([
 
-            
+
                 {
-                    $unwind:'$product'
+                    $unwind: '$product'
                 },
                 {
-                    $match:{'product.product.vendorId':vendorId,status:'placed'}
+                    $match: { 'product.product.vendorId': vendorId, status: 'placed' }
                 }
 
 
@@ -143,43 +143,43 @@ module.exports = {
 
             console.log(orders);
             console.log("perccccccccccc");
-resolve(orders)
+            resolve(orders)
         })
     },
-    getPendingOrder:(vendorId)=>{
-        return new Promise(async(resolve,reject)=>{
-            let orders = await db.get().collection(collection.ORDER).find({product:{$elemMatch:{'product.vendorId':vendorId}}},{status:"placed"}).toArray()
+    getPendingOrder: (vendorId) => {
+        return new Promise(async (resolve, reject) => {
+            let orders = await db.get().collection(collection.ORDER).find({ product: { $elemMatch: { 'product.vendorId': vendorId } } }, { status: "placed" }).toArray()
             resolve(orders)
-                    })
-     
+        })
+
     },
-    getViewOrder:(orderId)=>{
-        return new Promise(async(resolve,reject)=>{
-            let order = await db.get().collection(collection.ORDER).find({_id:objectID(orderId)}).toArray()
+    getViewOrder: (orderId) => {
+        return new Promise(async (resolve, reject) => {
+            let order = await db.get().collection(collection.ORDER).find({ _id: objectID(orderId) }).toArray()
             resolve(order)
         })
     },
-    getName:(vendorId)=>{
-        return new Promise(async(resolve,reject)=>{
-            let vendor = await db.get().collection(collection.VENDOR).findOne({_id:objectID(vendorId)})
+    getName: (vendorId) => {
+        return new Promise(async (resolve, reject) => {
+            let vendor = await db.get().collection(collection.VENDOR).findOne({ _id: objectID(vendorId) })
             console.log(vendor);
             resolve(vendor)
         })
     },
-    getCustomer:(vendorId)=>{
-        return new Promise(async(resolve,reject)=>{
+    getCustomer: (vendorId) => {
+        return new Promise(async (resolve, reject) => {
             let customer = await db.get().collection(collection.ORDER).aggregate([
                 {
                     $unwind: '$product'
                 },
                 {
-                    $match:{
-                       'product.product.vendorId':vendorId
+                    $match: {
+                        'product.product.vendorId': vendorId
                     }
                 },
                 {
-                    $group:{
-                        _id:{userId:'$userId',fname:"$deliveryDetails.fname",email:"$deliveryDetails.email"}
+                    $group: {
+                        _id: { userId: '$userId', fname: "$deliveryDetails.fname", email: "$deliveryDetails.email" }
                     }
                 },
             ]).toArray()
@@ -188,46 +188,46 @@ resolve(orders)
             resolve(customer)
         })
     },
-    reportUser:(body)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.REPORT).insertOne(body).then(()=>{
+    reportUser: (body) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.REPORT).insertOne(body).then(() => {
                 resolve()
             })
         })
     },
-    getVendorName:(id)=>{
-        return new Promise(async(resolve,reject)=>{
-            let vendor = await db.get().collection(collection.VENDOR).findOne({_id:objectID(id)})
+    getVendorName: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let vendor = await db.get().collection(collection.VENDOR).findOne({ _id: objectID(id) })
             resolve(vendor)
         })
     },
-  
-    getTotalUser:(vendorId)=>{
-        return new Promise(async(resolve,reject)=>{
+
+    getTotalUser: (vendorId) => {
+        return new Promise(async (resolve, reject) => {
             let customer = await db.get().collection(collection.ORDER).aggregate([
                 {
                     $unwind: '$product'
                 },
                 {
-                    $match:{
-                       'product.product.vendorId':vendorId
+                    $match: {
+                        'product.product.vendorId': vendorId
                     }
                 },
                 {
-                    $group:{
-                        _id:{userId:'$userId',fname:"$deliveryDetails.fname",email:"$deliveryDetails.email"}
+                    $group: {
+                        _id: { userId: '$userId', fname: "$deliveryDetails.fname", email: "$deliveryDetails.email" }
                     }
                 },
                 {
                     $count: "customers"
-                  }
+                }
             ]).toArray()
             console.log(customer);
             console.log("noddddddddddddddddd");
             resolve(customer)
         })
     },
-   
+
     getTotalProduct: (vendor) => {
         return new Promise(async (resolve, reject) => {
 
@@ -238,48 +238,48 @@ resolve(orders)
             resolve(product)
         })
     },
-    
+
     getTotalOrder: (vendorId) => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             console.log(vendorId);
             let orders = await db.get().collection(collection.ORDER).aggregate([
 
-            
+
                 {
-                    $unwind:'$product'
+                    $unwind: '$product'
                 },
                 {
-                    $match:{'product.product.vendorId':vendorId,status:'placed'}
+                    $match: { 'product.product.vendorId': vendorId, status: 'placed' }
                 },
                 {
                     $count: "orders"
-                  }
+                }
 
 
             ]).toArray()
 
             console.log(orders);
             console.log("perccccccccccc");
-resolve(orders)
+            resolve(orders)
         })
     },
-    
+
     getTotalBusiness: (vendorId) => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             console.log(vendorId);
             let orders = await db.get().collection(collection.ORDER).aggregate([
 
-            
+
                 {
-                    $unwind:'$product'
+                    $unwind: '$product'
                 },
                 {
-                    $match:{'product.product.vendorId':vendorId,status:'placed'}
+                    $match: { 'product.product.vendorId': vendorId, status: 'placed' }
                 },
                 {
-                    $group:{
-                        _id:null,
-                        totalAmount:{$sum:'$product.totalPrice'}
+                    $group: {
+                        _id: null,
+                        totalAmount: { $sum: '$product.totalPrice' }
                     }
                 }
 
@@ -288,33 +288,74 @@ resolve(orders)
 
             console.log(orders);
             console.log("perccccccccccc");
-resolve(orders)
+            resolve(orders)
         })
     },
-    getSalesReport:(date,vendorId)=>{
-        console.log(date.toDate+ " 00:00:00.000Z");
-        return new Promise(async(resolve,reject)=>{
+    getSalesReport: (date, vendorId) => {
+        console.log(date.toDate + " 00:00:00.000Z");
+        return new Promise(async (resolve, reject) => {
             //find({date:{$gte:new Date(date.toDate+ " 00:00:00.000Z"),$lt:new Date(date.fromDate+ " 23:59:00.000Z")}},{}).toArray()
             let report = await db.get().collection(collection.ORDER).aggregate([
                 {
-                    $unwind:'$product'
+                    $unwind: '$product'
                 },
                 {
-                    $match:{'product.product.vendorId':vendorId,date:{$gte:new Date(date.toDate+ " 00:00:00.000Z"),$lt:new Date(date.fromDate+ " 23:59:00.000Z")}}
+                    $match: { 'product.product.vendorId': vendorId, date: { $gte: new Date(date.toDate + " 00:00:00.000Z"), $lt: new Date(date.fromDate + " 23:59:00.000Z") } }
                 }
 
             ]).toArray()
-           console.log(report);
-           resolve(report)
+            console.log(report);
+            resolve(report)
         })
     },
-    getVendorInfo:(id)=>{
-        return new Promise(async(resolve,reject)=>{
-            let profile = await db.get().collection(collection.VENDOR).find({_id:objectID(id)}).toArray()
+    getVendorInfo: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let profile = await db.get().collection(collection.VENDOR).find({ _id: objectID(id) }).toArray()
             console.log(profile);
             resolve(profile)
         })
+    },
+    makeOffer: (body) => {
+        console.log(body);
+        return new Promise(async (resolve, reject) => {
+          let product = await  db.get().collection(collection.PRODUCT).findOne({
+                _id: objectID(body.productId)
+            })
+            console.log(product);
+            let actual = product.price
+            let discount = Number(body.price) - (Number(body.price) * Number(body.offer) / 100)
+            console.log(discount);
+            discountnew = discount.toFixed()
+            console.log(discount);
+            db.get().collection(collection.PRODUCT).updateOne({_id:objectID(body.productId)},{
+                $set:{
+                    price:discountnew,
+                    actual:actual
+                    
+                }
+            }).then(()=>{
+                resolve()
+            })
+        })
+    },
+    deleteOffer: (id) => {
+        return new Promise(async(resolve, reject) => {
+            let product = await  db.get().collection(collection.PRODUCT).findOne({
+                _id: objectID(id)
+            })
+            let price = product.actual
+            db.get().collection(collection.PRODUCT).updateOne({_id:objectID(id)},{
+                $unset:{
+                    actual:""
+                },
+                $set:{
+                    price:price
+                }
+
+            }).then(()=>{
+                resolve()
+            })
+        })
     }
-    
 
 }
