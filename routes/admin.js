@@ -301,4 +301,29 @@ router.get('/vendorComplaints',async(req,res)=>{
     res.render('admin/admVendReport',({report,adminNav:true}))
 
 })
+
+router.get('/offer',async(req,res)=>{
+  let offer = await adminHelpers.getCoupon()
+  console.log("this is the offer");
+console.log(offer);
+    res.render('admin/offer',({adminNav:true,offer}))
+
+})
+
+router.post('/offer',async(req,res)=>{
+  //let offer = await adminHelpers.getOffer()
+  console.log(req.body);
+  adminHelpers.addCoupon(req.body).then(()=>{
+    res.redirect('/admin/offer')
+  })
+})
+router.get('/deleteOffer/:id',(req,res)=>{
+let id = req.params.id
+console.log(id);
+adminHelpers.deleteOffer(id).then(()=>{
+  res.redirect('/admin/offer')
+})
+})
+
+
 module.exports = router;

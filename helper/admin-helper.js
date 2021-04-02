@@ -386,6 +386,27 @@ return new Promise(async(resolve,reject)=>{
            console.log(report);
            resolve(report)
         })
+    },
+    addCoupon:(data)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collection.COUPON).insertOne(data).then(()=>{
+                resolve()
+            })
+        })
+    },
+    getCoupon:()=>{
+        return new Promise(async(resolve,reject)=>{
+           let coupon = await db.get().collection(collection.COUPON).find().toArray()
+           resolve(coupon)
+        })
+    },
+    deleteOffer:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.COUPON).removeOne({_id:objectID(id)}).then(()=>{
+                resolve()
+            })
+        })
+
     }
 
 }

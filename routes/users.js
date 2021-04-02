@@ -422,19 +422,36 @@ router.get('/checkout',checkAuthenticated,async(req,res)=>{
   let id = req.user._id
   console.log(id);
   let address= await userHelpers.getAddress(id)
+  let totalPrice=await userHelpers.getTotalAmount(req.user._id) 
   console.log(address);
-  res.render('user/checkout',({userNav:true,address,user}))
+  let firstOrderOffer=await userHelpers.getFirstOrderOffer(req.user._id)
+  console.log(firstOrderOffer);
+  console.log("toptippppppppppppp");
+  let referralOffer = await userHelpers.getReferralOffer(req.user._id)
+
+  res.render('user/checkout',({userNav:true,address,user,totalPrice,firstOrderOffer,referralOffer,id}))
 })
  
 
 router.post('/placeOrder',checkAuthenticated,async(req,res)=>{
-
+console.log("makale");
+console.log(req.body);
+if(req.body.referral){
+  let referral = await userHelpers.deleteRefer(req.user._id)
+}
+if(req.body.WhichCoupon){
+  let WhichCoupon = req.body.WhichCoupon
+  let changeCoupon = await userHelpers.changeCoupon(WhichCoupon,req.user._id)
+}
 payment= req.body.payment
 console.log(payment);
+
 let products=await userHelpers.getProductCart(req.user._id)
-let totalPrice=await userHelpers.getTotalAmount(req.user._id) 
+let totalPrice= Number(req.body.realTotal)
+console.log(totalPrice);
 userHelpers.placeOrder(req.body,products,totalPrice,req.user._id).then((data)=>{
   console.log(data);
+
   if(data.payment=="cash"){
    res.json(data)
   
@@ -648,6 +665,24 @@ let id = req.params.id
     res.redirect('/profile')
   })
 })
+
+router.get('/coupon',async(req,res)=>{
+  let coupon = await userHelpers.getCoupon()
+  res.render('user/coupon',({coupon,userNav:true}))
+})
+
+router.post('/checkCode',(req,res)=>{
+  console.log(req.body);
+  let userId=req.user._id
+  let code = req.body.code
+  userHelpers.findCode(code,userId).then((response)=>{
+    console.log(response);
+    res.json(response)
+  })
+
+})
+
+
 
 
 

@@ -1,0 +1,127 @@
+<div class="row">
+    <div style="width: 50%; margin:2%;" class="col-lg-3">
+        <div class="income-dashone-total shadow-reset nt-mg-b-30">
+            <div class="income-title">
+                <div class="main-income-head">
+                    <h2>Add a coupon</h2>
+                    <div class="main-income-phara">
+                        <p>E-shop</p>
+                    </div>
+                </div>
+            </div>
+            <div class="income-dashone-pro">
+                <div class="income-rate-total">
+                    <div class="price-adminpro-rate">
+                        <form action="/admin/offer" method="POST">
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h4><span></span><span class="counter">Name :</span></h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <div>
+                                        <input class="form-control" name="name" type="text">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5%;">
+                                <div class="col-md-4">
+                                    <h4><span></span><span class="counter">Code :</span></h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" name="code">
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5%;">
+                                <div class="col-md-4">
+                                    <h4><span></span><span class="counter">Discount in percentage :</span></h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" name="discount">
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5%;">
+                                <div class="col-md-4">
+                                    <h4><span></span><span class="counter">Description :</span></h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" name="description">
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5%;">
+                                <div class="col-md-4">
+                                    <input class="btn btn-primary" type="submit">
+                                </div>
+
+                            </div>
+
+
+
+                            {{!-- <h2><span></span><span class="counter"></span></h2>
+                            <h2><span></span><span class="counter"></span></h2> --}}
+
+
+                    </div>
+                    </form>
+                    <div class="price-graph">
+                        <span id="sparkline1"></span>
+                    </div>
+                </div>
+                {{!-- <div class="income-range">
+                    <p>Total income</p>
+                    <span class="income-percentange">98% <i class="fa fa-bolt"></i></span>
+                </div> --}}
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        {{#each offer}}
+        <div class="col-lg-3">
+
+            <div class="income-dashone-total shadow-reset nt-mg-b-30">
+                <div class="income-title">
+                    <div class="main-income-head">
+                        <h2>{{this.name}}</h2>
+                        <div class="main-income-phara">
+                            <p>Code : {{this.code}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="income-dashone-pro">
+                    <div class="income-rate-total">
+                        <div class="price-adminpro-rate">
+                            <h3><span></span><span class="counter">{{this.description}}</span></h3>
+                        </div>
+                        <div class="price-graph">
+                            <span id="sparkline1"></span>
+                        </div>
+                    </div>
+                    <div class="income-rate-total">
+                        <div class="price-adminpro-rate">
+                            <a class="btn btn-danger" href="/admin/deleteOffer/{{this._id}}">Delete</a>
+                        </div>
+                        <div class="price-graph">   
+                            <span id="sparkline1"></span>
+                        </div>
+                    </div>
+                    {{!-- <div class="income-range">
+                        <p>Total income</p>
+                        <span class="income-percentange">98% <i class="fa fa-bolt"></i></span>
+                    </div> --}}
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

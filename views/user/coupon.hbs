@@ -1,0 +1,52 @@
+<div class="my-account-wrapper pb-20">
+    
+    <div class="container-fluid">
+            <small>Coupons can be used only one time and cannot be used with other selected coupons</small>
+
+        <div class="section-title left-aligned">
+            <h3>Available coupons</h3>
+        </div>
+        <div class="row">
+
+            {{#each coupon}}
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="product-item mb-30">
+                    <div class="product-caption" style="font-size: large;padding:20px;">
+                        <div class="product-name">
+                            <p style="font-size: x-large;">{{this.name}}</p>
+                        </div>
+                        <div class="product-name">
+                             <input type="text" style="width: 25%;" id="copy" class="form-control" value="{{this.code}}" readonly>
+                                            <button class="btn-warning" onclick="myCopy()">Copy</button>
+                            
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.description}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.zip}}</h4>
+                        </div>
+                        <div class="product-name">
+                            <h4 style="font-size: large;">{{this.mobile}}</h4>
+                       
+                </div> <!-- end single grid item -->
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-name{
+        margin-top: 10px;
+    }
+</style>
+        <script>
+function myCopy() {
+  var copyText = document.getElementById("copy");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Enjoy the code: " + copyText.value);
+}
+</script>

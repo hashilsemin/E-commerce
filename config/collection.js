@@ -7,5 +7,6 @@ module.exports = {
     CART:'cart',
     ADDRESS:'address',
     ORDER:'order',
-    REPORT:'report'
+    REPORT:'report',
+    COUPON:'coupon'
 }

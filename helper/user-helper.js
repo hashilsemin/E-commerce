@@ -4,6 +4,7 @@ const objectID = require('mongodb').ObjectID
 const bcrypt = require('bcrypt')
 const Razorpay= require('razorpay')
 const { resolve } = require('path')
+const { response } = require('express')
 var instance = new Razorpay({
     key_id: 'rzp_test_oqOom6V3IbHjCo',
     key_secret: 'sGonyu9F0Ss0YBoaj8yTGr2G',
@@ -21,7 +22,11 @@ module.exports = {
     getTotalCount:(userId)=>{
 return new Promise(async(resolve,reject)=>{
     let count = await db.get().collection(collection.CART).aggregate(
-        [
+        [   
+            {
+                $match : {user:objectID(userId)}
+                },
+
            {
               $unwind:"$products"
            }
@@ -481,8 +486,96 @@ console.log("josssssssssssss");
             })
         })
     },
-   
+    getFirstOrderOffer:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+           let order = await db.get().collection(collection.ORDER).findOne({userId:id})
+           console.log(order);
+           if(order){
+            resolve()
+           }else{
+               order = true
+               resolve(order)
+           }
+        })
+    },
 
+    getReferralOffer:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let order = await db.get().collection(collection.USER).find({_id:objectID(id)}).toArray()
+            console.log(order);
+        if(order[0].referral){
+            resolve(order)
+        }else{
+            resolve()
+        }
+        })
+    },
+    deleteRefer:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let referer = await db.get().collection(collection.USER).findOne({_id:objectID(id)})
+            let addReferrer = await db.get().collection(collection.USER).updateOne({_id:objectID(referer.referral)},{
+                $set:{
+                    referral:"true"
+                }
+            })
+            db.get().collection(collection.USER).updateOne({_id:objectID(id)},{
+                $unset:{
+                    referral:""
+                }
+            }).then(()=>{
+                resolve()
+            })
+        })
+    },
+    getCoupon:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let coupon = await db.get().collection(collection.COUPON).find().toArray()
+            resolve(coupon)
+        })
+    },
+    findCode:(Ecode,EuserId)=>{
+        return new Promise(async(resolve,reject)=>{
+           var response={}
+            let code = await db.get().collection(collection.COUPON).findOne({code:Ecode})
+            //{$elemMatch:{userId:EuserId}}
+            if(code){
+                let user =  await db.get().collection(collection.COUPON).findOne({$and:[{code:Ecode},{user:{$in:[EuserId]}}]})
+                console.log(user);
+                if(user){
+                    response.message="You have already used this Coupon"
+                    resolve(response)
+                }else{
+                    // db.get().collection(collection.COUPON).updateOne({code:Ecode},{
+                    //     $push:{
+                    //         user:EuserId
+                    //     }
+                    // }).then(()=>{
+                        response.percent=code.discount
+                        response.code=code.code
+                    resolve(response)
+                  
+                    
+                }
+                
+            }else{
+                response.message="No coupon found"
+                resolve(response)
+            }
+        })
+    },
+    changeCoupon:(code,id)=>{
+        return new Promise((resolve,reject)=>{
+             db.get().collection(collection.COUPON).updateOne({code:code},{
+                        $push:{
+                            user:id
+                        }
+                    }).then(()=>{
+                        resolve()
+                    })
+       
+    })
+   
+    }
 
 
     
