@@ -575,8 +575,21 @@ console.log("josssssssssssss");
        
     })
    
-    }
-
+    },
+    
+    shipCancelOrder:(orderId,id)=>{
+        console.log("qqqqqqqqqqqqqqqqq");
+        console.log(orderId,id);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER).updateOne({_id:objectID(orderId), product: { $elemMatch: { 'product._id': objectID(id) } } },{
+                $set:{
+                   'product.$.product.ship':"pending"
+                }
+            }).then(()=>{
+                resolve()
+            })
+        })
+    },
 
     
 

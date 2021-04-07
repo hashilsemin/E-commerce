@@ -4,7 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login | Adminpro - Admin Template</title>
+     {{#if adminNav}}
+      <title>Admin E-shop</title>
+      {{/if}}
+      {{#if userNav}}
+     <title>E-shop</title>
+      {{/if}}
+       {{#if vendorNav}}
+      <title>Vendor E-shop</title>
+    
+      {{/if}}
+   
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/js-image-zoom@0.4.1/js-image-zoom.js" type="application/javascript"></script>

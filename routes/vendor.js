@@ -339,6 +339,17 @@ console.log("makaleeeeeeeeee");
 res.redirect('/vendor/order')
 })
 })
+router.get('/cancelShip/:id/:name',(req,res)=>{
+  console.log("okokokokokokoko");
+  let name=req.params.name
+let id= req.params.id
+console.log(name);
+console.log("paisssssssssssssssssss");
+userHelper.shipCancelOrder(id,name).then(()=>{  
+console.log("makaleeeeeeeeee");
+res.redirect('/vendor/order')
+})
+})
 router.get('/customers',async(req,res)=>{
   let decoded = jwt.decode(req.cookies.jwt1);
   var vendorId = decoded.id

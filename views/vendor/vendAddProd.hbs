@@ -16,8 +16,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="all-form-element-inner">
-                                <form  action="/vendor/addProduct"  id="addproduct" method="POST" 
-                                    >
+                                <form action="/vendor/addProduct" id="addproduct" method="POST">
                                     <div class="form-group-inner">
                                         <div class="row">
                                             <div class="col-lg-3">
@@ -78,17 +77,20 @@
                                             <div class="col-lg-9">
 
                                                 {{!-- start1111 --}}
-                                                <input type="file" id="realfileInput" name="realfileInput" accept="image/*" />
+                                                <input type="file" id="realfileInput" name="realfileInput"
+                                                    accept="image/*" />
                                                 <input type="button" id="realbtnCrop" value="Crop"
                                                     style="display: none;" />
                                                 {{!-- <input type="button" id="realbtnRestore" value="Restore" /> --}}
                                                 <div>
-                                                    <canvas id="canvasreal">
+
+                                                    <canvas style="display: none;" id="canvasreal">
                                                         Your browser does not support the HTML5 canvas element.
                                                     </canvas>
                                                 </div>
-                                                
-                                                <div style="width: 33%;" class="lion"  id="resultreal"><img id="realnewImage" src=""></div>
+
+                                                <div style="width: 33%;" class="lion" id="resultreal"><img
+                                                        id="realnewImage" src=""></div>
                                                 <input type="text" id="realstringImage" name="base64Code" hidden>
                                                 {{!-- end 1111--}}
                                             </div>
@@ -108,12 +110,13 @@
                                                 {{!-- <input type="button" id="btnRestore" value="Restore" /> --}}
 
                                                 <div>
-                                                    <canvas id="canvas">
+                                                    <canvas style="display: none;" id="canvas">
                                                         Your browser does not support the HTML5 canvas element.
                                                     </canvas>
                                                 </div>
 
-                                                <div class="lion" style="width: 33%;" id="result"><img id="thenewImage" src=""></div>
+                                                <div class="lion" style="width: 33%;" id="result"><img id="thenewImage"
+                                                        src=""></div>
                                                 <input type="text" id="stringImage" name="base64Code1" hidden>
 
                                                 {{!-- end 222222 --}}
@@ -129,18 +132,20 @@
 
 
                                                 {{!-- start 3 --}}
-                                                <input type="file" id="ppfileInput" name="ppfileInput" accept="image/*" />
+                                                <input type="file" id="ppfileInput" name="ppfileInput"
+                                                    accept="image/*" />
                                                 <input type="button" id="ppbtnCrop" value="Crop"
                                                     style="display: none;" />
                                                 {{!-- <input type="button" id="ppbtnRestore" value="Restore" /> --}}
 
                                                 <div>
-                                                    <canvas id="ppcanvas">
+                                                    <canvas style="display: none; " id="ppcanvas">
                                                         Your browser does not support the HTML5 canvas element.
                                                     </canvas>
                                                 </div>
-                                                
-                                                <div class="lion" style="width: 33%;" id="ppresult"><img id="ppnewImage" src=""></div>
+
+                                                <div class="lion" style="width: 33%;" id="ppresult"><img id="ppnewImage"
+                                                        src=""></div>
                                                 <input type="text" id="ppstringImage" name="base64Code2" hidden>
                                                 {{!-- end 3 --}}
 
@@ -156,13 +161,15 @@
                                             <div class="col-lg-9">
 
                                                 {{!-- start 4444 --}}
-                                                <input type="file" id="brfileInput" name="brfileInput" accept="image/*" />
-                                                <input type="button" id="brbtnCrop"  value="Crop"
+                                                <input type="file" id="brfileInput" name="brfileInput"
+                                                    accept="image/*" />
+                                                <input type="button" id="brbtnCrop" value="Crop"
                                                     style="display: none;" />
-                                                <input type="button" id="brbtnRestore" value="Restore" style="display: none;" />
+                                                <input type="button" id="brbtnRestore" value="Restore"
+                                                    style="display: none;" />
 
                                                 <div>
-                                                    <canvas id="brcanvas">
+                                                    <canvas style="display: none;" id="brcanvas">
                                                         Your browser does not support the HTML5 canvas element.
                                                     </canvas>
                                                 </div>
@@ -171,8 +178,8 @@
                                                     <img id="brnewImage" src="">
                                                 </div>
                                                 <input type="text" id="brstringImage" name="base64Code3" hidden>
-                                               
-                                                
+
+
                                                 {{!-- end 444 --}}
                                             </div>
                                         </div>
@@ -214,7 +221,11 @@
 
 
 
-
+<style>
+    .cropper-wrap-box {
+        background-color: rgb(255, 255, 255);
+    }
+</style>
 
 
 
@@ -232,20 +243,20 @@
         console.log(this.files)
         console.log("mappauuuuuuuuuu")
         console.log(this.files[0])
-        
+
         if (this.files && this.files[0]) {
             if (this.files[0].type.match(/^image\//)) {
                 var reader = new FileReader();
-              
+
                 console.log(reader);
                 console.log("tiktiktiktiktiktitk")
 
                 reader.onload = function (evt) {
-                    
+
                     var brimg = new Image();
-                console.log("IMAAAAAAAAAAAAAAAGE")
-                console.log(brimg)
-                
+                    console.log("IMAAAAAAAAAAAAAAAGE")
+                    console.log(brimg)
+
 
                     brimg.onload = function () {
                         console.log("55555")
@@ -253,35 +264,35 @@
                         brcontext.canvas.width = brimg.width;
                         document.getElementById("brbtnCrop").style.display = ""
                         document.getElementById("brbtnRestore").style.display = ""
-                        
+
                         brcontext.drawImage(brimg, 0, 0);
 
 
                         brcanvas.cropper('destroy');
-                       
+
                         var cropper = brcanvas.cropper({
                             aspectRatio: 1 / 1,
-                            viewMode:1,
+                            viewMode: 1,
                             
-                            
+
                         });
-                        
+
                         $('#brbtnCrop').click(function () {
-                             
+
                             // Get a string base 64 data url
                             var croppedImageDataURL = brcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
                             //croppedImageDataURL = encodeURIComponent(croppedImageDataURL)
-                            document.getElementById('brnewImage').src=croppedImageDataURL
-                           
+                            document.getElementById('brnewImage').src = croppedImageDataURL
+
                             //$brresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             document.getElementById("brstringImage").value = croppedImageDataURL;
                             console.log(croppedImageDataURL)
                         });
                         $('#brbtnRestore').click(function () {
-                           
+
                             brcanvas.cropper('reset');
                             //$brresult.empty();
-                          
+
                         });
                     };
                     brimg.src = evt.target.result;
@@ -290,7 +301,7 @@
             }
             else {
                 alert("Invalid file type! Please select an image file.");
-                 document.getElementById('brfileInput').value= null;
+                document.getElementById('brfileInput').value = null;
             }
         }
         else {
@@ -314,16 +325,18 @@
                         ppcontext.canvas.height = ppimg.height;
                         ppcontext.canvas.width = ppimg.width;
                         document.getElementById("ppbtnCrop").style.display = ""
+                        document.getElementById("ppcanvas").style.display = ""
+
                         ppcontext.drawImage(ppimg, 0, 0);
                         ppcanvas.cropper('destroy');
                         var cropper = ppcanvas.cropper({
                             aspectRatio: 1 / 1,
-                            viewMode:1
+                            viewMode: 1
                         });
                         $('#ppbtnCrop').click(function () {
                             // Get a string base 64 data url
                             var croppedImageDataURL = ppcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
-                            document.getElementById('ppnewImage').src=croppedImageDataURL
+                            document.getElementById('ppnewImage').src = croppedImageDataURL
                             //$ppresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             document.getElementById("ppstringImage").value = croppedImageDataURL;
                         });
@@ -338,7 +351,7 @@
             }
             else {
                 alert("Invalid file type! Please select an image file.");
-                 document.getElementById('ppfileInput').value= null;
+                document.getElementById('ppfileInput').value = null;
             }
         }
         else {
@@ -365,14 +378,16 @@
                         realcontext.drawImage(realimg, 0, 0);
                         realcanvas.cropper('destroy');
                         document.getElementById("realbtnCrop").style.display = ""
+                        document.getElementById("canvasreal").style.display = ""
+
                         var cropper = realcanvas.cropper({
-                            aspectRatio:1 / 1,
-                            viewMode:1
+                            aspectRatio: 1 / 1,
+                            viewMode: 1
                         });
                         $('#realbtnCrop').click(function () {
                             // Get a string base 64 data url
                             var croppedImageDataURL = realcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
-                            document.getElementById('realnewImage').src=croppedImageDataURL
+                            document.getElementById('realnewImage').src = croppedImageDataURL
                             //$realresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             console.log()
                             document.getElementById("realstringImage").value = croppedImageDataURL;
@@ -388,7 +403,7 @@
             }
             else {
                 alert("Invalid file type! Please select an image file.");
-                 document.getElementById('realfileInput').value= null;
+                document.getElementById('realfileInput').value = null;
             }
         }
         else {
@@ -416,16 +431,18 @@
                         context.drawImage(img, 0, 0);
                         canvas.cropper('destroy');
                         document.getElementById("btnCrop").style.display = ""
+                        document.getElementById("canvas").style.display = ""
+
                         var cropper = canvas.cropper({
                             aspectRatio: 1 / 1,
-                            viewMode:1,
-                          
+                            viewMode: 1,
+
                         });
                         $('#btnCrop').click(function () {
                             // Get a string base 64 data url
-                            
+
                             var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
-                            document.getElementById('thenewImage').src=croppedImageDataURL
+                            document.getElementById('thenewImage').src = croppedImageDataURL
                             //$result.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             document.getElementById("stringImage").value = croppedImageDataURL;
                         });
@@ -440,7 +457,7 @@
             }
             else {
                 alert("Invalid file type! Please select an image file.");
-                document.getElementById('fileInput').value= null;
+                document.getElementById('fileInput').value = null;
             }
         }
         else {
@@ -452,69 +469,70 @@
 
 
 {{!-- ajax --}}
-{{!-- <script>
+{{!--
+<script>
     var Base64Binary = {
-	_keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-	
-	/* will return a  Uint8Array type */
-	decodeArrayBuffer: function(input) {
-		var bytes = (input.length/4) * 3;
-		var ab = new ArrayBuffer(bytes);
-		this.decode(input, ab);
-		
-		return ab;
-	},
+        _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
 
-	removePaddingChars: function(input){
-		var lkey = this._keyStr.indexOf(input.charAt(input.length - 1));
-		if(lkey == 64){
-			return input.substring(0,input.length - 1);
-		}
-		return input;
-	},
+        /* will return a  Uint8Array type */
+        decodeArrayBuffer: function (input) {
+            var bytes = (input.length / 4) * 3;
+            var ab = new ArrayBuffer(bytes);
+            this.decode(input, ab);
 
-	decode: function (input, arrayBuffer) {
-		//get last chars to see if are valid
-		input = this.removePaddingChars(input);
-		input = this.removePaddingChars(input);
+            return ab;
+        },
 
-		var bytes = parseInt((input.length / 4) * 3, 10);
-		
-		var uarray;
-		var chr1, chr2, chr3;
-		var enc1, enc2, enc3, enc4;
-		var i = 0;
-		var j = 0;
-		
-		if (arrayBuffer)
-			uarray = new Uint8Array(arrayBuffer);
-		else
-			uarray = new Uint8Array(bytes);
-		
-		input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-		
-		for (i=0; i<bytes; i+=3) {	
-			//get the 3 octects in 4 ascii chars
-			enc1 = this._keyStr.indexOf(input.charAt(j++));
-			enc2 = this._keyStr.indexOf(input.charAt(j++));
-			enc3 = this._keyStr.indexOf(input.charAt(j++));
-			enc4 = this._keyStr.indexOf(input.charAt(j++));
-	
-			chr1 = (enc1 << 2) | (enc2 >> 4);
-			chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-			chr3 = ((enc3 & 3) << 6) | enc4;
-	
-			uarray[i] = chr1;			
-			if (enc3 != 64) uarray[i+1] = chr2;
-			if (enc4 != 64) uarray[i+2] = chr3;
-		}
-	
-		return uarray;	
-	}
-}
+        removePaddingChars: function (input) {
+            var lkey = this._keyStr.indexOf(input.charAt(input.length - 1));
+            if (lkey == 64) {
+                return input.substring(0, input.length - 1);
+            }
+            return input;
+        },
+
+        decode: function (input, arrayBuffer) {
+            //get last chars to see if are valid
+            input = this.removePaddingChars(input);
+            input = this.removePaddingChars(input);
+
+            var bytes = parseInt((input.length / 4) * 3, 10);
+
+            var uarray;
+            var chr1, chr2, chr3;
+            var enc1, enc2, enc3, enc4;
+            var i = 0;
+            var j = 0;
+
+            if (arrayBuffer)
+                uarray = new Uint8Array(arrayBuffer);
+            else
+                uarray = new Uint8Array(bytes);
+
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+            for (i = 0; i < bytes; i += 3) {
+                //get the 3 octects in 4 ascii chars
+                enc1 = this._keyStr.indexOf(input.charAt(j++));
+                enc2 = this._keyStr.indexOf(input.charAt(j++));
+                enc3 = this._keyStr.indexOf(input.charAt(j++));
+                enc4 = this._keyStr.indexOf(input.charAt(j++));
+
+                chr1 = (enc1 << 2) | (enc2 >> 4);
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                chr3 = ((enc3 & 3) << 6) | enc4;
+
+                uarray[i] = chr1;
+                if (enc3 != 64) uarray[i + 1] = chr2;
+                if (enc4 != 64) uarray[i + 2] = chr3;
+            }
+
+            return uarray;
+        }
+    }
     $("#addproduct").submit((e) => {
-        let barr= document.getElementById('addproduct').value
-       var uintArray = Base64Binary.decode(barr); 
+        let barr = document.getElementById('addproduct').value
+        var uintArray = Base64Binary.decode(barr);
         e.preventDefault()
         $.ajax({
             url: '/vendor/addProduct',
@@ -522,7 +540,7 @@
             data: uintArray,
             success: ((response) => {
                 console.log(response)
-alert(response)
+                alert(response)
 
 
             })
@@ -626,5 +644,3 @@ alert(response)
 <!-- main JS
 		============================================ -->
 <script src="/js/main.js"></script>
-
-
