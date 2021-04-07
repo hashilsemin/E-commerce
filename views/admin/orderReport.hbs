@@ -11,12 +11,33 @@
                                         <div class="sparkline13-outline-icon">
                                            
                             <form action="/admin/orderSales" method="POST">
+                            {{#if input}}
   <label for="birthday">Find orders report from:</label>
   <input type="date" id="birthday" name="toDate" required>
     <label for="birthday">TO:</label>
-  <input type="date" id="birthday" name="fromDate" required>
+  <input type="date" id="birthday1" name="fromDate" required>
+  {{else}}
+    <label for="birthday">Find orders report from:</label>
+  <input type="date" id="" value="{{dates.toDate}}" name="toDate" required>
+    <label for="birthday">TO:</label>
+  <input type="date" id="" name="fromDate" value="{{dates.fromDate}}" required>
+  {{/if}}
   <input type="submit">
 </form>
+<script>
+    var date = new Date();
+var currentDate = date.toISOString().substring(0,10);
+
+ let d = new Date();
+let sevenDaysFromNow = d.setDate(d.getDate() - 7);
+sevenDaysFromNow = new Date(sevenDaysFromNow).toISOString().substring(0,10);
+    document.getElementById('birthday1').value=currentDate
+
+    console.log(sevenDaysFromNow)
+    document.getElementById('birthday').value=sevenDaysFromNow
+
+
+</script>
 
                                         </div>
                                     </div>
@@ -35,6 +56,8 @@
                                                 <tr>
                                                     <th data-field="state" data-checkbox="true"></th>
                                                     <th data-field="id">Product</th>
+                                                    <th data-field="date">date</th>
+
                                                     <th data-field="name" data-editable="true">User</th>
                                                     <th data-field="email" data-editable="true">Total Price</th>
                                                 
@@ -48,6 +71,8 @@
                                                 <tr>
                                                     <td></td>
                                                     <td>{{this._id}}</td>
+                                                    <td>{{this.date}}</td>
+
                                                     <td>{{this.deliveryDetails.fname}}</td>
                                                     <td>{{this.totalAmount}} R.s</td>
                                                     <td>{{this.deliveryDetails.city}}</td>

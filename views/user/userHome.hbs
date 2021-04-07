@@ -91,15 +91,15 @@
                                         <h5 class="nameOfProduct"><a href="/viewProduct/{{this._id}}">{{this.product}}</h5></p>
                                     </div>
                                     <div class="product-name">
-                                        <h4>{{this.category}}</h4>
+                                        <h4 class="nameOfCategory">{{this.category}}</h4>
                                     </div>
-                                    <div class="ratings">
+                                    {{!-- <div class="ratings">
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
                                         <span><i class="lnr lnr-star"></i></span>
-                                    </div>
+                                    </div> --}}
                                     <div class="price-box">
                                         {{#if this.actual}}
                                         <span class="regular-price"><strike style="color: red;">{{this.actual}}</strike> {{this.price}} ₹</span>

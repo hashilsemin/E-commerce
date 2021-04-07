@@ -115,7 +115,7 @@ function myCopy() {
                             <a href="/"><img src="/images/Copy of E-commerce online shop - Made with PosterMyWall.jpg" alt="brand-logo"></a>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-12 col-12 order-sm-last">
+                    <div class="col-lg-5 col-md-12 col-12  order-sm-last">
                         <div class="header-middle-inner">
                             <form action="https://demo.hasthemes.com/sinrato-preview/sinrato/method">
                                 {{!-- <div class="top-cat hm1">
@@ -141,6 +141,7 @@ function myCopy() {
                                     </div>
                                 </div> --}}
                                 <input type="text" class="top-cat-field" onkeyup="myFunction()" id="myFilter"  placeholder="Search entire store">
+                                <input type="button" class="top-search-btn" value="Search">
                                 
                             </form>
                         </div>
@@ -149,12 +150,14 @@ function myCopy() {
                     <div class="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
                         <div class="mini-cart-option">
                             <ul>
-                                <li class="compare">
+                                {{!-- <li class="compare">
+                                    <a class="ha-toggle" href="compare.html"><span class="lnr lnr-sync"></span>Product compare</a>
                          
                                 </li>
                                 <li class="wishlist">
+                                    <a class="ha-toggle" href="wishlist.html"><span class="lnr lnr-heart"></span><span class="count">1</span>wishlist</a>
 
-                                </li>
+                                </li> --}}
                                 <li class="my-cart">
                                     <a class="ha-toggle"  href="/cart"><span class="lnr lnr-cart"></span><span id="cartCount" class="count">{{count}}</span>my cart </a>
                               
@@ -187,8 +190,8 @@ function myCopy() {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="top-main-menu">
-                            <div class="main-menu">
+                        <div class="top-main-menu ">
+                            <div class="main-menu ">
                                 <nav id="mobile-menu">
                                     <ul>
                                         <li><a href="/">HOME</a>
@@ -221,8 +224,42 @@ function myCopy() {
                                                    <li><a href="/coupon">My coupon</span></a>
                                                    
                                                 </li>
+                                                {{#if catOn}}
+                                                <li><a href="#">Category<span class="lnr lnr-chevron-down"></span></a>
+                                            <ul class="dropdown">
+                                                {{#each category}}
+                                                <li style="margin:15px;cursor: pointer;" onclick="filterCategory('{{this.category}}')">{{this.category}}</li>
+                                                {{/each}}
+                                                {{/if}}
                                             </ul>
                                         </li>
+                                            </ul>
+                                        </li>
+                                        <script>
+                                            function filterCategory(category){
+                                                var input, filter, cards, cardContainer, h5, title, i;
+        input = category
+        filter = input.toUpperCase();
+        cardContainer = document.getElementById("myItems");
+        cards = cardContainer.getElementsByClassName("product-item");
+        myman = document.getElementsByClassName("myman")
+        console.log("input"+input)
+        console.log("filter"+filter)
+        console.log("cardContainer"+cardContainer)
+        console.log("cards"+cards)
+
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector(".product-name h4.nameOfCategory");
+            console.log("title"+title)
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                myman[i].style.display = "";
+            } else {
+                myman[i].style.display = "none";
+            }
+        }
+                                                
+                                            }
+                                        </script>
                                         {{!-- <li class="static"><a href="#">Pages<span class="lnr lnr-chevron-down"></span></a>
                                             <ul class="mega-menu mega-full">
                                                 <li class="mega-title"><a href="#">Column one</a>
@@ -280,7 +317,7 @@ function myCopy() {
                                 </nav>
                             </div> <!-- </div> end main menu -->
                             <div class="header-call-action">
-                                <p><span class="lnr lnr-phone"></span>Hotline : <strong>1-001-234-5678</strong></p>
+                                <p><strong>E-shop</strong></p>
                             </div>
                         </div>
                     </div>

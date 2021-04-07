@@ -10,6 +10,7 @@
     "base64-arraybuffer": "^0.2.0",
     "base64-to-image": "^1.0.2",
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "cowsay": "^1.4.0",
     "cropperjs": "^1.5.11",

@@ -181,7 +181,7 @@ router.get('/addProduct',checkBlock,async(req,res)=>{
 })
 
 router.post('/addProduct',(async(req,res)=>{
- 
+
   let addBody = await req.body
 
 console.log("all is welllllllllllllllll");
@@ -189,13 +189,12 @@ console.log("all is welllllllllllllllll");
   let decoded = jwt.decode(req.cookies.jwt1);
   var vendorId = decoded.id
 
- 
-  
+
     var base64Str = await req.body.base64Code;
     var base64Str1 = await req.body.base64Code1;
     var base64Str2 = await req.body.base64Code2;
     var base64Str3 = await  req.body.base64Code3;
-    console.log(base64Str3);
+    
     delete req.body.base64Code
 delete req.body.base64Code1
 delete req.body.base64Code2
@@ -206,6 +205,7 @@ delete req.body.base64Code3
     var path3 ='public/product-images/';
     var path4 ='public/product-images/';
    
+    
 
     
     vendorHelpers.addProduct(req.body,vendorId).then(async(id) => {
@@ -359,8 +359,13 @@ router.post('/reportUser',(req,res)=>{
 
 
 router.get('/orderReport',async(req,res)=>{
+  let decoded = jwt.decode(req.cookies.jwt1);
+  var vendorId = decoded.id
+let report = await vendorHelpers.getOneWeek(vendorId)
 
-  res.render('vendor/orderReport',({vendorNav:true}))
+
+
+  res.render('vendor/orderReport',({vendorNav:true,report}))
 })
  
 router.post('/orderSales',async(req,res)=>{

@@ -188,13 +188,13 @@
 
 
 
-                                        <div class="form-row">
+                                        {{!-- <div class="form-row">
                                             <div class="form-group col-12 col-sm-12 col-md-12">
                                                 <label for="order_notes">Order Notes</label>
                                                 <textarea class="form-control" id="order_notes"
                                                     placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                 </div> <!-- end of checkout-form -->
                             </div>
@@ -275,6 +275,8 @@
                                                 let total = document.getElementById('total').innerHTML
                                                 console.log(total)
                                                 let price = subtotal - subtotal * (10 / 100)
+                                                let disco = total-price 
+                                                document.getElementById('disco').innerHTML=disco
 
                                                 console.log(price)
                                                 document.getElementById('total').innerHTML = price
@@ -297,6 +299,8 @@
                                                 var total = document.getElementById('total').innerHTML
                                                 console.log(total)
                                                 let price = subtotal - subtotal * (20 / 100)
+                                                let disco = total-price 
+                                                document.getElementById('disco').innerHTML=disco
                                                 if (first) {
                                                     var first = document.getElementById('firstOrder').innerHTML
                                                 }
@@ -329,6 +333,7 @@
                                                 
                                                 document.getElementById('firstCancel').style.display = "none"
 
+                                                document.getElementById('disco').innerHTML="0"
                                                 let subtotal = document.getElementById('subtotal').innerHTML
                                                 document.getElementById('total').innerHTML = subtotal
                                                 document.getElementById('clickedReferral').value = ""
@@ -360,6 +365,11 @@
                                                         <td class="text-center"><strong><span
                                                                     id="subtotal">{{totalPrice}}</span> ₹</strong></td>
                                                     </tr>
+                                                     <tr class="cart-subtotal">
+                                                        <th>Discount</th>
+                                                        <td class="text-center"><strong><span
+                                                                    id="disco">0</span> ₹</strong></td>
+                                                    </tr>
                                                     <tr class="order-total">
                                                         <th>Total</th>
                                                         <td class="text-center"><strong><span
@@ -368,6 +378,7 @@
                                                         <input id="clickedReferral" name="referral" hidden>
                                                         <input id="WhichCoupon" type="text" name="WhichCoupon" hidden>
                                                     </tr>
+                                                   
 
                                                 </tbody>
                                             </table>
@@ -421,7 +432,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-row">
+                                        {{!-- <div class="form-row">
                                             <div class="form-check">
                                                 <div class="custom-checkbox">
                                                     <input class="form-check-input" type="checkbox"
@@ -432,7 +443,7 @@
                                                         unconditionally.</label>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-row justify-content-end">
 
                                             <button type="submit" class="btn btn-secondary dark">Continue to
@@ -504,6 +515,8 @@
         var total = document.getElementById('total').innerHTML
         console.log(total)
         let price = subtotal - subtotal * (percent / 100)
+        let disco = total-price 
+                                                document.getElementById('disco').innerHTML=disco
         if (first) {
             var first = document.getElementById('firstOrder').innerHTML
         }
@@ -652,7 +665,7 @@
 
 
 <!-- footer area start -->
-<footer>
+{{!-- <footer>
     <!-- news-letter area start -->
     <div class="newsletter-group">
         <div class="container-fluid">
@@ -688,4 +701,4 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}

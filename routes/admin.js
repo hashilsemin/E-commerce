@@ -37,13 +37,15 @@ let totalOrder = await adminHelpers.getTotalOrder()
 let totalBusiness = await adminHelpers.getTotalBusiness()
 let totalCOD = await adminHelpers.getTotalCOD()
 let totalRazorpay = await adminHelpers.getTotalRazorPay()
+let salesByMonth =  await adminHelpers.getSalesByMonth()
 
 let totalPaypal = await adminHelpers.getTotalPaypal()
 console.log(totalCOD,totalRazorpay,totalPaypal);
 
 totalB = totalBusiness[0].totalAmount
-
-    res.render('admin/admHom', ({ adminNav:true,totalUser,totalVendor,totalOrder,totalB,totalCOD,totalRazorpay,totalPaypal }));
+console.log(totalBusiness);   
+console.log("loggggggggggggggggggggg");
+    res.render('admin/admHom', ({ adminNav:true,totalUser,totalVendor,totalOrder,totalB,totalCOD,totalRazorpay,totalPaypal,salesByMonth }));
 
   
 });
@@ -110,8 +112,10 @@ router.get('/logout',((req,res)=>{
 
 router.post('/orderSales',async(req,res)=>{
   console.log(req.body);
+  let dates = req.body
   let report = await adminHelpers.getSalesReport(req.body)
-  res.render('admin/orderReport',({report,adminNav:true}))
+  
+  res.render('admin/orderReport',({report,adminNav:true,dates}))
 })
 
 
@@ -146,11 +150,13 @@ router.get('/pendingVendor',async(req,res)=>{
 })
 
 router.get('/orderReport',async(req,res)=>{
-
-  res.render('admin/orderReport',({adminNav:true}))
+let report = await adminHelpers.getOneWeek()
+let input = true
+  res.render('admin/orderReport',({adminNav:true,report,input}))
 })
 
 router.post('/addVendor',requireAuth,((req,res)=>{
+  
   console.log(req.body);
 adminHelpers.addVendor(req.body).then(()=>{
   res.redirect('/admin/vendor')

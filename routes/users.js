@@ -1,4 +1,5 @@
 const Razorpay= require('razorpay')
+const adminHelpers = require("../helper/admin-helper")
 var instance = new Razorpay({
   key_id: 'rzp_test_oqOom6V3IbHjCo',
   key_secret: 'sGonyu9F0Ss0YBoaj8yTGr2G',
@@ -68,22 +69,23 @@ initializePassport(passport)
 router.get('/',checkBlock, async function(req, res, next) {
   res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 let products = await userHelpers.getProducts()
-
+let category = await adminHelpers.getCategory()
 console.log(products);
 console.log(req.user);
 if(req.user){
   console.log(req.user);
 let total = await userHelpers.getTotalCount(req.user._id)
 let count = total.length
-console.log(count);
+console.log(count); 
   let user = req.user
 console.log(alertcart)
 console.log("iiiiiiiiiiiiiiii");
-  res.render('user/userHome',({userNav:true,products,user,count,alertcart}))
+let catOn = true
+  res.render('user/userHome',({userNav:true,products,user,count,alertcart,category,catOn}))
  alertcart = false
 }else{
-
-  res.render('user/userHome',({userNav:true,products}))
+  let catOn = true
+  res.render('user/userHome',({userNav:true,products,category,catOn}))
 }
 
   
@@ -153,6 +155,7 @@ router.post('/otpLogin',(req,res)=>{
  console.log("kkkiiiiikkki");
   console.log(req.body.mobile);
   if (req.body.mobile) {
+    console.log("koko");
     client
     .verify
     .services("VAb0b6eb48faa058b3f0c6e62bb5d3b858")
@@ -161,9 +164,9 @@ router.post('/otpLogin',(req,res)=>{
         to:'+91'+req.body.mobile,
         channel:'sms'
     })
-    // .catch((err)=>{
-    //   console.log(err);
-    // })
+    .catch((err)=>{
+      console.log(err);
+    })
     .then(data => {
       console.log(data);
       let mobi = req.body.mobile
@@ -348,7 +351,8 @@ router.get('/viewProduct/:id',(async(req,res)=>{
     let count = total.length
       let product = await vendorHelpers.getProductforEdit(id)
       console.log(product);
-      res.render('user/prodDetails',({userNav:true,product,count}))
+      let user = req.user
+      res.render('user/prodDetails',({userNav:true,product,count,user}))
   }else{
     let product = await vendorHelpers.getProductforEdit(id)
     console.log(product);
@@ -378,8 +382,9 @@ console.log("=============================");
 console.log(products);
 let total = await userHelpers.getTotalCount(req.user._id)
 let count = total.length
+let user = req.user
 if(count){
-  res.render('user/cart',({userNav:true,products,id,totalValue,count}))
+  res.render('user/cart',({userNav:true,products,id,totalValue,count,user}))
 
 }else{
 alertcart = true
@@ -537,7 +542,7 @@ console.log("dikrrrrrrrrrrrrrrrr");
 
 console.log("jhihihihih");
 
-if(req.user._id){
+if(req.user){
   userHelpers.addCart(body.proId,req.user._id).then(async(response)=>{
     let total = await userHelpers.getTotalCount(req.user._id)
 let count = total.length
@@ -548,7 +553,8 @@ let count = total.length
     })
 }else{
   console.log('kiliiiiiiiiiiiiii');
-res.json()
+  response=false
+res.json(response)
 }
 
 })
@@ -679,8 +685,8 @@ router.post('/checkCode',(req,res)=>{
     console.log(response);
     res.json(response)
   })
-
 })
+
 
 
 

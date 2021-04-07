@@ -93,6 +93,13 @@ db.connect((err)=>{
   }
 })
 
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({
+  limit: "50mb",
+  extended: false
+}));
+app.use(bodyParser.json({limit: "50mb"}));
 // var cowsay = require("cowsay");
 
 // console.log(cowsay.say({

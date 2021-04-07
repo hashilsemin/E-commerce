@@ -4,7 +4,7 @@
 		var $window = $(window);
 		$window.on('scroll', function() {    
 			var scroll = $window.scrollTop();
-			if (scroll < 300) {
+			if (scroll < 500) {
 				$(".sticker").removeClass("sticky");
 			}else{
 				$(".sticker").addClass("sticky");

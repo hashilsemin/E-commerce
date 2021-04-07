@@ -446,7 +446,94 @@
 				}
 			});
 
+			$("#adminCoupon").validate(
+				{					
+					rules:
+					{	
+						name:
+						{
+							required: true,
+							
+						},
+						code:
+						{
+							required: true,
+							minlength:6,
+							maxlength:6
 
+							
+						}
+						,
+						discount:
+						{
+							required: true,
+							number:true,
+							minlength:1,
+							maxlength:2,
+							min:1
+							
+						}
+						,
+						description:
+						{
+							required: true,
+							
+						}
+					},
+					messages:
+					{	
+						name:
+						{
+							required: 'Please enter the name',
+							
+						},
+						code:
+						{
+							required: 'Please enter your Code',
+							minlength:"It should be 6 letters",
+							maxlength:"It should be 6 letters"
+						},
+						discount:
+						{
+							number: 'Please only add numbers',
+							minlength:'Please enter the percentage,(2 digits)'
+						}
+					},					
+					
+					errorPlacement: function(error, element)
+					{
+						error.insertAfter(element.parent());
+					}
+				});
+
+				$("#reportCustomer").validate(
+					{					
+						rules:
+						{	
+							
+							message:
+							{
+								required: true,
+								
+								
+							}
+							
+						},
+						messages:
+						{	
+							message:
+							{
+								required: 'Please enter the message',
+								
+							},
+							
+						},					
+						
+						errorPlacement: function(error, element)
+						{
+							error.insertAfter(element.parent());
+						}
+					});
 
 	// Validation for Register form
 		$("#adminpro-register-form").validate(

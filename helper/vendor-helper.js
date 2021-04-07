@@ -356,6 +356,24 @@ module.exports = {
                 resolve()
             })
         })
+    },
+    getOneWeek:(vendorId)=>{
+        return new Promise(async(resolve,reject)=>{
+            var dt = new Date();
+            dt.setDate( dt.getDate() - 10 );
+            console.log(dt);
+            let week = await db.get().collection(collection.ORDER).aggregate([
+                {
+                    $unwind: '$product'
+                },
+                {
+                    $match: { 'product.product.vendorId': vendorId, date: { $gte: new Date(dt), $lt: new Date() } }
+                }
+
+            ]).toArray()
+            console.log(week);
+            resolve(week)
+        })
     }
 
 }

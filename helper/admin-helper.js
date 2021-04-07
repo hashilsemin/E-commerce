@@ -407,6 +407,52 @@ return new Promise(async(resolve,reject)=>{
             })
         })
 
+    },
+    getSalesByMonth:()=>{
+        return new Promise(async(resolve,reject)=>{
+           let sales = await db.get().collection(collection.ORDER).aggregate([
+                {
+                    $project: {
+                        'date': true,
+                       
+                        'month': { $month: '$date' },
+                        
+                       
+                       
+                        
+                        
+                    },
+                    
+                   
+                    // $project: {
+                    //     'date': true,
+                    //     'year': {$year : '$date'},
+                    //     'month': {{ $month: '$date' }},
+                    // }
+                },
+                
+                
+                {
+                    $group: {
+                        _id: '$month',
+                          
+                        total: {'$sum': 1 }
+                    }
+                }
+            ]).toArray()
+            console.log(sales);
+            resolve(sales)
+        })
+    },
+    getOneWeek:()=>{
+        return new Promise(async(resolve,reject)=>{
+            var dt = new Date();
+            dt.setDate( dt.getDate() - 10 );
+            console.log(dt);
+            let week = await db.get().collection(collection.ORDER).find({date:{$gte:new Date(dt),$lt:new Date()}}).toArray()
+            console.log(week);
+            resolve(week)
+        })
     }
 
 }

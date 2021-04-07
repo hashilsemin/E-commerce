@@ -16,8 +16,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="all-form-element-inner">
-                                <form action="/vendor/addProduct" id="addproduct" method="POST"
-                                    enctype="multipart/form-data">
+                                <form  action="/vendor/addProduct"  id="addproduct" method="POST" 
+                                    >
                                     <div class="form-group-inner">
                                         <div class="row">
                                             <div class="col-lg-3">
@@ -89,7 +89,7 @@
                                                 </div>
                                                 
                                                 <div style="width: 33%;" class="lion"  id="resultreal"><img id="realnewImage" src=""></div>
-                                                <input type="text" id="stringImage1" name="base64Code" hidden>
+                                                <input type="text" id="realstringImage" name="base64Code" hidden>
                                                 {{!-- end 1111--}}
                                             </div>
                                         </div>
@@ -171,6 +171,8 @@
                                                     <img id="brnewImage" src="">
                                                 </div>
                                                 <input type="text" id="brstringImage" name="base64Code3" hidden>
+                                               
+                                                
                                                 {{!-- end 444 --}}
                                             </div>
                                         </div>
@@ -268,7 +270,9 @@
                              
                             // Get a string base 64 data url
                             var croppedImageDataURL = brcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            //croppedImageDataURL = encodeURIComponent(croppedImageDataURL)
                             document.getElementById('brnewImage').src=croppedImageDataURL
+                           
                             //$brresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             document.getElementById("brstringImage").value = croppedImageDataURL;
                             console.log(croppedImageDataURL)
@@ -371,7 +375,7 @@
                             document.getElementById('realnewImage').src=croppedImageDataURL
                             //$realresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
                             console.log()
-                            document.getElementById("stringImage1").value = croppedImageDataURL;
+                            document.getElementById("realstringImage").value = croppedImageDataURL;
                         });
                         $('#realbtnRestore').click(function () {
                             realcanvas.cropper('reset');
@@ -447,9 +451,85 @@
 
 
 
+{{!-- ajax --}}
+{{!-- <script>
+    var Base64Binary = {
+	_keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+	
+	/* will return a  Uint8Array type */
+	decodeArrayBuffer: function(input) {
+		var bytes = (input.length/4) * 3;
+		var ab = new ArrayBuffer(bytes);
+		this.decode(input, ab);
+		
+		return ab;
+	},
+
+	removePaddingChars: function(input){
+		var lkey = this._keyStr.indexOf(input.charAt(input.length - 1));
+		if(lkey == 64){
+			return input.substring(0,input.length - 1);
+		}
+		return input;
+	},
+
+	decode: function (input, arrayBuffer) {
+		//get last chars to see if are valid
+		input = this.removePaddingChars(input);
+		input = this.removePaddingChars(input);
+
+		var bytes = parseInt((input.length / 4) * 3, 10);
+		
+		var uarray;
+		var chr1, chr2, chr3;
+		var enc1, enc2, enc3, enc4;
+		var i = 0;
+		var j = 0;
+		
+		if (arrayBuffer)
+			uarray = new Uint8Array(arrayBuffer);
+		else
+			uarray = new Uint8Array(bytes);
+		
+		input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+		
+		for (i=0; i<bytes; i+=3) {	
+			//get the 3 octects in 4 ascii chars
+			enc1 = this._keyStr.indexOf(input.charAt(j++));
+			enc2 = this._keyStr.indexOf(input.charAt(j++));
+			enc3 = this._keyStr.indexOf(input.charAt(j++));
+			enc4 = this._keyStr.indexOf(input.charAt(j++));
+	
+			chr1 = (enc1 << 2) | (enc2 >> 4);
+			chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+			chr3 = ((enc3 & 3) << 6) | enc4;
+	
+			uarray[i] = chr1;			
+			if (enc3 != 64) uarray[i+1] = chr2;
+			if (enc4 != 64) uarray[i+2] = chr3;
+		}
+	
+		return uarray;	
+	}
+}
+    $("#addproduct").submit((e) => {
+        let barr= document.getElementById('addproduct').value
+       var uintArray = Base64Binary.decode(barr); 
+        e.preventDefault()
+        $.ajax({
+            url: '/vendor/addProduct',
+            method: 'post',
+            data: uintArray,
+            success: ((response) => {
+                console.log(response)
+alert(response)
 
 
+            })
+        })
+    })
 
+</script> --}}
 
 
 
