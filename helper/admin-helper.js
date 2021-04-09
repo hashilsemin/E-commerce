@@ -99,7 +99,7 @@ module.exports = {
                 service: 'gmail',
                 auth: {
                     user: 'hashilsemin10@gmail.com',
-                    pass: 'naseehaanwar'
+                    pass: process.env.GMAIL
                 }
             })
             var mailOptions = {

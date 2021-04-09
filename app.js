@@ -16,6 +16,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 var fileUpload=require('express-fileupload')
 var base64ToImage = require('base64-to-image');
+const dotenv=require('dotenv').config()
 // view engine setup
 app.use(fileUpload())
 app.use(flash())
