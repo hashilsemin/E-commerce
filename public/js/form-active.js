@@ -535,6 +535,38 @@
 						}
 					});
 
+
+					// $("#otpNumber").validate(
+					// 	{					
+					// 		rules:
+					// 		{	
+								
+					// 			mobile:
+					// 			{
+					// 				required: true,
+									
+					// 				minlength:10,
+					// 				maxlength:10
+									
+					// 			}
+								
+					// 		},
+					// 		messages:
+					// 		{	
+					// 			message:
+					// 			{
+					// 				required: 'Please enter the 10 digit number',
+									
+					// 			},
+								
+					// 		},					
+							
+					// 		errorPlacement: function(error, element)
+					// 		{
+					// 			error.insertAfter(element.parent());
+					// 		}
+					// 	});
+
 	// Validation for Register form
 		$("#adminpro-register-form").validate(
 		{					

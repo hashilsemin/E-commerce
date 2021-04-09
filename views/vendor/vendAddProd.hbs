@@ -273,6 +273,8 @@
                         var cropper = brcanvas.cropper({
                             aspectRatio: 1 / 1,
                             viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
                             
 
                         });
@@ -331,7 +333,9 @@
                         ppcanvas.cropper('destroy');
                         var cropper = ppcanvas.cropper({
                             aspectRatio: 1 / 1,
-                            viewMode: 1
+                            viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
                         });
                         $('#ppbtnCrop').click(function () {
                             // Get a string base 64 data url
@@ -382,7 +386,9 @@
 
                         var cropper = realcanvas.cropper({
                             aspectRatio: 1 / 1,
-                            viewMode: 1
+                            viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
                         });
                         $('#realbtnCrop').click(function () {
                             // Get a string base 64 data url
@@ -436,6 +442,8 @@
                         var cropper = canvas.cropper({
                             aspectRatio: 1 / 1,
                             viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
 
                         });
                         $('#btnCrop').click(function () {

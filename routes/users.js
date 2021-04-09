@@ -81,10 +81,13 @@ console.log(count);
 console.log(alertcart)
 console.log("iiiiiiiiiiiiiiii");
 let catOn = true
-  res.render('user/userHome',({userNav:true,products,user,count,alertcart,category,catOn}))
+let rLink=req.headers.host
+console.log(rLink);
+  res.render('user/userHome',({userNav:true,products,user,count,alertcart,category,catOn,rLink}))
  alertcart = false
 }else{
   let catOn = true
+
   res.render('user/userHome',({userNav:true,products,category,catOn}))
 }
 
@@ -201,7 +204,8 @@ router.post('/otpSignup',(req,res)=>{
     .then(data => {
       console.log(data);
       let mobi = req.body.mobile
-      res.render('user/typeCodeSignup',{mobi})
+      let fname=req.body.fname
+      res.render('user/typeCodeSignup',{mobi,fname})
         // res.status(200).send({
         //     message: "Verification is sent!!",
         //     mobile: '+91'+req.body.mobile,
@@ -444,7 +448,7 @@ console.log(req.body);
 if(req.body.referral){
   let referral = await userHelpers.deleteRefer(req.user._id)
 }
-if(req.body.WhichCoupon){
+if(req.body.WhichCoupon && req.body.payment == "cash"){
   let WhichCoupon = req.body.WhichCoupon
   let changeCoupon = await userHelpers.changeCoupon(WhichCoupon,req.user._id)
 }
@@ -493,10 +497,12 @@ let count = total.length
 
 
 
-router.post('/verify-payment', (req, res) => {
+router.post('/verify-payment', async(req, res) => {
   console.log(req.body);
-  userHelpers.verifyPayment(req.body).then(() => {
+  userHelpers.verifyPayment(req.body).then(async() => {
 console.log("mandaaa");
+let coupon = await userHelpers.getWhichCoupon(req.body['order[receipt]'])
+let changeCoupon = await userHelpers.changeCoupon(coupon,req.user._id)
     userHelpers.changePaymentStatus(req.body['order[receipt]']).then(() => {
       console.log('sucesssssssssss');
       res.json({ status: true })
@@ -509,10 +515,10 @@ console.log("mandaaa");
   })
 
 })
-router.get('/orderPlaced/:id',(req,res)=>{
+router.get('/orderPlaced/:id',async(req,res)=>{
 let id = req.params.id
-
-
+let coupon = await userHelpers.getWhichCoupon(id)
+let changeCoupon = await userHelpers.changeCoupon(coupon,req.user._id)
   console.log("id und");
   userHelpers.changePaymentStatus(id).then(()=>{
     let id = req.user._id
@@ -527,6 +533,7 @@ let id = req.params.id
 router.get('/orderPlaced/',(req,res)=>{
  
   let id = req.user._id
+  
     userHelpers.deleteCart(id).then(()=>{
       res.render('user/successPage',({userNav:true}))
     })

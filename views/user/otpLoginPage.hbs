@@ -64,12 +64,12 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
                                     <div class="login-form">
-                                        <form action="/otpLogin" id="userLogin" method="POST">
+                                        <form action="/otpLogin" id="otpNumber" method="POST">
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="mobile" class="col-12 col-sm-12 col-md-4 col-form-label">Your mobile number</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
                                                    <input type="number" name="mobile">
-                                                </div>
+                                                </div>  
                                             </div>
                                           
                                             <div class="login-box mt-5 text-center">
@@ -382,32 +382,32 @@
     $(function() {
   // Initialize form validation on the registration form.
   // It has the name attribute "registration"
-  $("#userLogin").validate({
+  $("#otpNumber").validate({
     // Specify validation rules
     rules: {
       // The key name on the left side is the name attribute
       // of an input field. Validation rules are defined
       // on the right side
    
-      email: {
+      mobile: {
         required: true,
+        number:true,
+        minlength:10,
+        maxlength:10
         // Specify that email should be validated
         // by the built-in "email" rule
-        email: true
+        
       },
-      password: {
-        required: true,
-        minlength: 3
-      }
+      
     },
     // Specify validation error messages
     messages: {
      
-      password: {
-        required: "Please provide a password",
-        minlength: "Your password must be at least 3 characters long"
+      mobile: {
+        required: "Please provide a number",
+        minlength: "10 digit number"
       },
-      email: "Please enter a valid email address"
+      
     },
     // Make sure the form is submitted to the destination defined
     // in the "action" attribute of the form when valid

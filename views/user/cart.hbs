@@ -69,8 +69,8 @@
 
                                                         </script> --}}
                                                     </td>
-                                                    <td><span id="unit">{{this.product.price}}</span> ₹</td>
-                                                    <td><span id="{{this.product._id}}2">{{this.totalPrice}}</span> ₹</td>
+                                                    <td><span id="unit">{{this.product.price}} ₹</span> </td>
+                                                    <td><span id="{{this.product._id}}2">{{this.totalPrice}} ₹</span> </td>
                                                     <td><button
                                                             onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../id}}',0,'{{this.totalPrice}}')"
                                                             type="button" class="btn btn-warning ">Remove
@@ -278,8 +278,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td><strong>Total:</strong></td>
-                                                        <td><span id="total" class="color-primary">{{totalValue}}
-                                                                </span>₹</td>
+                                                        <td><span id="total" class="color-primary">{{totalValue}} ₹
+                                                                </span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

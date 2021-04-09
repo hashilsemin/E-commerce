@@ -1,19 +1,19 @@
-
 <!doctype html>
 <html class="no-js" lang="en">
 
 <!-- Mirrored from demo.hasthemes.com/sinrato-preview/sinrato/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Jan 2021 10:39:17 GMT -->
+
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <!-- Page Title -->
-	<title>E-shop</title>
-	<!--Fevicon-->
-	<link rel="icon" href="/assets/img/icon/favicon.ico" type="image/x-icon" />
-	<!-- Bootstrap css -->
+    <title>E-shop</title>
+    <!--Fevicon-->
+    <link rel="icon" href="/assets/img/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap css -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <!-- linear-icon -->
     <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
@@ -30,8 +30,9 @@
     <!-- Modernizer JS -->
     <script src="/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
+
 <body>
-	<!--[if lte IE 9]>
+    <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
 
@@ -52,43 +53,53 @@
                         <div class="box box-right">
                             <ul>
                                 {{#if user}}
-                                 <li  class="setting mr-5">
-                                    <a  class="ha-toggle" href="#">Get my refferal code<span class="lnr lnr-chevron-down"></span></a>
+                                <li class="setting mr-5">
+                                    <a class="ha-toggle" href="#">Get my referral code<span
+                                            class="lnr lnr-chevron-down"></span></a>
                                     <ul style="width: 300px; padding: 10px" class="box-dropdown ha-dropdown">
                                         <li>Copy your refferal link</li>
-                                        <li><div style="width: 100px;">
-                                            <input type="text" id="copy" value="http://localhost:3000/SignUp/{{user._id}}" readonly>
-                                            <button class="btn-warning" onclick="myCopy()">Copy text</button>
+                                        <li>
+                                            <div style="width: 100px;">
+                                                <input type="text" id="copy" value="{{rLink}}/Signup/{{user._id}}"
+                                                    readonly>
+                                                <button class="btn-warning" onclick="myCopy()">Copy text</button>
                                             </div>
-                                        </a></li>
-                                    
-                                      
+                                            </a>
+                                        </li>
+                                        <script>
+                                            let link = window.location.hostname
+                                            console.log(link)
+                                        </script>
+
+
                                     </ul>
                                 </li>
                                 {{/if}}
                                 {{#if user}}
                                 <li class="settings">
-                                    <a class="ha-toggle" href="#">{{user.fname}}<span class="lnr lnr-chevron-down"></span></a>
+                                    <a class="ha-toggle" href="#">{{user.fname}}<span
+                                            class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
-                                        
-                                      
+
+
                                         <li><a href="/logout">logout</a></li>
                                     </ul>
                                 </li>
                                 {{else}}
-                             
-                              <li class="settings">
-                                    <a class="ha-toggle" href="#">My Account<span class="lnr lnr-chevron-down"></span></a>
+
+                                <li class="settings">
+                                    <a class="ha-toggle" href="#">My Account<span
+                                            class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
                                         <li><a href="/signup">Sign up</a></li>
                                         <li><a href="/login">Login</a></li>
-                                        
-                                      
+
+
                                     </ul>
                                 </li>
-                             
-                              {{/if}}
-                                 
+
+                                {{/if}}
+
 
                             </ul>
                         </div>
@@ -98,21 +109,22 @@
         </div>
         {{!-- copy --}}
         <script>
-function myCopy() {
-  var copyText = document.getElementById("copy");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999)
-  document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
-}
-</script>
-{{!-- copy --}}
+            function myCopy() {
+                var copyText = document.getElementById("copy");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999)
+                document.execCommand("copy");
+                alert("Copied the text: " + copyText.value);
+            }
+        </script>
+        {{!-- copy --}}
         <div class="header-middle home-header2 theme-bg">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
                         <div class="logo">
-                            <a href="/"><img src="/images/Copy of E-commerce online shop - Made with PosterMyWall.jpg" alt="brand-logo"></a>
+                            <a href="/"><img src="/images/Copy of E-commerce online shop - Made with PosterMyWall.jpg"
+                                    alt="brand-logo"></a>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12 col-12  order-sm-last">
@@ -120,7 +132,7 @@ function myCopy() {
                             <form action="https://demo.hasthemes.com/sinrato-preview/sinrato/method">
                                 {{!-- <div class="top-cat hm1">
                                     <div class="    ch-form">
-                                         <select>
+                                        <select>
                                             <optgroup label="Electronics">
                                                 <option value="volvo">Laptop</option>
                                                 <option value="saab">watch</option>
@@ -137,30 +149,34 @@ function myCopy() {
                                                 <option value="audi">Watch</option>
                                                 <option value="audi">Handbag</option>
                                             </optgroup>
-                                        </select> 
+                                        </select>
                                     </div>
                                 </div> --}}
-                                <input type="text" class="top-cat-field" onkeyup="myFunction()" id="myFilter"  placeholder="Search entire store">
+                                <input type="text" class="top-cat-field" onkeyup="myFunction()" id="myFilter"
+                                    placeholder="Search entire store">
                                 <input type="button" class="top-search-btn" value="Search">
-                                
+
                             </form>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
                         <div class="mini-cart-option">
                             <ul>
                                 {{!-- <li class="compare">
-                                    <a class="ha-toggle" href="compare.html"><span class="lnr lnr-sync"></span>Product compare</a>
-                         
+                                    <a class="ha-toggle" href="compare.html"><span class="lnr lnr-sync"></span>Product
+                                        compare</a>
+
                                 </li>
                                 <li class="wishlist">
-                                    <a class="ha-toggle" href="wishlist.html"><span class="lnr lnr-heart"></span><span class="count">1</span>wishlist</a>
+                                    <a class="ha-toggle" href="wishlist.html"><span class="lnr lnr-heart"></span><span
+                                            class="count">1</span>wishlist</a>
 
                                 </li> --}}
                                 <li class="my-cart">
-                                    <a class="ha-toggle"  href="/cart"><span class="lnr lnr-cart"></span><span id="cartCount" class="count">{{count}}</span>my cart </a>
-                              
+                                    <a class="ha-toggle" href="/cart"><span class="lnr lnr-cart"></span><span
+                                            id="cartCount" class="count">{{count}}</span>my cart </a>
+
                                 </li>
                             </ul>
                         </div>
@@ -169,23 +185,23 @@ function myCopy() {
             </div>
         </div>
         {{!-- <span id="mine">{{alertcart}}</span>
-       <script>
-                                        function cart(){
-                                          
-                                        let func=document.getElementById("mine").innerHTML
-                                        console.log(func)
-                                        console.log("kikikikikiiki")
-                                          if(func){
-                                                console.log("kikikikikiiki")
-                                              window.location.href = '/cart';
-                                          }else{
-                                              alert('Your cart is empty')
-                                              window.location.href = '/cart';
-                                          }
+        <script>
+            function cart() {
+
+                let func = document.getElementById("mine").innerHTML
+                console.log(func)
+                console.log("kikikikikiiki")
+                if (func) {
+                    console.log("kikikikikiiki")
+                    window.location.href = '/cart';
+                } else {
+                    alert('Your cart is empty')
+                    window.location.href = '/cart';
+                }
 
 
-                                        }
-                                    </script>    --}}
+            }
+        </script> --}}
         <div class="header-top-menu menu-style2 mb-40 sticker">
             <div class="container-fluid">
                 <div class="row">
@@ -202,88 +218,108 @@ function myCopy() {
                                                 <li><a href="index-4.html">Home Version 4</a></li>
                                             </ul> --}}
                                         </li>
-                                       <li><a href="/order">My orders</span></a>
+                                        <li><a href="/order">My orders</span></a>
                                             {{!-- <ul class="dropdown">
-                                                <li><a href="#">Shop Grid Layout <span class="lnr lnr-chevron-right"></span></a>
+                                                <li><a href="#">Shop Grid Layout <span
+                                                            class="lnr lnr-chevron-right"></span></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left sidebar</a></li>
-                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right sightbar</a></li>
-                                                        <li><a href="shop-grid-left-sidebar-4-column.html">shop grid left sidebar 4 col</a></li>
-                                                        <li><a href="shop-grid-right-sidebar-4-column.html">shop grid right sidebar 4 col</a></li>
-                                                        <li><a href="shop-grid-full-width-3-column.html">shop grid full width 3 col</a></li>
-                                                        <li><a href="shop-grid-full-width-4-column.html">shop grid full width 4 col</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left
+                                                                sidebar</a></li>
+                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right
+                                                                sightbar</a></li>
+                                                        <li><a href="shop-grid-left-sidebar-4-column.html">shop grid
+                                                                left sidebar 4 col</a></li>
+                                                        <li><a href="shop-grid-right-sidebar-4-column.html">shop grid
+                                                                right sidebar 4 col</a></li>
+                                                        <li><a href="shop-grid-full-width-3-column.html">shop grid full
+                                                                width 3 col</a></li>
+                                                        <li><a href="shop-grid-full-width-4-column.html">shop grid full
+                                                                width 4 col</a></li>
                                                     </ul> --}}
                                                 </li>
-                                              <li><a href="/profile">My profile<span class="lnr "></span></a>
+                                                <li><a href="/profile">My profile<span class="lnr "></span></a>
                                                     {{!-- <ul class="dropdown">
-                                                        <li><a href="shop-list-left-sidebar.html">Shop lidt left sidebar</a></li>
-                                                        <li><a href="shop-list-right-sidebar.html">Shop list right sidebar</a></li>
-                                                        <li><a href="shop-list-full-width.html">Shop list full width</a></li>
+                                                        <li><a href="shop-list-left-sidebar.html">Shop lidt left
+                                                                sidebar</a></li>
+                                                        <li><a href="shop-list-right-sidebar.html">Shop list right
+                                                                sidebar</a></li>
+                                                        <li><a href="shop-list-full-width.html">Shop list full width</a>
+                                                        </li>
                                                     </ul> --}}
                                                 </li>
-                                                   <li><a href="/coupon">My coupon</span></a>
-                                                   
+                                                <li><a href="/coupon">My coupon</span></a>
+
                                                 </li>
                                                 {{#if catOn}}
                                                 <li><a href="#">Category<span class="lnr lnr-chevron-down"></span></a>
-                                            <ul class="dropdown">
-                                                {{#each category}}
-                                                <li style="margin:15px;cursor: pointer;" onclick="filterCategory('{{this.category}}')">{{this.category}}</li>
-                                                {{/each}}
-                                                {{/if}}
-                                            </ul>
-                                        </li>
+                                                    <ul class="dropdown">
+                                                        {{#each category}}
+                                                        <li style="margin:15px;cursor: pointer;"
+                                                            onclick="filterCategory('{{this.category}}')">
+                                                            {{this.category}}</li>
+                                                        {{/each}}
+                                                        {{/if}}
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
                                         <script>
-                                            function filterCategory(category){
+                                            function filterCategory(category) {
                                                 var input, filter, cards, cardContainer, h5, title, i;
-        input = category
-        filter = input.toUpperCase();
-        cardContainer = document.getElementById("myItems");
-        cards = cardContainer.getElementsByClassName("product-item");
-        myman = document.getElementsByClassName("myman")
-        console.log("input"+input)
-        console.log("filter"+filter)
-        console.log("cardContainer"+cardContainer)
-        console.log("cards"+cards)
+                                                input = category
+                                                filter = input.toUpperCase();
+                                                cardContainer = document.getElementById("myItems");
+                                                cards = cardContainer.getElementsByClassName("product-item");
+                                                myman = document.getElementsByClassName("myman")
+                                                console.log("input" + input)
+                                                console.log("filter" + filter)
+                                                console.log("cardContainer" + cardContainer)
+                                                console.log("cards" + cards)
 
-        for (i = 0; i < cards.length; i++) {
-            title = cards[i].querySelector(".product-name h4.nameOfCategory");
-            console.log("title"+title)
-            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-                myman[i].style.display = "";
-            } else {
-                myman[i].style.display = "none";
-            }
-        }
-                                                
+                                                for (i = 0; i < cards.length; i++) {
+                                                    title = cards[i].querySelector(".product-name h4.nameOfCategory");
+                                                    console.log("title" + title)
+                                                    if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                                                        myman[i].style.display = "";
+                                                    } else {
+                                                        myman[i].style.display = "none";
+                                                    }
+                                                }
+
                                             }
                                         </script>
-                                        {{!-- <li class="static"><a href="#">Pages<span class="lnr lnr-chevron-down"></span></a>
+                                        {{!-- <li class="static"><a href="#">Pages<span
+                                                    class="lnr lnr-chevron-down"></span></a>
                                             <ul class="mega-menu mega-full">
                                                 <li class="mega-title"><a href="#">Column one</a>
                                                     <ul>
-                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left sidebar</a></li>
-                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right sightbar</a></li>
-                                                        <li><a href="shop-grid-full-width-4-column.html">Shop grid full width</a></li>
-                                                        <li><a href="shop-list-full-width.html">Shop list full width</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left
+                                                                sidebar</a></li>
+                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right
+                                                                sightbar</a></li>
+                                                        <li><a href="shop-grid-full-width-4-column.html">Shop grid full
+                                                                width</a></li>
+                                                        <li><a href="shop-list-full-width.html">Shop list full width</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="mega-title"><a href="#">Column two</a>
                                                     <ul>
                                                         <li><a href="checkout.html">Check Out</a></li>
                                                         <li><a href="cart.html">Cart</a></li>
-                                                        
-                                                      
+
+
                                                     </ul>
                                                 </li>
                                                 <li class="mega-title"><a href="#">Column Three</a>
                                                     <ul>
                                                         <li><a href="product-details.html">Product Details</a></li>
-                                                        <li><a href="product-details-variable.html">Product Details Variable</a></li>
-                                                        <li><a href="product-details-external.html">Product Details External</a></li>
-                                                        <li><a href="product-details-group.html">Product Details Group</a></li>
+                                                        <li><a href="product-details-variable.html">Product Details
+                                                                Variable</a></li>
+                                                        <li><a href="product-details-external.html">Product Details
+                                                                External</a></li>
+                                                        <li><a href="product-details-group.html">Product Details
+                                                                Group</a></li>
                                                     </ul>
                                                 </li>
                                                 <li class="mega-title"><a href="#">Column Four</a>
@@ -300,8 +336,10 @@ function myCopy() {
                                             <ul class="dropdown">
                                                 <li><a href="blog-left-sidebar-3.html">Blog Left Sidebar 3 col</a></li>
                                                 <li><a href="blog-left-sidebar-4.html">Blog left Sidebar 4 col</a></li>
-                                                <li><a href="blog-right-sidebar-3.html">Blog Right Sidebar 3 col</a></li>
-                                                <li><a href="blog-right-sidebar-4.html">Blog Right Sidebar 4 col</a></li>
+                                                <li><a href="blog-right-sidebar-3.html">Blog Right Sidebar 3 col</a>
+                                                </li>
+                                                <li><a href="blog-right-sidebar-4.html">Blog Right Sidebar 4 col</a>
+                                                </li>
                                                 <li><a href="blog-full-3-column.html">Blog full width 3 col</a></li>
                                                 <li><a href="blog-full-4-column.html">Blog full width 4 col</a></li>
                                                 <li><a href="blog-full-5-column.html">Blog full width 5 col</a></li>
@@ -309,7 +347,8 @@ function myCopy() {
                                                 <li><a href="blog-details-audio.html">Blog Details audio</a></li>
                                                 <li><a href="blog-details-gallery.html">Blog Details gallery</a></li>
                                                 <li><a href="blog-details-video.html">Blog Details video</a></li>
-                                                <li><a href="blog-details-right-sidebar.html">Blog Details right sidebar</a></li>
+                                                <li><a href="blog-details-right-sidebar.html">Blog Details right
+                                                        sidebar</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="contact-us.html">CONTACT US</a></li> --}}
@@ -321,16 +360,18 @@ function myCopy() {
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-block d-lg-none"><div class="mobile-menu"></div></div>
+                    <div class="col-12 d-block d-lg-none">
+                        <div class="mobile-menu"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
     <!-- header area end -->
     <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
-                                                                <script src="/assets/js/popper.min.js"></script>
-                                                                <script src="/assets/js/bootstrap.min.js"></script>
-                                                                <script src="/assets/js/plugins.js"></script>
-                                                                <script src="/assets/js/ajax-mail.js"></script>
-                                                                <script src="/assets/js/main.js"></script>
-                                                                </body>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/ajax-mail.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>

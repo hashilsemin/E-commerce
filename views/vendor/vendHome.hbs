@@ -148,16 +148,50 @@
 </div>
 <a href="/vendor/orderReport" class="btn btn-primary" style="margin-left: 6%;">View order reports</a>
 
-<div class="chart-container">
-    <canvas id="chart1"></canvas>
+{{!-- <div class="chart-container1">
+    <canvas id="chart"></canvas>
+</div> --}}
+<div style="background-color: white;">
+
+
+<div class="container">
+    <div class="row p-3" style="background-color: white; margin:2%">
+        <div class="col-md-6">
+
+<table style="width:100%;border:5px">
+  <caption>Top products</caption>
+  <tr>
+    <th>Product</th>
+    <th>N.o of sales</th>
+  </tr>
+  {{#each five}}
+  <tr>
+    <td>{{this._id}}</td>
+    <td>{{this.Quantity}}</td>
+  </tr>
+ {{/each}}
+</table>
+        </div>
+    </div>
+</div>
 </div>
 
 
+<style>
+table, th, td {
+  border:5px solid rgb(138, 136, 136);
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+</style>
 
 
 
 <style>
-    .chart-container {
+    .chart-container1 {
         position: relative;
         margin: auto;
         height: 48vh;
@@ -176,7 +210,7 @@
             borderWidth: 2,
             hoverBackgroundColor: "rgba(255,99,132,0.4)",
             hoverBorderColor: "rgba(255,99,132,1)",
-            data: [{{ totalCOD }}, {{ totalRazorpay }}, {{ totalPaypal }}],
+            data: [1, 2, 3],
   }]
 };
 
@@ -198,7 +232,7 @@
         }
     };
 
-    Chart.Bar('chart1', {
+    Chart.Bar('chart', {
         options: options,
         data: data
     });

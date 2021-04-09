@@ -8,10 +8,8 @@
             <div class="main-sparkline13-hd">
               <h1>Order <span class="table-project-n">Data</span> Table</h1>
               <div class="sparkline13-outline-icon">
-                <a href="/vendor/addProduct"><button class="btn-primary"></button></a>
-                <span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
-                <span><i class="fa fa-wrench"></i></span>
-                <span class="sparkline13-collapse-close"><i class="fa fa-times"></i></span>
+              
+                
               </div>
             </div>
           </div>
@@ -72,21 +70,39 @@
                     <td>{{this.payment}}</td>
 
                     <td>
+                      {{#if this.product.product.cancelled}}
+                      ORDER CANCELLED
+                      {{else}}
                       {{#if this.product.product.ship}}
                       {{this.product.product.ship}}
                       {{else}}
                       Pending for shipping
-                      {{/if}}</td>
+                      {{/if}}
+                      {{/if}}
+                    </td>
                     {{!-- <td>{{this.block}}</td> --}}
-                    <td class="datatable-ct"> <a href="/vendor/viewOrder/{{this._id}}/{{this.product._id}}"
-                        class="btn btn-primary">View More</a>
+                    <td class="datatable-ct">
 
-                      {{#if this.product.product.ship}}
+                      <a href="/vendor/viewOrder/{{this._id}}/{{this.product._id}}" class="btn btn-primary">View
+                        More</a>
+
+
+
+                      {{#if this.product.product.cancelled}}
+                     
+                        
+                      
+                     
+                      {{else}}
+                         <a href="/vendor/cancelOrder/{{this._id}}/{{this.product.product._id}}"
+                        class="btn btn-warning">Cancel Order</a>
+                         {{#if this.product.product.ship}}
                       <a href="/vendor/cancelShip/{{this._id}}/{{this.product.product._id}}" class="btn btn-danger"
                         onclick="return confirm('Cancel {{name}} ? ')">Cancel Shipping</a>
                       {{else}}
                       <a href="/vendor/ship/{{this._id}}/{{this.product.product._id}}" class="btn btn-success"
                         onclick="return confirm('Confirm shipping {{name}} ? ')">Ship</a>
+                      {{/if}}
                       {{/if}}
                     </td>
                   </tr>

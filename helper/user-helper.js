@@ -14,7 +14,9 @@ module.exports = {
     signUpUser: (user) => {
         return new Promise(async (resolve, reject) => {
             user.password = await bcrypt.hash(user.password, 10)
+            
             db.get().collection(collection.USER).insertOne(user).then((data) => {
+
                 resolve(data.ops[0])
             })
         })
@@ -306,8 +308,8 @@ console.log("blevrrrrrrrrrrr");
                 province:order.province,
                 email:order.email,
                 fname:order.fname,
-                payment:order.payment
-                
+                payment:order.payment,
+                coupon:order.WhichCoupon
         
             },
             userId:idOfUser,
@@ -333,7 +335,7 @@ console.log("blevrrrrrrrrrrr");
     generateRazorpay:   (data)=>{
         return new Promise((resolve,reject)=>{
 
-     
+            data.totalAmount=Math.floor(data.totalAmount)
         console.log(data);
         var options = {
             amount: data.totalAmount,  // amount in the smallest currency unit
@@ -343,6 +345,7 @@ console.log("blevrrrrrrrrrrr");
           instance.orders.create(options, function(err, order) {
                order.payment="razorPay"
             console.log(order);
+            console.log("kikikikik");
             resolve(order)
           });
         })
@@ -501,9 +504,10 @@ console.log("josssssssssssss");
 
     getReferralOffer:(id)=>{
         return new Promise(async(resolve,reject)=>{
-            let order = await db.get().collection(collection.USER).find({_id:objectID(id)}).toArray()
+            let order = await db.get().collection(collection.USER).find({$and:[{_id:objectID(id)},{BeingReferral:{$gt:0}}]}).toArray()
             console.log(order);
-        if(order[0].referral){
+            
+        if(order){
             resolve(order)
         }else{
             resolve()
@@ -513,15 +517,28 @@ console.log("josssssssssssss");
     deleteRefer:(id)=>{
         return new Promise(async(resolve,reject)=>{
             let referer = await db.get().collection(collection.USER).findOne({_id:objectID(id)})
-            let addReferrer = await db.get().collection(collection.USER).updateOne({_id:objectID(referer.referral)},{
-                $set:{
-                    referral:"true"
-                }
-            })
+            console.log(referer);
+            if(referer.referral){
+                console.log("vannila");
+                let addReferrer = await db.get().collection(collection.USER).updateOne({_id:objectID(referer.referral)},{
+                    $inc:{
+                        BeingReferral:+1
+                    }
+                })
+            }
+           
+               let a =  await db.get().collection(collection.USER).updateOne({$and:[{_id:objectID(id)},{referral:{$exists:false}}]},{
+                    
+                    $inc:{
+                        BeingReferral:-1
+                    }
+                })
+           
             db.get().collection(collection.USER).updateOne({_id:objectID(id)},{
                 $unset:{
                     referral:""
-                }
+                },
+                
             }).then(()=>{
                 resolve()
             })
@@ -582,14 +599,35 @@ console.log("josssssssssssss");
         console.log(orderId,id);
         return new Promise((resolve,reject)=>{
             db.get().collection(collection.ORDER).updateOne({_id:objectID(orderId), product: { $elemMatch: { 'product._id': objectID(id) } } },{
-                $set:{
-                   'product.$.product.ship':"pending"
+                $unset:{
+                   'product.$.product.ship':""
                 }
             }).then(()=>{
                 resolve()
             })
         })
     },
+    
+    cancelOrder:(orderId,id)=>{
+        console.log("qqqqqqqqqqqqqqqqq");
+        console.log(orderId,id);
+        return new Promise((resolve,reject)=>{
+            console.log("srydaaaaaaaaa");
+            db.get().collection(collection.ORDER).updateOne({_id:objectID(orderId), product: { $elemMatch: { 'product._id': objectID(id) } } },{
+                $set:{
+                   'product.$.product.cancelled':"true"
+                }
+            }).then(()=>{
+                resolve()
+            })
+        })
+    },
+    getWhichCoupon:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let coupon = await db.get().collection(collection.ORDER).find({_id:objectID(id)})
+            resolve(coupon.coupon)
+        })
+    }
 
     
 

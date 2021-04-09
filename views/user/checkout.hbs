@@ -275,7 +275,7 @@
                                                 let total = document.getElementById('total').innerHTML
                                                 console.log(total)
                                                 let price = subtotal - subtotal * (10 / 100)
-                                                let disco = total-price 
+                                                let disco = Math.floor(total-price)
                                                 document.getElementById('disco').innerHTML=disco
 
                                                 console.log(price)
@@ -299,7 +299,7 @@
                                                 var total = document.getElementById('total').innerHTML
                                                 console.log(total)
                                                 let price = subtotal - subtotal * (20 / 100)
-                                                let disco = total-price 
+                                                let disco = Math.floor(total-price)
                                                 document.getElementById('disco').innerHTML=disco
                                                 if (first) {
                                                     var first = document.getElementById('firstOrder').innerHTML
@@ -515,7 +515,9 @@
         var total = document.getElementById('total').innerHTML
         console.log(total)
         let price = subtotal - subtotal * (percent / 100)
-        let disco = total-price 
+        let disco = Math.floor(total-price)
+        
+
                                                 document.getElementById('disco').innerHTML=disco
         if (first) {
             var first = document.getElementById('firstOrder').innerHTML

@@ -76,6 +76,7 @@ console.log("liiiiiiiiiiiiii");
   console.log("i gottaaaaa");
   let totalBusiness = await vendorHelpers.getTotalBusiness(vendorId)
   let totalBusiness1 = totalBusiness[0]
+
   // let totalCOD = await vendorHelpers.getTotalCOD()
   // let totalRazorpay = await vendorHelpers.getTotalRazorPay()
   
@@ -84,10 +85,10 @@ console.log("liiiiiiiiiiiiii");
   
   // totalB = totalBusiness[0].totalAmount
 
+  let five = await vendorHelpers.getFive(vendorId)
 
 
-
-    res.render('vendor/vendHome', ({ vendorNav:true,vendorDetails,totalCustomer,totalProduct,totalOrder1,totalBusiness1 }));
+    res.render('vendor/vendHome', ({ vendorNav:true,vendorDetails,totalCustomer,totalProduct,totalOrder1,totalBusiness1,five }));
   });
 
 router.post('/makeOffer/',(req,res)=>{
@@ -254,37 +255,44 @@ router.get('/editProduct/:id',checkBlock,(async(req,res)=>{
 })
 )
 router.post('/edit-product',(async(req,res)=>{
+  let decoded = jwt.decode(req.cookies.jwt1);
+  var vendorId = decoded.id
+
+
+    var base64Str = await req.body.base64Code;
+    var base64Str1 = await req.body.base64Code1;
+    var base64Str2 = await req.body.base64Code2;
+    var base64Str3 = await  req.body.base64Code3;
+    
+    delete req.body.base64Code
+delete req.body.base64Code1
+delete req.body.base64Code2
+delete req.body.base64Code3
 console.log(req.body);
-vendorHelpers.editProduct(req.body).then((id)=>{
-  let image1=req.files.Image1
-  image1.mv('public/product-images/'+id+'first.jpg',(err,done)=>{
+    var path ='public/product-images/';
+    var path2 ='public/product-images/';
+    var path3 ='public/product-images/';
+    var path4 ='public/product-images/';
    
- 
- 
-})
-let image2=req.files.Image2
-image2.mv('public/product-images/'+id+'second.jpg',(err,done)=>{
- 
 
-})
-let image3=req.files.Image3
-image3.mv('public/product-images/'+id+'third.jpg',(err,done)=>{
- 
 
-})
-let image4=req.files.Image4
-image4.mv('public/product-images/'+id+'ad.jpg',(err,done)=>{
-  if(!err){
+
+vendorHelpers.editProduct(req.body).then((id)=>{
+  var optionalObj1 = {'fileName': id+"first", 'type':'jpg'};
+   var optionalObj2 = {'fileName': id+"second", 'type':'jpg'};
+   var optionalObj3 = {'fileName': id+"third", 'type':'jpg'};
+   var optionalObj4 = {'fileName': id+"ad", 'type':'jpg'};
+   console.log("--------------------------------");
+   console.log("ivide rthenne");
+   base64ToImage(base64Str,path,optionalObj1); 
+    base64ToImage(base64Str1,path2,optionalObj2); 
+    base64ToImage(base64Str2,path3,optionalObj3); 
+   base64ToImage(base64Str3,path4,optionalObj4); 
+  }).then(()=>{ 
     res.redirect('/vendor/product')
-  }
-  else{
-    console.log(err); 
-  }
+        })
 
 
-})
-
-})
 }))
 
 router.get('/blockVendor/:id',((req,res)=>{
@@ -305,7 +313,7 @@ router.get('/order',(async(req,res)=>{
   let decoded = jwt.decode(req.cookies.jwt1);
   var vendorId = decoded.id
 let order= await vendorHelpers.getOrder(vendorId)
-console.log(order);
+
 res.render('vendor/vendorders',({vendorNav:true,order}))
 }))
 
@@ -397,8 +405,17 @@ console.log(vendor1);
   res.render('vendor/profile',({vendorNav:true,vendor1}))
 })
 
-
-
+router.get('/cancelOrder/:id/:name',(req,res)=>{
+  console.log("okokokokokokoko");
+  let name=req.params.name
+let id= req.params.id
+console.log("kkkkkkkkkkkkkkkkkkkkkkkkkk");
+console.log("paisssssssssssssssssss");
+userHelper.cancelOrder(id,name).then(()=>{  
+console.log("makaleeeeeeeeee");
+res.redirect('/vendor/order')
+})
+})
 
 
   module.exports = router;

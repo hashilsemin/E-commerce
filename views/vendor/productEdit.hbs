@@ -1,3 +1,7 @@
+{{!-- <form action="/vendor/edit-product" id="editproduct" method="POST"
+                                    enctype="multipart/form-data"> --}}
+
+
 <div class="row">
     <div class="col-lg-12">
         <div class="sparkline12-list shadow-reset mg-t-30">
@@ -17,31 +21,21 @@
                         <div class="col-lg-12">
                             <div class="all-form-element-inner">
                                 <form action="/vendor/edit-product" id="editproduct" method="POST"
-                                    enctype="multipart/form-data">
+                                   >
                                     <div class="form-group-inner">
                                         <div class="row">
                                             <div class="col-lg-3">
                                                 <label class="login2 pull-right pull-right-pro">Name</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="text" name="product" class="form-control"
-                                                    value="{{product.product}}" />
+                                                <input type="text" value="{{product.product}}" name="product" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-lg-3">
 
-                                        </div>
-                                        <div class="col-lg-9">
-
-                                            <input type="text" name="vendorId" value="{{vendorId}}" hidden />
-                                            <input type="text" name="productId" value="{{id}}" hidden />
-
-                                        </div>
-                                    </div>
-
+                                    <input type="text" name="vendorId" value="{{vendorId}}" hidden />
+                                     <input type="text" name="productId" value="{{id}}" hidden />
 
                                     <div class="form-group-inner">
                                         <div class="row">
@@ -66,8 +60,7 @@
                                                 <label class="login2 pull-right pull-right-pro">Description</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="text" name="description" class="form-control"
-                                                    value="{{product.description}}" />
+                                                <input type="text" name="description" value="{{product.description}}" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
@@ -77,8 +70,7 @@
                                                 <label class="login2 pull-right pull-right-pro">Price</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="text" name="price"  class="form-control"
-                                                    value="{{product.price}}" />
+                                                <input type="text" value="{{product.price}}" name="price" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
@@ -86,14 +78,27 @@
                                     <div class="form-group-inner">
                                         <div class="row">
                                             <div class="col-lg-3">
-                                                <label class="login2 pull-right pull-right-pro">Front Image</label>
+                                                <label class="login2 pull-right pull-right-pro">Thumbnail image</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="file" name="Image1" accept="image/*"  class="form-control"
-                                                    onchange="viewImage1(event)">
 
-                                                <img src="/product-images/{{product._id}}first.jpg" alt="" style="width:100px;height:auto"  id="imgView1">
+                                                {{!-- start1111 --}}
+                                                <input type="file" id="realfileInput" name="realfileInput"
+                                                    accept="image/*" />
+                                                <input type="button" id="realbtnCrop" value="Crop"
+                                                    style="display: none;" />
+                                                {{!-- <input type="button" id="realbtnRestore" value="Restore" /> --}}
+                                                <div>
 
+                                                    <canvas style="display: none;" id="canvasreal">
+                                                        Your browser does not support the HTML5 canvas element.
+                                                    </canvas>
+                                                </div>
+
+                                                <div style="width: 33%;" class="lion" id="resultreal"><img
+                                                        id="realnewImage" src=""></div>
+                                                <input type="text" id="realstringImage" name="base64Code" hidden>
+                                                {{!-- end 1111--}}
                                             </div>
                                         </div>
                                     </div>
@@ -101,14 +106,54 @@
                                     <div class="form-group-inner">
                                         <div class="row">
                                             <div class="col-lg-3">
-                                                <label class="login2 pull-right pull-right-pro">Secondary Image</label>
+                                                <label class="login2 pull-right pull-right-pro">Front View Image</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="file" name="Image2" accept="image/*" class="form-control"
-                                                    onchange="viewImage2(event)">
 
-                                                <img src="/product-images/{{product._id}}second.jpg" alt=""
-                                                    style="width:100px;height:auto" accept="image/*" id="imgView2">
+                                                {{!-- start 2222222 --}}
+                                                <input type="file" id="fileInput" name="fileInput" accept="image/*" />
+                                                <input type="button" id="btnCrop" value="Crop" style="display: none;" />
+                                                {{!-- <input type="button" id="btnRestore" value="Restore" /> --}}
+
+                                                <div>
+                                                    <canvas style="display: none;" id="canvas">
+                                                        Your browser does not support the HTML5 canvas element.
+                                                    </canvas>
+                                                </div>
+
+                                                <div class="lion" style="width: 33%;" id="result"><img id="thenewImage"
+                                                        src=""></div>
+                                                <input type="text" id="stringImage" name="base64Code1" hidden>
+
+                                                {{!-- end 222222 --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Side view Image</label>
+                                            </div>
+                                            <div class="col-lg-9">
+
+
+                                                {{!-- start 3 --}}
+                                                <input type="file" id="ppfileInput" name="ppfileInput"
+                                                    accept="image/*" />
+                                                <input type="button" id="ppbtnCrop" value="Crop"
+                                                    style="display: none;" />
+                                                {{!-- <input type="button" id="ppbtnRestore" value="Restore" /> --}}
+
+                                                <div>
+                                                    <canvas style="display: none; " id="ppcanvas">
+                                                        Your browser does not support the HTML5 canvas element.
+                                                    </canvas>
+                                                </div>
+
+                                                <div class="lion" style="width: 33%;" id="ppresult"><img id="ppnewImage"
+                                                        src=""></div>
+                                                <input type="text" id="ppstringImage" name="base64Code2" hidden>
+                                                {{!-- end 3 --}}
 
                                             </div>
                                         </div>
@@ -116,35 +161,41 @@
                                     <div class="form-group-inner">
                                         <div class="row">
                                             <div class="col-lg-3">
-                                                <label class="login2 pull-right pull-right-pro">Additional Image</label>
+                                                <label class="login2 pull-right pull-right-pro">Advertisment
+                                                    image</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="file" name="Image3" accept="image/*" class="form-control"
-                                                    onchange="viewImage3(event)">
 
-                                                <img src="/product-images/{{product._id}}three.jpg" alt=""
-                                                    style="width:100px;height:auto" id="imgView3">
+                                                {{!-- start 4444 --}}
+                                                <input type="file" id="brfileInput" name="brfileInput"
+                                                    accept="image/*" />
+                                                <input type="button" id="brbtnCrop" value="Crop"
+                                                    style="display: none;" />
+                                                <input type="button" id="brbtnRestore" value="Restore"
+                                                    style="display: none;" />
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group-inner">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <label class="login2 pull-right pull-right-pro">Advertisement</label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="file" name="Image4" accept="image/*" class="form-control"
-                                                    onchange="viewImage4(event)">
+                                                <div>
+                                                    <canvas style="display: none;" id="brcanvas">
+                                                        Your browser does not support the HTML5 canvas element.
+                                                    </canvas>
+                                                </div>
 
-                                                <img src="/product-images/{{product._id}}ad.jpg" alt=""
-                                                    style="width:100px;height:auto" accept="image/*" id="imgView4">
+                                                <div class="lion" style="width: 33%;" id="brresult">
+                                                    <img id="brnewImage" src="">
+                                                </div>
+                                                <input type="text" id="brstringImage" name="base64Code3" hidden>
 
+
+                                                {{!-- end 444 --}}
                                             </div>
                                         </div>
                                     </div>
 
                                     {{!-- photo end --}}
+
+
+
+
 
 
 
@@ -156,7 +207,7 @@
                                                     <div class="login-horizental cancel-wp pull-left">
                                                         <button class="btn btn-white" type="submit">Cancel</button>
                                                         <button class="btn btn-sm btn-primary login-submit-cs"
-                                                            type="submit">Edit product</button>
+                                                            type="submit">Edit the Product</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,30 +226,421 @@
 </div>
 
 
-<script>
-    function viewImage1(event) {
-        document.getElementById('imgView1').src = URL.createObjectURL(event.target.files[0])
+
+<style>
+    .cropper-wrap-box {
+        background-color: rgb(255, 255, 255);
     }
-     function viewImage2(event) {
+</style>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js"></script>
+
+{{!-- //1st script --}}
+<script>
+    var brcanvas = $("#brcanvas"),
+        brcontext = brcanvas.get(0).getContext("2d"),
+        $brresult = $('#brresult');
+
+    $('#brfileInput').on('change', function () {
+        console.log(this.files)
+        console.log("mappauuuuuuuuuu")
+        console.log(this.files[0])
+
+        if (this.files && this.files[0]) {
+            if (this.files[0].type.match(/^image\//)) {
+                var reader = new FileReader();
+
+                console.log(reader);
+                console.log("tiktiktiktiktiktitk")
+
+                reader.onload = function (evt) {
+
+                    var brimg = new Image();
+                    console.log("IMAAAAAAAAAAAAAAAGE")
+                    console.log(brimg)
+
+
+                    brimg.onload = function () {
+                        console.log("55555")
+                        brcontext.canvas.height = brimg.height;
+                        brcontext.canvas.width = brimg.width;
+                        document.getElementById("brbtnCrop").style.display = ""
+                        document.getElementById("brbtnRestore").style.display = ""
+
+                        brcontext.drawImage(brimg, 0, 0);
+
+
+                        brcanvas.cropper('destroy');
+
+                        var cropper = brcanvas.cropper({
+                            aspectRatio: 1 / 1,
+                            viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
+                            
+
+                        });
+
+                        $('#brbtnCrop').click(function () {
+
+                            // Get a string base 64 data url
+                            var croppedImageDataURL = brcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            //croppedImageDataURL = encodeURIComponent(croppedImageDataURL)
+                            document.getElementById('brnewImage').src = croppedImageDataURL
+
+                            //$brresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            document.getElementById("brstringImage").value = croppedImageDataURL;
+                            console.log(croppedImageDataURL)
+                        });
+                        $('#brbtnRestore').click(function () {
+
+                            brcanvas.cropper('reset');
+                            //$brresult.empty();
+
+                        });
+                    };
+                    brimg.src = evt.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+            else {
+                alert("Invalid file type! Please select an image file.");
+                document.getElementById('brfileInput').value = null;
+            }
+        }
+        else {
+            alert('No file(s) selected.');
+        }
+    });
+</script>
+
+<script>
+    var ppcanvas = $("#ppcanvas"),
+        ppcontext = ppcanvas.get(0).getContext("2d"),
+        $ppresult = $('#ppresult');
+
+    $('#ppfileInput').on('change', function () {
+        if (this.files && this.files[0]) {
+            if (this.files[0].type.match(/^image\//)) {
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    var ppimg = new Image();
+                    ppimg.onload = function () {
+                        ppcontext.canvas.height = ppimg.height;
+                        ppcontext.canvas.width = ppimg.width;
+                        document.getElementById("ppbtnCrop").style.display = ""
+                        document.getElementById("ppcanvas").style.display = ""
+
+                        ppcontext.drawImage(ppimg, 0, 0);
+                        ppcanvas.cropper('destroy');
+                        var cropper = ppcanvas.cropper({
+                            aspectRatio: 1 / 1,
+                            viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
+                        });
+                        $('#ppbtnCrop').click(function () {
+                            // Get a string base 64 data url
+                            var croppedImageDataURL = ppcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            document.getElementById('ppnewImage').src = croppedImageDataURL
+                            //$ppresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            document.getElementById("ppstringImage").value = croppedImageDataURL;
+                        });
+                        $('#btnRestore').click(function () {
+                            ppcanvas.cropper('reset');
+                            $ppresult.empty();
+                        });
+                    };
+                    ppimg.src = evt.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+            else {
+                alert("Invalid file type! Please select an image file.");
+                document.getElementById('ppfileInput').value = null;
+            }
+        }
+        else {
+            alert('No file(s) selected.');
+        }
+    });
+</script>
+
+
+<script>
+    var realcanvas = $("#canvasreal"),
+        realcontext = realcanvas.get(0).getContext("2d"),
+        $realresult = $('#resultreal');
+
+    $('#realfileInput').on('change', function () {
+        if (this.files && this.files[0]) {
+            if (this.files[0].type.match(/^image\//)) {
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    var realimg = new Image();
+                    realimg.onload = function () {
+                        realcontext.canvas.height = realimg.height;
+                        realcontext.canvas.width = realimg.width;
+                        realcontext.drawImage(realimg, 0, 0);
+                        realcanvas.cropper('destroy');
+                        document.getElementById("realbtnCrop").style.display = ""
+                        document.getElementById("canvasreal").style.display = ""
+
+                        var cropper = realcanvas.cropper({
+                            aspectRatio: 1 / 1,
+                            viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
+                        });
+                        $('#realbtnCrop').click(function () {
+                            // Get a string base 64 data url
+                            var croppedImageDataURL = realcanvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            document.getElementById('realnewImage').src = croppedImageDataURL
+                            //$realresult.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            console.log()
+                            document.getElementById("realstringImage").value = croppedImageDataURL;
+                        });
+                        $('#realbtnRestore').click(function () {
+                            realcanvas.cropper('reset');
+                            $realresult.empty();
+                        });
+                    };
+                    realimg.src = evt.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+            else {
+                alert("Invalid file type! Please select an image file.");
+                document.getElementById('realfileInput').value = null;
+            }
+        }
+        else {
+            alert('No file(s) selected.');
+        }
+    });
+</script>
+
+
+
+<script>
+    var canvas = $("#canvas"),
+        context = canvas.get(0).getContext("2d"),
+        $result = $('#result');
+
+    $('#fileInput').on('change', function () {
+        if (this.files && this.files[0]) {
+            if (this.files[0].type.match(/^image\//)) {
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    var img = new Image();
+                    img.onload = function () {
+                        context.canvas.height = img.height;
+                        context.canvas.width = img.width;
+                        context.drawImage(img, 0, 0);
+                        canvas.cropper('destroy');
+                        document.getElementById("btnCrop").style.display = ""
+                        document.getElementById("canvas").style.display = ""
+
+                        var cropper = canvas.cropper({
+                            aspectRatio: 1 / 1,
+                            viewMode: 1,
+                            cropBoxMovable:false,
+                            dragMode:'move'
+
+                        });
+                        $('#btnCrop').click(function () {
+                            // Get a string base 64 data url
+
+                            var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/jpg");
+                            document.getElementById('thenewImage').src = croppedImageDataURL
+                            //$result.replaceWith($('<img>').attr('src', croppedImageDataURL));
+                            document.getElementById("stringImage").value = croppedImageDataURL;
+                        });
+                        $('#btnRestore').click(function () {
+                            canvas.cropper('reset');
+                            $result.empty();
+                        });
+                    };
+                    img.src = evt.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+            else {
+                alert("Invalid file type! Please select an image file.");
+                document.getElementById('fileInput').value = null;
+            }
+        }
+        else {
+            alert('No file(s) selected.');
+        }
+    });
+</script>
+
+
+
+{{!-- ajax --}}
+{{!--
+<script>
+    var Base64Binary = {
+        _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+
+        /* will return a  Uint8Array type */
+        decodeArrayBuffer: function (input) {
+            var bytes = (input.length / 4) * 3;
+            var ab = new ArrayBuffer(bytes);
+            this.decode(input, ab);
+
+            return ab;
+        },
+
+        removePaddingChars: function (input) {
+            var lkey = this._keyStr.indexOf(input.charAt(input.length - 1));
+            if (lkey == 64) {
+                return input.substring(0, input.length - 1);
+            }
+            return input;
+        },
+
+        decode: function (input, arrayBuffer) {
+            //get last chars to see if are valid
+            input = this.removePaddingChars(input);
+            input = this.removePaddingChars(input);
+
+            var bytes = parseInt((input.length / 4) * 3, 10);
+
+            var uarray;
+            var chr1, chr2, chr3;
+            var enc1, enc2, enc3, enc4;
+            var i = 0;
+            var j = 0;
+
+            if (arrayBuffer)
+                uarray = new Uint8Array(arrayBuffer);
+            else
+                uarray = new Uint8Array(bytes);
+
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+            for (i = 0; i < bytes; i += 3) {
+                //get the 3 octects in 4 ascii chars
+                enc1 = this._keyStr.indexOf(input.charAt(j++));
+                enc2 = this._keyStr.indexOf(input.charAt(j++));
+                enc3 = this._keyStr.indexOf(input.charAt(j++));
+                enc4 = this._keyStr.indexOf(input.charAt(j++));
+
+                chr1 = (enc1 << 2) | (enc2 >> 4);
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                chr3 = ((enc3 & 3) << 6) | enc4;
+
+                uarray[i] = chr1;
+                if (enc3 != 64) uarray[i + 1] = chr2;
+                if (enc4 != 64) uarray[i + 2] = chr3;
+            }
+
+            return uarray;
+        }
+    }
+    $("#addproduct").submit((e) => {
+        let barr = document.getElementById('addproduct').value
+        var uintArray = Base64Binary.decode(barr);
+        e.preventDefault()
+        $.ajax({
+            url: '/vendor/addProduct',
+            method: 'post',
+            data: uintArray,
+            success: ((response) => {
+                console.log(response)
+                alert(response)
+
+
+            })
+        })
+    })
+
+</script> --}}
+
+
+
+<style>
+    /* Limit image width to avoid overflow the container */
+    img {
+
+        max-width: 25%;
+        /* This rule is very important, please do not ignore this! */
+    }
+
+    .brreal {
+        width: 100px
+    }
+
+    .result {
+        width: 100px
+    }
+
+    #canvas {
+        height: 100px;
+        width: 100px;
+        background-color: #ffffff;
+        cursor: default;
+        border: 1px solid black;
+    }
+
+    #ppcanvas {
+        height: 100px;
+        width: 100px;
+        background-color: #ffffff;
+        cursor: default;
+        border: 1px solid black;
+    }
+
+    #canvasreal {
+        height: 100px;
+        width: 100px;
+        background-color: #ffffff;
+        cursor: default;
+        border: 1px solid black;
+    }
+
+    #brcanvas {
+        height: 100px;
+        width: 100px;
+        background-color: #ffffff;
+        cursor: default;
+        border: 1px solid black;
+    }
+</style>
+
+
+{{!--
+<script>
+    function viewImage(event) {
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage1(event) {
         document.getElementById('imgView2').src = URL.createObjectURL(event.target.files[0])
     }
-     function viewImage3(event) {
+    function viewImage2(event) {
         document.getElementById('imgView3').src = URL.createObjectURL(event.target.files[0])
     }
-     function viewImage4(event) {
+    function viewImage3(event) {
         document.getElementById('imgView4').src = URL.createObjectURL(event.target.files[0])
     }
-</script>
+</script> --}}
 
 <!-- jquery
 		============================================ -->
 <script src="/js/vendor/jquery-1.11.3.min.js"></script>
 <!-- bootstrap JS
 		============================================ -->
+{{!--
 <script src="/js/bootstrap.min.js"></script>
 <!-- meanmenu JS
 		============================================ -->
-<script src="/js/jquery.meanmenu.js"></script>
+<script src="/js/jquery.meanmenu.js"></script> --}}
 <!-- mCustomScrollbar JS
 		============================================ -->
 <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>

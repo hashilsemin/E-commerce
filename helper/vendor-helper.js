@@ -374,6 +374,32 @@ module.exports = {
             console.log(week);
             resolve(week)
         })
+    },
+    getFive:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let five = await db.get().collection(collection.ORDER).aggregate([
+
+
+                {
+                    $unwind: '$product'
+                },
+                {
+                    $match: { 'product.product.vendorId': id, status: 'placed' }
+                },
+                {
+                    $group: {
+                        _id: '$product.product.product',
+                        Quantity: { $sum: '$product.products.quantity' }
+                    }
+                },
+                { $sort : { Quantity : -1 } }
+    
+    
+            ]).toArray()
+            console.log(five);
+            resolve(five)
+        })
     }
 
 }
+

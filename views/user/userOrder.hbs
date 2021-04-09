@@ -31,7 +31,15 @@
                             
                                         <div class="sinrato-product-des">
                                             <p> We ensure our best service of our delviery team, we follow every covid 19 protocol and ensure yours safety</p>
-                                         Shipping Status:<span class="regular-price"><span class="special-price">{{#if this.product.product.ship}} <span style="color: green;">{{this.product.product.ship}}</span> {{else}} Pending{{/if}}</span></span>
+                                         Shipping Status:<span class="regular-price"><span class="special-price">
+                                             
+                                             {{#if this.product.product.cancelled}}
+                                                   <span style="color: rgb(250, 0, 0);">This order have been cancelled</span>
+                                                   {{else}}     
+                                             {{#if this.product.product.ship}} 
+                                             <span style="color: green;">{{this.product.product.ship}}</span>
+                                              {{else}} Pending{{/if}}{{/if}}
+                                              </span></span>
                                         </div>
                                     </div>
                                     <div class="sinrato-box-action">
