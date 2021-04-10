@@ -4,7 +4,7 @@ const state = {
 }
  
 module.exports.connect = function(done){
-    const url= 'mongodb://localhost:27017'
+    const url= process.env.URI
     const dbname = 'Ecommerce'
     mongoClient.connect(url,{useUnifiedTopology:true},(err,data)=>{
         if(err) return done(err)
