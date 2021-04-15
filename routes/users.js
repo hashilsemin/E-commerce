@@ -4,21 +4,23 @@ var instance = new Razorpay({
   key_id: 'rzp_test_oqOom6V3IbHjCo',
   key_secret: 'sGonyu9F0Ss0YBoaj8yTGr2G',
 });
+const dotenv=require('dotenv').config()
 const otp = require("../otp")
-const client = require("twilio")(otp.accountSID,otp.authToken)
+console.log(process.env.ACCOUNT+"ojkkkkkkkkkkk");
+const client = require("twilio")(process.env.ACCOUNT,process.env.AUTH)
 var alertcart = false
 const checkBlock = (req,res,next)=>{
- 
+   
  let my=req.user
   console.log("********************8888");
   if(my){
     userHelpers.checkBlock(req.user._id).then((block)=>{
       if(block){
        
-        res.redirect('/logout')
-      }else{
-        console.log("vannuuuu11111111111111");
-        next()
+        res.redirect('/logout') 
+      }else{ 
+        console.log("vann11");
+        next() 
       }
     })
   }else{
